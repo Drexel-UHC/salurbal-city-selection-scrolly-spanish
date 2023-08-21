@@ -115,7 +115,12 @@
 }
 
 { # Centroids ---------------------------------------------------------------
-
+  
+  json__SP_L1_centroid = st_centroid(sf__l1_tmp) %>% st_coordinates() %>% rev() %>%jsonlite::toJSON()
+  json__SP_municipio_centroid = st_centroid(sf_sp_municipio) %>% st_coordinates() %>% rev() %>%jsonlite::toJSON()
+  xfun::write_utf8(json__SP_L1_centroid,"../public/data/sao_paolo_l1ad_centroid.json")
+  xfun::write_utf8(json__SP_municipio_centroid,"../public/data/sao_paolo_municipio_centroid.json")
+  
   
 }
  
