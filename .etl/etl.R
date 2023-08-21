@@ -30,7 +30,64 @@
 }
 
 
-
+{ # Import SF objects -------------------------------------------------------
+  
+  salid1_tmp= 102248
+  clean_path = '../../salurbal-fair-renovations/clean/seeds/spatial'
+  
+  { ## Metropolitan boundaries ----------------------------------------------------------------
+    dir_MAID2 =paste0('//files.drexel.edu/colleges/SOPH/Shared/UHC/Projects/Wellcome_Trust/Data Methods Core/Geodatabases/SALURBAL_1_4_21/BR_1_4_21/BR_SALURBAL_1_4_21.gdb')
+    layers_MAID2 = sf::st_layers(dir_MAID2)
+    stg__MAID2 = sf::st_read(dir_MAID2,"BRMUN_SALURBAL_7_6_21")%>%  
+      sf::st_transform("+proj=longlat +datum=NAD83")
+    
+    sf__metropolitan_raw = stg__MAID2 %>% filter(SALMAID1 == 9102248) 
+    
+    sf__metropolitan_merged = sf__metropolitan_raw %>% 
+      st_make_valid()  %>% 
+      st_cast("MULTIPOLYGON")%>%
+      st_union()  
+    sf__metropolitan_clean <- st_sf(geometry = st_sfc(st_polygon(list(sfa[[1]][[1]]))))
+    sf__metropolitan_tmp = sf__metropolitan_clean %>% ms_simplify(keep = 0.05,keep_shapes = T)
+    
+    
+  }
+  
+  { ## L1AD  -----------------------------------------------------------
+    sf__l1_tmp = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_simp_5pct.parquet")) %>%
+      filter(salid1 == salid1_tmp)
+  }  
+  
+  { ## L1AD  -----------------------------------------------------------
+    sf__l1_tmp = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_simp_5pct.parquet")) %>%
+      filter(salid1 == salid1_tmp)
+  }
+  
+  { ## L1UX -----------------------------------------------------------
+    sf__l1ux_tmp = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1UX_simp_5pct.parquet"))  %>%
+      filter(salid1 == salid1_tmp)  
+  }
+  
+  { ## L2 -----------------------------------------------------------
+    sf__l2_tmp =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L2_simp_5pct.parquet"))  %>% 
+      filter(salid1 == salid1_tmp)
+  }
+  
+  { ## L2_5 -----------------------------------------------------------
+    sf__l2_5_tmp =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L25_simp_5pct.parquet"))  %>% 
+      filter(salid1 == salid1_tmp)
+  }
+  
+  { ## L3 -----------------------------------------------------------
+    sf__l3_tmp =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L3_simp_5pct.parquet"))  %>% 
+      filter(salid1 == salid1_tmp)
+  }
+  
+  { ## sf_sp_municipio -------------------------------------------------------------
+    sf_sp_municipio = sf__l2_tmp %>% 
+      filter(salid2 == 10224810 )
+  }
+}
 
 { # Outputs --------------------------------------------
   
