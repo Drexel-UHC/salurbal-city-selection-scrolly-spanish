@@ -42,20 +42,20 @@
     ],
   };
 
-  const paBounds = {
-    url: './data/geo_counties.json',
+  const src_sao_paolo_municipio = {
+    url: './data/sao_paolo_municipio.json',
     layer: 'geog',
-    code: 'AREANM',
+    code: 'salid2',
   };
-  const stateBounds = {
-    url: './data/geo_states.json',
-    layer: 'geog',
-    code: 'AREANM',
-  };
+
   const bounds = {
-    pa: [
-      [-80.519851, 38.788657],
-      [-66.885444, 47.459833],
+    southAmerica: [
+      [-81.35, -56.54], // Southwest corner: min longitude, min latitude
+      [-32.39, 13.39], // Northeast corner: max longitude, max latitude
+    ],
+    municipio: [
+      [-46.826191, -24.008374],
+      [-46.365357, -23.357529],
     ],
   };
 
@@ -64,30 +64,25 @@
 
   // Data
   let data = {};
-  let geojson;
-  let geojson_state;
-
+  let geojson_municipio;
   // State
   let zoom;
   let center = {};
   let hovered, selected;
 
   // Get geometry for geojson maps
-  getTopo(paBounds.url, paBounds.layer).then((res) => {
-    geojson = res;
-    console.log(`geojson`);
-    console.log(geojson);
-  });
-  getTopo(stateBounds.url, stateBounds.layer).then((res) => {
-    geojson_state = res;
-    console.log(`geojson_state`);
-    console.log(geojson_state);
-  });
+  getTopo(src_sao_paolo_municipio.url, src_sao_paolo_municipio.layer).then(
+    (res) => {
+      geojson_municipio = res;
+      console.log(`geojson_municipio`);
+      console.log(geojson_municipio);
+    }
+  );
 
   // Get data for geojson maps
-  getData('./data/data_county.csv').then((res) => {
-    data.pa = res;
-  });
+  // getData('./data/data_county.csv').then((res) => {
+  //   data.pa = res;
+  // });
 
   // Functions for map component
   function fitBounds(bounds) {
@@ -137,66 +132,58 @@
   // # ============================================================================ #
   // #### Scroller Action
 
-  let showSources = true;
-  let visLayers = true;
-  let fill = false;
-  let boundaries = false;
-  let stateBoundaries = false;
-  let highlight = false;
-  let colorKey;
+  let show_municipio = false;
   let actions = {
     map: {
       map01: () => {
         console.log(`######### map01`);
-        fitBounds(bounds.pa);
-        boundaries = false;
-        fill = false;
-        highlight = false;
-        stateBoundaries = false;
+        fitBounds(bounds.southAmerica);
+        show_municipio = false;
       },
       map02: () => {
         console.log(`######### map02`);
-        fitBounds(bounds.pa);
-        boundaries = true;
-        fill = false;
-        highlight = false;
-        stateBoundaries = false;
+        fitBounds(bounds.municipio);
+        show_municipio = true;
+        // boundaries = true;
+        // fill = false;
+        // highlight = false;
+        // stateBoundaries = false;
       },
-      map03: () => {
-        console.log(`######### map03`);
-        fitBounds(bounds.pa);
-        boundaries = false;
-        fill = true;
-        colorKey = 'color_age_med';
-        highlight = true;
-        stateBoundaries = false;
-      },
-      map04: () => {
-        console.log(`######### map04`);
-        fitBounds(bounds.pa);
-        boundaries = false;
-        fill = true;
-        colorKey = 'color_salary';
-        highlight = true;
-        stateBoundaries = false;
-      },
-      map05: () => {
-        console.log(`######### map05`);
-        fitById('Philadelphia, PA');
-        boundaries = false;
-        fill = true;
-        colorKey = 'color_salary';
-        highlight = true;
-        stateBoundaries = false;
-      },
-      map06: () => {
-        console.log(`######### map06`);
-        fitBounds(bounds.pa);
-        boundaries = true;
-        fill = false;
-        highlight = false;
-        stateBoundaries = true;
-      },
+      // map03: () => {
+      //   console.log(`######### map03`);
+      //   fitBounds(bounds.southAmerica);
+      //   boundaries = false;
+      //   fill = true;
+      //   colorKey = 'color_age_med';
+      //   highlight = true;
+      //   stateBoundaries = false;
+      // },
+      // map04: () => {
+      //   console.log(`######### map04`);
+      //   fitBounds(bounds.southAmerica);
+      //   boundaries = false;
+      //   fill = true;
+      //   colorKey = 'color_salary';
+      //   highlight = true;
+      //   stateBoundaries = false;
+      // },
+      // map05: () => {
+      //   console.log(`######### map05`);
+      //   fitById('Philadelphia, PA');
+      //   boundaries = false;
+      //   fill = true;
+      //   colorKey = 'color_salary';
+      //   highlight = true;
+      //   stateBoundaries = false;
+      // },
+      // map06: () => {
+      //   console.log(`######### map06`);
+      //   fitBounds(bounds.southAmerica);
+      //   boundaries = true;
+      //   fill = false;
+      //   highlight = false;
+      //   stateBoundaries = true;
+      // },
     },
   };
 </script>
@@ -213,101 +200,27 @@
         <Map
           id="map"
           style="./data/style-osm.json"
-          location={{ bounds: bounds.pa }}
+          location={{ bounds: bounds.southAmerica }}
           controls={false}
           bind:map
           bind:zoom
           bind:center
         >
           <MapSource
-            id="paBounds"
+            id="municipio"
             type="geojson"
-            data={geojson}
-            promoteId={paBounds.code}
+            data={geojson_municipio}
+            promoteId={src_sao_paolo_municipio.code}
             maxzoom={13}
           >
             <MapLayer
-              id="boundaries"
+              id="municipio"
               custom={{
-                stateBoundaries: stateBoundaries,
-                boundaries: boundaries,
-                fill: fill,
+                show_municipio: show_municipio,
               }}
               type="line"
               paint={{
-                'line-color': 'black',
-                'line-width': 2,
-              }}
-            />
-            <MapLayer
-              id="fill"
-              custom={{
-                stateBoundaries: stateBoundaries,
-                boundaries: boundaries,
-                fill: fill,
-              }}
-              data={data.pa}
-              type="fill"
-              hover={true}
-              {colorKey}
-              bind:hovered
-              select={true}
-              bind:selected
-              paint={{
-                'fill-color': [
-                  'case',
-                  ['!=', ['feature-state', 'color'], null],
-                  ['feature-state', 'color'],
-                  'rgba(255, 255, 255, 0)',
-                ],
-                'fill-opacity': 0.7,
-              }}
-            >
-              <MapTooltip content={`Code: ${hovered}`} />
-            </MapLayer>
-            <MapLayer
-              id="highlight"
-              custom={{
-                boundaries: boundaries,
-                fill: fill,
-                highlight: highlight,
-              }}
-              type="line"
-              paint={{
-                'line-color': [
-                  'case',
-                  ['==', ['feature-state', 'selected'], true],
-                  'black',
-                  ['==', ['feature-state', 'hovered'], true],
-                  'orange',
-                  'rgba(255, 255, 255, 0)',
-                ],
-                'line-width': [
-                  'case',
-                  ['==', ['feature-state', 'selected'], true],
-                  2,
-                  1,
-                ],
-              }}
-            />
-          </MapSource>
-          <MapSource
-            id="stateBounds"
-            type="geojson"
-            data={geojson_state}
-            promoteId={stateBounds.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              id="stateBoundaries"
-              custom={{
-                stateBoundaries: stateBoundaries,
-                boundaries: boundaries,
-                fill: fill,
-              }}
-              type="line"
-              paint={{
-                'line-color': 'red',
+                'line-color': '#2F8FBC',
                 'line-width': 5,
               }}
             />
@@ -323,34 +236,13 @@
   <div slot="foreground">
     <section data-id="map01">
       <div class="col-medium">
-        <p><strong>OSM base map</strong></p>
+        <p><strong>We’ll use São Paulo, Brazil as an example. </strong></p>
       </div>
     </section>
     <section data-id="map02">
       <div class="col-medium">
-        <p><strong>add boundaries</strong></p>
-      </div>
-    </section>
-    <section data-id="map03">
-      <div class="col-medium">
-        <p><strong>add median age data layer</strong></p>
-      </div>
-    </section>
-    <section data-id="map04">
-      <div class="col-medium">
-        <p><strong>show salary layer</strong></p>
-      </div>
-    </section>
-    <section data-id="map05">
-      <div class="col-medium">
-        <p><strong>zoom in on a specific unit</strong></p>
-      </div>
-    </section>
-    <section data-id="map06">
-      <div class="col-medium">
         <p>
-          <strong
-            >Lets go back to boundaries and add a layer for state boundaries.</strong
+          <strong>This is the municipio boundaries for São Paulo, Brazil</strong
           >
         </p>
       </div>
