@@ -81,7 +81,7 @@
   // # diagnose code here
   $: {
     if (custom[id]) {
-      console.log(`######### ${id} #######`);
+      console.log(`### id: ${id}  `);
       console.log(`custom`);
       console.log(custom);
       console.log(`data`);
@@ -92,6 +92,8 @@
       console.log(sourceLayer);
     }
   }
+
+  // Reactive state
   $: {
     Object.entries(custom).map((arr) => {
       const id_tmp = arr[0];
@@ -129,30 +131,6 @@
   }
 
   $: data && (data || colorKey) && updateColors();
-
-  // // updates just boundaries
-  // function updateBoundaries() {
-  //   console.log('updating boundaries...');
-  //   console.log(data);
-
-  //   data.forEach((d) => {
-  //     console.log(d);
-  //     // map.setFeatureState(
-  //     //   {
-  //     //     source: source,
-  //     //     sourceLayer: sourceLayer,
-  //     //     id: d[idKey],
-  //     //   },
-  //     //   {
-  //     //     color: colorKey ? d[colorKey] : null,
-  //     //     name: nameKey ? d[nameKey] : null,
-  //     //     value: valueKey ? d[valueKey] : null,
-  //     //   }
-  //     // );
-  //   });
-  // }
-
-  // $: data && updateBoundaries();
 
   // Updates the "highlighted" feature state as geo codes are added to/removed from the highlighted array
   $: if (highlight && highlighted != highlightedPrev) {
