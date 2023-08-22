@@ -54,38 +54,12 @@
   if (map.getLayer(id)) {
     map.removeLayer(id);
   }
-
   // # ============================================================================ #
   // # diagnose code here
   $: {
     if (custom[id]) {
-      console.log(`### id: ${id}  `);
-      console.log(`source`);
-      console.log(source);
-      console.log(`custom`);
-      console.log(custom);
+      console.log(` --  MapLayer: ${custom.id}  `);
     }
-  }
-  let options = {
-    id: id,
-    type: type,
-    source: source,
-    paint: paint,
-    layout: layout,
-  };
-
-  if (filter) {
-    options['filter'] = filter;
-  }
-
-  if (sourceLayer) {
-    options['source-layer'] = sourceLayer;
-  }
-  if (maxzoom) {
-    options['maxzoom'] = maxzoom;
-  }
-  if (minzoom) {
-    options['minzoom'] = minzoom;
   }
 
   // Reactive state
@@ -94,14 +68,26 @@
       const id_tmp = arr[0];
       const want_to_add_id = custom[id_tmp];
 
-      if (want_to_add_id && options.id == id_tmp) {
-        map.addLayer(options, order);
-        console.log(`XXXXXXXXXXX   Adding layer ${id_tmp}`);
-      }
+      // remove layer if not specified in custom
+      if (!want_to_add_id && map.getLayer(id_tmp)) map.removeLayer(id_tmp);
 
-      if (!want_to_add_id && map.getLayer(id_tmp)) {
-        map.removeLayer(id_tmp);
-        console.log(`XXXXXXXXXXXXX    Removing layer ${id_tmp}`);
+      // add layer if specified in custom
+      if (want_to_add_id && id == id_tmp) {
+        const paint_tmp = custom.paint[id_tmp] ? custom.paint[id_tmp] : {};
+        custom.paint[id_tmp] && console.log(`${id_tmp} paint`);
+        custom.paint[id_tmp] && console.log(paint_tmp);
+
+        // define options
+        let options = {
+          id: id,
+          type: type,
+          source: source,
+          paint: paint_tmp,
+          layout: layout,
+        };
+
+        // add
+        map.addLayer(options, order);
       }
     });
   }

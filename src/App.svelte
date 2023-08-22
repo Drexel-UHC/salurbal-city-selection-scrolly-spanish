@@ -181,6 +181,14 @@
     municipio: false,
     l1ux: false,
     l2: false,
+    paint: {
+      municipio_centroid: {
+        'circle-color': hex_secondary,
+        'circle-radius': 7,
+        'circle-stroke-color': hex_error,
+        'circle-stroke-width': 5,
+      },
+    },
   };
   let actions = {
     map: {
@@ -192,6 +200,14 @@
           municipio: false,
           l1ux: false,
           l2: false,
+          paint: {
+            municipio_centroid: {
+              'circle-color': hex_secondary,
+              'circle-radius': 7,
+              'circle-stroke-color': hex_error,
+              'circle-stroke-width': 5,
+            },
+          },
         };
       },
       map02: () => {
@@ -202,10 +218,15 @@
           municipio: false,
           l1ux: false,
           l2: true,
+          paint: {
+            l2: {
+              'line-color': hex_primary,
+              'line-width': 5,
+            },
+          },
         };
       },
       map03: () => {
-        console.log(`######### map03`);
         fitBounds(bounds.l1ad);
         custom = {
           id: 'map03',
@@ -213,6 +234,12 @@
           municipio: false,
           l1ux: true,
           l2: false,
+          paint: {
+            l1ux: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+          },
         };
       },
     },
@@ -245,17 +272,7 @@
             promoteId={'municipio_centroid'}
             maxzoom={13}
           >
-            <MapLayer
-              id="municipio_centroid"
-              {custom}
-              type="circle"
-              paint={{
-                'circle-color': hex_secondary,
-                'circle-radius': 7,
-                'circle-stroke-color': hex_error,
-                'circle-stroke-width': 5,
-              }}
-            />
+            <MapLayer id="municipio_centroid" {custom} type="circle" />
           </MapSource>
           <MapSource
             id="municipio"
@@ -264,15 +281,7 @@
             promoteId={src_municipio.code}
             maxzoom={13}
           >
-            <MapLayer
-              id="municipio"
-              {custom}
-              type="line"
-              paint={{
-                'line-color': hex_primary,
-                'line-width': 5,
-              }}
-            />
+            <MapLayer id="municipio" {custom} type="line" />
           </MapSource>
           <MapSource
             id="l1ux"
@@ -281,15 +290,7 @@
             promoteId={src_l1ux.code}
             maxzoom={13}
           >
-            <MapLayer
-              id="l1ux"
-              {custom}
-              type="line"
-              paint={{
-                'line-color': '#BC3B2F',
-                'line-width': 5,
-              }}
-            />
+            <MapLayer id="l1ux" {custom} type="line" />
           </MapSource>
           <MapSource
             id="l2"
