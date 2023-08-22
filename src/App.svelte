@@ -221,7 +221,7 @@
       <div class="col-full height-full">
         <Map
           id="map"
-          style="./data/style-osm.json"
+          style="./data/style-esri-world-imagery.json"
           location={{ bounds: bounds.southAmerica }}
           controls={false}
           scales={true}
