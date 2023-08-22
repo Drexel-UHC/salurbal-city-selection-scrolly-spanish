@@ -309,9 +309,9 @@
             />
           </MapSource>
         </Map>
-        <div class="stickDev">
+        <!-- <div class="stickDev">
           {id.map}
-        </div>
+        </div> -->
       </div>
     </figure>
   </div>
