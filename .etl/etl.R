@@ -151,3 +151,21 @@
   
 }
 
+{ # Scrolly Drafts ----------------------------------------------------------
+
+  ## Step 3 ------------------------------------------------------------------
+  ##' Through visual inspection of satellite imagery, we identified all administrative units 
+  ##' that included any portion of the built-up area of each SALURBAL city.  
+  ##' 
+  ##' Zoom into the center of the urban area and then move out to the fringe of 
+  ##' the urban extent, following it a short distance to illustrate the process 
+  ##' of detecting the visually apparent built-up area
+ 
+  leaflet() %>% 
+    addTiles() %>% 
+    addPolygons(data = sf__l1_tmp, fillOpacity = 0, color = 'red') %>% 
+    addPolygons(data = sf__l2_tmp, fillOpacity = 0)
+  
+  
+}
+
