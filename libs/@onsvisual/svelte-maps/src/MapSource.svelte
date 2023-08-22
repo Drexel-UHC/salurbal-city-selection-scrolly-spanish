@@ -1,6 +1,7 @@
 <script>
   import { getContext, setContext } from 'svelte';
 
+  export let map_id;
   export let id;
   export let type;
   export let url = null;
@@ -10,10 +11,11 @@
   export let promoteId = null;
   export let minzoom = null;
   export let maxzoom = null;
-
+  console.log(id);
+  console.log(map_id);
   let loaded = false;
 
-  const { getMap } = getContext('map');
+  const { getMap } = getContext(map_id);
   const map = getMap();
 
   setContext('source', {

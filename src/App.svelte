@@ -381,19 +381,27 @@
 
 <Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
-    <!-- <BarChart
-        data={[...data.region.indicators].sort((a, b) => a.pop - b.pop)}
-        xKey="pop"
-        yKey="name"
-        snapTicks={false}
-        xFormatTick={(d) => d / 1e6}
-        xSuffix="m"
-        height={350}
-        padding={{ top: 0, bottom: 15, left: 140, right: 0 }}
-        area={false}
-        title="Population by state, 2020 - North East Region"
-      /> -->
-    Map here!
+    <!-- <Map
+      id="staticmap1"
+      style="./data/style-osm-grey.json"
+      location={{ bounds: bounds.southAmerica }}
+      controls={false}
+      scales={true}
+      bind:map
+      bind:zoom
+      bind:center
+    >
+      <MapSource
+        map_id="staticmap1"
+        id="static-map-1"
+        type="geojson"
+        data={geojson_salurbal_centroid}
+        promoteId={'salurbal_centroids'}
+        maxzoom={13}
+      >
+        <MapLayer map_id="static-map-1" id="staticmap1" type="circle" />
+      </MapSource>
+    </Map> -->
   </div>
 </Media>
 
@@ -417,7 +425,7 @@
     <figure>
       <div class="col-full height-full">
         <Map
-          id="map"
+          id="scrolly-map-1"
           style="./data/style-esri-world-imagery.json"
           location={{ bounds: bounds.southAmerica }}
           controls={false}
@@ -427,51 +435,81 @@
           bind:center
         >
           <MapSource
+            map_id="scrolly-map-1"
             id="municipio_centroid"
             type="geojson"
             data={geojson_municipio_centroid}
             promoteId={'municipio_centroid'}
             maxzoom={13}
           >
-            <MapLayer id="municipio_centroid" {custom} type="circle" />
+            <MapLayer
+              map_id="scrolly-map-1"
+              id="municipio_centroid"
+              {custom}
+              type="circle"
+            />
           </MapSource>
           <MapSource
+            map_id="scrolly-map-1"
             id="municipio"
             type="geojson"
             data={geojson_municipio}
             promoteId={src_municipio.code}
             maxzoom={13}
           >
-            <MapLayer id="municipio" {custom} type="line" />
+            <MapLayer
+              map_id="scrolly-map-1"
+              id="municipio"
+              {custom}
+              type="line"
+            />
           </MapSource>
 
           <MapSource
+            map_id="scrolly-map-1"
             id="l2"
             type="geojson"
             data={geojson_l2}
             promoteId={src_l2.code}
             maxzoom={13}
           >
-            <MapLayer id="l2_line" {custom} type="line" />
-            <MapLayer id="l2_fill" {custom} type="fill" />
+            <MapLayer
+              map_id="scrolly-map-1"
+              id="l2_line"
+              {custom}
+              type="line"
+            />
+            <MapLayer
+              map_id="scrolly-map-1"
+              id="l2_fill"
+              {custom}
+              type="fill"
+            />
           </MapSource>
           <MapSource
+            map_id="scrolly-map-1"
             id="l1ux"
             type="geojson"
             data={geojson_l1ux}
             promoteId={src_l1ux.code}
             maxzoom={13}
           >
-            <MapLayer id="l1ux" {custom} type="line" />
+            <MapLayer map_id="scrolly-map-1" id="l1ux" {custom} type="line" />
           </MapSource>
           <MapSource
+            map_id="scrolly-map-1"
             id="l1ad"
             type="geojson"
             data={geojson_l1ad}
             promoteId={src_l1ad.code}
             maxzoom={13}
           >
-            <MapLayer id="l1ad_line" {custom} type="line" />
+            <MapLayer
+              map_id="scrolly-map-1"
+              id="l1ad_line"
+              {custom}
+              type="line"
+            />
           </MapSource>
         </Map>
         <!-- <div class="stickDev">
@@ -567,6 +605,7 @@
   }
   .chart-sml {
     font-size: 0.85em;
+    height: 300px;
   }
   /* The properties below make the media DIVs grey, for visual purposes in demo */
   .media {

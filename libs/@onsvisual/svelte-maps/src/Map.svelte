@@ -33,7 +33,7 @@
   let options;
   let loaded = false;
 
-  setContext('map', {
+  setContext(id, {
     getMap: () => map,
   });
 

@@ -4,6 +4,7 @@
 
   const dispatch = createEventDispatcher();
 
+  export let map_id;
   export let id;
   export let type;
   export let filter = null;
@@ -30,8 +31,15 @@
   export let custom;
 
   const { source, layer, promoteId } = getContext('source');
-  const { getMap } = getContext('map');
+  const { getMap } = getContext(map_id);
   const map = getMap();
+
+  // # ============================================================================ #
+  // # diagnose code here
+  console.log(id);
+  if (id == 'salurbal_centroid') {
+    console.log('--- SALURBLA_Centroids');
+  }
 
   setContext('layer', {
     layer: id,
@@ -54,9 +62,6 @@
   if (map.getLayer(id)) {
     map.removeLayer(id);
   }
-
-  // # ============================================================================ #
-  // # diagnose code here
 
   // Reactive statement
   $: {
