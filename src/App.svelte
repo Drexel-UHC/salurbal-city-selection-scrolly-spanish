@@ -5,7 +5,6 @@
 
 <script>
   // # ============================================================================ #
-  // # Imports
   import { onMount } from 'svelte';
   import Scroller from './layout/Scroller.svelte';
   import {
@@ -14,7 +13,7 @@
     MapLayer,
     MapTooltip,
   } from '../libs/@onsvisual/svelte-maps';
-  import { getData, getColor, getTopo } from './utils.js';
+  import { getData, getColor, getTopo, getJson } from './utils.js';
   import bbox from '@turf/bbox';
 
   // # ============================================================================ #
@@ -42,12 +41,6 @@
     ],
   };
 
-  const src_sao_paolo_municipio = {
-    url: './data/sao_paolo_municipio.json',
-    layer: 'geog',
-    code: 'salid2',
-  };
-
   const bounds = {
     southAmerica: [
       [-81.35, -56.54], // Southwest corner: min longitude, min latitude
@@ -63,14 +56,42 @@
   let map;
 
   // Data
-  let data = {};
-  let geojson_municipio;
+
   // State
   let zoom;
   let center = {};
   let hovered, selected;
 
-  // Get geometry for geojson maps
+  // # ============================================================================ #
+  // # Get Data
+
+  let salurbal_centroids;
+  getJson('./data/centroids.json').then((res) => {
+    salurbal_centroids = res;
+    console.log(`salurbal_centroids`);
+    console.log(salurbal_centroids);
+  });
+
+  let sao_paolo_municipio_centroid;
+  getJson('./data/sao_paolo_municipio_centroid.json').then((res) => {
+    sao_paolo_municipio_centroid = res;
+    console.log(`sao_paolo_municipio_centroid`);
+    console.log(sao_paolo_municipio_centroid);
+  });
+
+  let sao_paolo_l1ad_centroid;
+  getJson('./data/sao_paolo_l1ad_centroid.json').then((res) => {
+    sao_paolo_l1ad_centroid = res;
+    console.log(`sao_paolo_l1ad_centroid`);
+    console.log(sao_paolo_l1ad_centroid);
+  });
+
+  let geojson_municipio;
+  const src_sao_paolo_municipio = {
+    url: './data/sao_paolo_municipio.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
   getTopo(src_sao_paolo_municipio.url, src_sao_paolo_municipio.layer).then(
     (res) => {
       geojson_municipio = res;

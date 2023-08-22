@@ -7,7 +7,11 @@ export async function getData(url) {
   let data = await csvParse(string, autoType);
   return data;
 }
-
+export async function getJson(url) {
+  let response = await fetch(url);
+  let json = await response.json();
+  return json;
+}
 export async function getTopo(url, layer) {
   let response = await fetch(url);
   let json = await response.json();
