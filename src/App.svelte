@@ -236,7 +236,17 @@
             promoteId={'municipio_centroid'}
             maxzoom={13}
           >
-            <MapLayer id="municipio_centroid" {custom} type="circle" />
+            <MapLayer
+              id="municipio_centroid"
+              {custom}
+              type="circle"
+              paint={{
+                'circle-color': '#00BB9E',
+                'circle-radius': 7,
+                'circle-stroke-color': '#BC3B2F',
+                'circle-stroke-width': 5,
+              }}
+            />
           </MapSource>
           <MapSource
             id="municipio"
