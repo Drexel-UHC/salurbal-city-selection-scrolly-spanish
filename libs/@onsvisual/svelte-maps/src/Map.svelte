@@ -66,7 +66,7 @@
         interactive,
         ...options,
       });
-
+      map.scrollZoom.disable();
       if (controls) {
         map.addControl(new mapbox.NavigationControl({ showCompass: false }));
       }
