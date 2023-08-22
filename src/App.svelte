@@ -40,6 +40,9 @@
       '#053061',
     ],
   };
+  const hex_primary = '#2F8FBC';
+  const hex_secondary = '#00BB9E';
+  const hex_error = '#BC3B2F';
 
   const bounds = {
     southAmerica: [
@@ -49,6 +52,10 @@
     municipio: [
       [-46.826191, -24.008374],
       [-46.365357, -23.357529],
+    ],
+    l1ad: [
+      [-47.084742, -24.008374],
+      [-46.051954, -23.183419],
     ],
   };
 
@@ -65,9 +72,11 @@
   // # ============================================================================ #
   // # Get Data
 
+  // All Salurbal L1 centroids
   let salurbal_centroids;
   getJson('./data/centroids.json').then((res) => (salurbal_centroids = res));
 
+  // Sao Paulo municipio centroid
   const src__municipio_centroid = {
     url: './data/sao_paolo_municipio_centroid.json',
     layer: 'geog',
@@ -80,11 +89,13 @@
     }
   );
 
+  // Sao Paulo L1AD centroid
   let sao_paolo_l1ad_centroid;
   getJson('./data/sao_paolo_l1ad_centroid.json').then((res) => {
     sao_paolo_l1ad_centroid = res;
   });
 
+  // Sao Paulo municipio boundaries
   const src_municipio = {
     url: './data/sao_paolo_municipio.json',
     layer: 'geog',
@@ -93,6 +104,28 @@
   let geojson_municipio;
   getTopo(src_municipio.url, src_municipio.layer).then((res) => {
     geojson_municipio = res;
+  });
+
+  // Sao Paulo L1UX boundaries
+  const src_l1ux = {
+    url: './data/sao_paolo_l1ux.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_l1ux;
+  getTopo(src_l1ux.url, src_l1ux.layer).then((res) => {
+    geojson_l1ux = res;
+  });
+
+  // Sao Paulo L2 boundaries
+  const src_l2 = {
+    url: './data/sao_paolo_l2.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_l2;
+  getTopo(src_l2.url, src_l2.layer).then((res) => {
+    geojson_l2 = res;
   });
 
   // Functions for map component
@@ -146,66 +179,42 @@
     id: 'map01',
     municipio_centroid: true,
     municipio: false,
+    l1ux: false,
+    l2: false,
   };
   let actions = {
     map: {
       map01: () => {
-        console.log(`######### map01`);
         fitBounds(bounds.southAmerica);
         custom = {
           id: 'map01',
           municipio_centroid: true,
           municipio: false,
+          l1ux: false,
+          l2: false,
         };
       },
       map02: () => {
-        console.log(`######### map02`);
-        fitBounds(bounds.municipio);
+        fitBounds(bounds.l1ad);
         custom = {
           id: 'map02',
           municipio_centroid: false,
-          municipio: true,
+          municipio: false,
+          l1ux: false,
+          l2: true,
         };
-        // boundaries = true;
-        // fill = false;
-        // highlight = false;
-        // stateBoundaries = false;
       },
-      // map03: () => {
-      //   console.log(`######### map03`);
-      //   fitBounds(bounds.southAmerica);
-      //   boundaries = false;
-      //   fill = true;
-      //   colorKey = 'color_age_med';
-      //   highlight = true;
-      //   stateBoundaries = false;
-      // },
-      // map04: () => {
-      //   console.log(`######### map04`);
-      //   fitBounds(bounds.southAmerica);
-      //   boundaries = false;
-      //   fill = true;
-      //   colorKey = 'color_salary';
-      //   highlight = true;
-      //   stateBoundaries = false;
-      // },
-      // map05: () => {
-      //   console.log(`######### map05`);
-      //   fitById('Philadelphia, PA');
-      //   boundaries = false;
-      //   fill = true;
-      //   colorKey = 'color_salary';
-      //   highlight = true;
-      //   stateBoundaries = false;
-      // },
-      // map06: () => {
-      //   console.log(`######### map06`);
-      //   fitBounds(bounds.southAmerica);
-      //   boundaries = true;
-      //   fill = false;
-      //   highlight = false;
-      //   stateBoundaries = true;
-      // },
+      map03: () => {
+        console.log(`######### map03`);
+        fitBounds(bounds.l1ad);
+        custom = {
+          id: 'map03',
+          municipio_centroid: false,
+          municipio: false,
+          l1ux: true,
+          l2: false,
+        };
+      },
     },
   };
 </script>
@@ -241,9 +250,9 @@
               {custom}
               type="circle"
               paint={{
-                'circle-color': '#00BB9E',
+                'circle-color': hex_secondary,
                 'circle-radius': 7,
-                'circle-stroke-color': '#BC3B2F',
+                'circle-stroke-color': hex_error,
                 'circle-stroke-width': 5,
               }}
             />
@@ -260,7 +269,41 @@
               {custom}
               type="line"
               paint={{
-                'line-color': '#2F8FBC',
+                'line-color': hex_primary,
+                'line-width': 5,
+              }}
+            />
+          </MapSource>
+          <MapSource
+            id="l1ux"
+            type="geojson"
+            data={geojson_l1ux}
+            promoteId={src_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              id="l1ux"
+              {custom}
+              type="line"
+              paint={{
+                'line-color': '#BC3B2F',
+                'line-width': 5,
+              }}
+            />
+          </MapSource>
+          <MapSource
+            id="l2"
+            type="geojson"
+            data={geojson_l2}
+            promoteId={src_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              id="l2"
+              {custom}
+              type="line"
+              paint={{
+                'line-color': hex_primary,
                 'line-width': 5,
               }}
             />
@@ -282,7 +325,18 @@
     <section data-id="map02">
       <div class="col-medium">
         <p>
-          <strong>This is the municipio boundaries for São Paulo, Brazil</strong
+          <strong
+            >These is the <span>administrative units (municipios)</span> around São
+            Paulo, Brazil</strong
+          >
+        </p>
+      </div>
+    </section>
+    <section data-id="map03">
+      <div class="col-medium">
+        <p>
+          <strong
+            >This is the urban extent or built-up area of São Paulo, Brazil</strong
           >
         </p>
       </div>
