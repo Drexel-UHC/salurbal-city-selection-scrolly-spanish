@@ -66,44 +66,27 @@
   // # Get Data
 
   let salurbal_centroids;
-  getJson('./data/centroids.json').then((res) => {
-    salurbal_centroids = res;
-    console.log(`salurbal_centroids`);
-    console.log(salurbal_centroids);
-  });
+  getJson('./data/centroids.json').then((res) => (salurbal_centroids = res));
 
   let sao_paolo_municipio_centroid;
-  getJson('./data/sao_paolo_municipio_centroid.json').then((res) => {
-    sao_paolo_municipio_centroid = res;
-    console.log(`sao_paolo_municipio_centroid`);
-    console.log(sao_paolo_municipio_centroid);
-  });
+  getJson('./data/sao_paolo_municipio_centroid.json').then(
+    (res) => (sao_paolo_municipio_centroid = res)
+  );
 
   let sao_paolo_l1ad_centroid;
   getJson('./data/sao_paolo_l1ad_centroid.json').then((res) => {
     sao_paolo_l1ad_centroid = res;
-    console.log(`sao_paolo_l1ad_centroid`);
-    console.log(sao_paolo_l1ad_centroid);
   });
 
-  let geojson_municipio;
-  const src_sao_paolo_municipio = {
+  const src_municipio = {
     url: './data/sao_paolo_municipio.json',
     layer: 'geog',
     code: 'salid2',
   };
-  getTopo(src_sao_paolo_municipio.url, src_sao_paolo_municipio.layer).then(
-    (res) => {
-      geojson_municipio = res;
-      console.log(`geojson_municipio`);
-      console.log(geojson_municipio);
-    }
-  );
-
-  // Get data for geojson maps
-  // getData('./data/data_county.csv').then((res) => {
-  //   data.pa = res;
-  // });
+  let geojson_municipio;
+  getTopo(src_municipio.url, src_municipio.layer).then((res) => {
+    geojson_municipio = res;
+  });
 
   // Functions for map component
   function fitBounds(bounds) {
@@ -152,19 +135,30 @@
 
   // # ============================================================================ #
   // #### Scroller Action
-
-  let show_municipio = false;
+  let custom = {
+    id: 'map01',
+    municipio_centroid: true,
+    municipio: false,
+  };
   let actions = {
     map: {
       map01: () => {
         console.log(`######### map01`);
         fitBounds(bounds.southAmerica);
-        show_municipio = false;
+        custom = {
+          id: 'map01',
+          municipio_centroid: true,
+          municipio: false,
+        };
       },
       map02: () => {
         console.log(`######### map02`);
         fitBounds(bounds.municipio);
-        show_municipio = true;
+        custom = {
+          id: 'map02',
+          municipio_centroid: false,
+          municipio: true,
+        };
         // boundaries = true;
         // fill = false;
         // highlight = false;
@@ -228,17 +222,15 @@
           bind:center
         >
           <MapSource
-            id="municipio"
+            id="municipio_src"
             type="geojson"
             data={geojson_municipio}
-            promoteId={src_sao_paolo_municipio.code}
+            promoteId={src_municipio.code}
             maxzoom={13}
           >
             <MapLayer
               id="municipio"
-              custom={{
-                show_municipio: show_municipio,
-              }}
+              {custom}
               type="line"
               paint={{
                 'line-color': '#2F8FBC',
