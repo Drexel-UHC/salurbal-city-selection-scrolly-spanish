@@ -112,15 +112,32 @@
         file = "../public/data/sao_paolo_municipio.json",
         object_name  = 'geog')
   }
+  
+  
 }
 
 { # Centroids ---------------------------------------------------------------
   
-  json__SP_L1_centroid = st_centroid(sf__l1_tmp) %>% st_coordinates() %>% rev() %>%jsonlite::toJSON()
-  json__SP_municipio_centroid = st_centroid(sf_sp_municipio) %>% st_coordinates() %>% rev() %>%jsonlite::toJSON()
-  xfun::write_utf8(json__SP_L1_centroid,"../public/data/sao_paolo_l1ad_centroid.json")
-  xfun::write_utf8(json__SP_municipio_centroid,"../public/data/sao_paolo_municipio_centroid.json")
+  { ## sf_sp_municipio_centroid  -------------------------------------------------------------
+    sf_sp_municipio_centroid = st_centroid(sf_sp_municipio)
+    
+    ## Export
+    sf_sp_municipio_centroid %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/sao_paolo_municipio_centroid.json",
+        object_name  = 'geog')
+  }
   
+  { ## sf_sp_l1ad_centroid  -------------------------------------------------------------
+    sf_sp_l1ad_centroid = st_centroid(sf__l1_tmp)
+    
+    ## Export
+    sf_sp_l1ad_centroid %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/sao_paolo_l1ad_centroid.json",
+        object_name  = 'geog')
+  }
+ 
   
 }
  
@@ -128,8 +145,9 @@
     
   leaflet() %>% 
     addTiles() %>% 
+    addCircles(data = sf_sp_municipio_centroid)
     # addPolygons(data = sf__l1_tmp, fillOpacity = 0) %>%
-    addPolygons(data = sf__metropolitan_tmp, color = 'red', fillOpacity = 0)  
+    # addPolygons(data = sf__metropolitan_tmp, color = 'red', fillOpacity = 0)  
   
 }
 
