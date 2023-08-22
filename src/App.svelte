@@ -68,9 +68,16 @@
   let salurbal_centroids;
   getJson('./data/centroids.json').then((res) => (salurbal_centroids = res));
 
-  let sao_paolo_municipio_centroid;
-  getJson('./data/sao_paolo_municipio_centroid.json').then(
-    (res) => (sao_paolo_municipio_centroid = res)
+  const src__municipio_centroid = {
+    url: './data/sao_paolo_municipio_centroid.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_municipio_centroid;
+  getTopo(src__municipio_centroid.url, src__municipio_centroid.layer).then(
+    (res) => {
+      geojson_municipio_centroid = res;
+    }
   );
 
   let sao_paolo_l1ad_centroid;
@@ -223,7 +230,16 @@
           bind:center
         >
           <MapSource
-            id="municipio_src"
+            id="municipio_centroid"
+            type="geojson"
+            data={geojson_municipio_centroid}
+            promoteId={'municipio_centroid'}
+            maxzoom={13}
+          >
+            <MapLayer id="municipio_centroid" {custom} type="circle" />
+          </MapSource>
+          <MapSource
+            id="municipio"
             type="geojson"
             data={geojson_municipio}
             promoteId={src_municipio.code}
