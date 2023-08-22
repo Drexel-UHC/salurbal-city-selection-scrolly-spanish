@@ -5,6 +5,9 @@
 
 <script>
   // # ============================================================================ #
+  // # Imports
+
+  // Scrolly stuff
   import { onMount } from 'svelte';
   import Scroller from './layout/Scroller.svelte';
   import {
@@ -16,30 +19,27 @@
   import { getData, getColor, getTopo, getJson } from './utils.js';
   import bbox from '@turf/bbox';
 
+  // Layout
+  import { setContext } from 'svelte';
+  import { themes } from './config.js';
+  import { setColors } from './utils.js';
+  import { colors } from './config.js';
+  import UHCHeader from './layout/UHCHeader.svelte';
+  import UHCFooter from './layout/UHCFooter.svelte';
+  import Header from './layout/Header.svelte';
+  import Section from './layout/Section.svelte';
+  import Media from './layout/Media.svelte';
+  import Filler from './layout/Filler.svelte';
+  import Divider from './layout/Divider.svelte';
+  import Toggle from './ui/Toggle.svelte';
+  import Arrow from './ui/Arrow.svelte';
+  let theme = 'light';
+  setContext('theme', theme);
+  setColors(themes, theme);
+
   // # ============================================================================ #
   // # Map objects
 
-  const colors = {
-    seq5: [
-      'rgb(234, 236, 177)',
-      'rgb(169, 216, 145)',
-      'rgb(0, 167, 186)',
-      'rgb(0, 78, 166)',
-      'rgb(0, 13, 84)',
-    ],
-    div10: [
-      '#67001f',
-      '#b2182b',
-      '#d6604d',
-      '#f4a582',
-      '#fddbc7',
-      '#d1e5f0',
-      '#92c5de',
-      '#4393c3',
-      '#2166ac',
-      '#053061',
-    ],
-  };
   const hex_primary = '#2F8FBC';
   const hex_secondary = '#00BB9E';
   const hex_error = '#BC3B2F';
@@ -192,9 +192,9 @@
     layers: {
       municipio_centroid: {
         'circle-color': hex_secondary,
-        'circle-radius': 7,
+        'circle-radius': 8,
         'circle-stroke-color': hex_error,
-        'circle-stroke-width': 5,
+        'circle-stroke-width': 2,
       },
       municipio: false,
       l1ux: false,
@@ -212,7 +212,7 @@
               'circle-color': hex_secondary,
               'circle-radius': 7,
               'circle-stroke-color': hex_error,
-              'circle-stroke-width': 5,
+              'circle-stroke-width': 1,
             },
             municipio: false,
             l1ux: false,
@@ -309,6 +309,65 @@
   # ============================================================================ #
   #  ............... scrolly ...............
 -->
+<!-- <UHCHeader filled={true} center={false} /> -->
+
+<!-- <Section> -->
+<!-- <h2>This is a dynamic chart section</h2>
+<h2>This is a dynamic chart section</h2>
+<h2>This is a dynamic chart section</h2>
+<h2>This is a dynamic chart section</h2>
+<h2>This is a dynamic chart section</h2>
+<h2>This is a dynamic chart section</h2> -->
+<!-- </Section> -->
+<UHCHeader filled={true} center={false} />
+
+<!-- <Header
+  bgcolor="#206095"
+  bgfixed={true}
+  theme="dark"
+  center={false}
+  short={true}
+>
+
+</Header> -->
+
+<Filler theme="lightblue" short={true} wide={true} center={false}>
+  <h1>What is a SALURBAL City?</h1>
+  <p class="text-big" style="margin-top: 5px">
+    SALURBAL city, sub-city, and neighborhood definition and selection
+  </p>
+
+  <p class="text-small">
+    Designed by: <span style={'font-weight: 900'}>
+      Usama Bilal, Katie Idvik, Steve Melly, Kari Moore, Alex Quistberg, Ana V.
+      Diez Roux</span
+    >
+    <br />
+    Engineered by:
+    <span style={'font-weight: 900'}> Anuj Tanwar, Ran Li</span>
+    <br />
+    August 22, 2023
+  </p>
+</Filler>
+
+<Section>
+  <h2>Introduction</h2>
+  <p>
+    The SALURBAL team has developed a rigorous protocol for defining cities,
+    sub-cities, and neighborhoods. This process allows us to study and compare
+    urban environments and their health impacts across cities in 11 countries in
+    Latin America (Argentina, Brazil, Chile, Colombia, Costa Rica, El Salvador,
+    Guatemala, Mexico, Nicaragua, Panama, and Peru).
+  </p>
+  <p>
+    We took several steps to identify and define SALURBAL cities. The approach
+    described below has guided the definition of geographic areas to which all
+    SALURBAL data is linked. You can read more about this process in “Building a
+    Data Platform for Cross-Country Urban Health Studies.”
+  </p>
+</Section>
+
+<Divider />
 
 <Scroller {threshold} bind:id={id['map']} splitscreen={true}>
   <div slot="background">
