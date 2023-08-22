@@ -186,7 +186,7 @@
       },
       municipio: false,
       l1ux: false,
-      l2: false,
+      l2_line: false,
     },
   };
   let actions = {
@@ -204,7 +204,7 @@
             },
             municipio: false,
             l1ux: false,
-            l2: false,
+            l2_line: false,
           },
         };
       },
@@ -216,7 +216,7 @@
             municipio_centroid: false,
             municipio: false,
             l1ux: false,
-            l2: {
+            l2_line: {
               'line-color': hex_primary,
               'line-width': 5,
             },
@@ -234,10 +234,33 @@
               'line-color': hex_error,
               'line-width': 8,
             },
-            l2: {
+            l2_line: {
               'line-color': hex_primary,
               'line-width': 2,
               'line-opacity': 0.75,
+            },
+          },
+        };
+      },
+      map04: () => {
+        fitBounds(bounds.l1ad);
+        custom = {
+          mapid: 'map03',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
             },
           },
         };
@@ -291,7 +314,8 @@
             promoteId={src_l2.code}
             maxzoom={13}
           >
-            <MapLayer id="l2" {custom} type="line" />
+            <MapLayer id="l2_line" {custom} type="line" />
+            <MapLayer id="l2_fill" {custom} type="fill" />
           </MapSource>
           <MapSource
             id="l1ux"
@@ -333,6 +357,20 @@
           <strong
             >This is the <span style={`color: ${hex_error};`}>urban extent</span
             > or built-up area of São Paulo, Brazil</strong
+          >
+        </p>
+      </div>
+    </section>
+    <section data-id="map04">
+      <div class="col-medium">
+        <p>
+          <strong
+            >Through visual inspection of satellite imagery, we identified <span
+              style={`color: ${hex_error};`}
+            >
+              all administrative units that included any portion of the built-up
+              area</span
+            > of each SALURBAL city.</strong
           >
         </p>
       </div>
