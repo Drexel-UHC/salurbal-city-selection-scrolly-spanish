@@ -366,7 +366,23 @@
     Data Platform for Cross-Country Urban Health Studies.”
   </p>
 </Section>
-
+<Section>
+  <h2>Step 1. Identifying cities with a population of 100,000 or more.</h2>
+  <p>
+    The SALURBAL city universe was defined as all urban agglomerations with at
+    least 100,000 residents as of 2010.
+  </p>
+  <p>
+    We used the Atlas of Urban Expansion and country census data from
+    citypopulation.de to obtain a list of all cities (as defined in these
+    sources) with 100,000 residents or more in 2010. We combined both lists and
+    eliminated overlaps. Cities that were very close together and were therefore
+    part of the same urban agglomeration were combined. The name of the largest
+    city or a hyphenated name was assigned to that unit. SALURBAL team members
+    in each country helped create a final list of 371 cities. We will refer to
+    these as “SALURBAL cities.”
+  </p>
+</Section>
 <Divider />
 
 <Scroller {threshold} bind:id={id['map']} splitscreen={true}>
