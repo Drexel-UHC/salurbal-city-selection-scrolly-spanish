@@ -193,6 +193,10 @@ small {
 	margin: 20px 0;
 }
 
+.text-medium {
+	font-size: 17px;
+}
+
 .text-small {
 	font-size: 14px;
 }

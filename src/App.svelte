@@ -4,7 +4,6 @@
 -->
 
 <script>
-  // # ============================================================================ #
   // # Imports
 
   // Scrolly stuff
@@ -37,7 +36,6 @@
   setContext('theme', theme);
   setColors(themes, theme);
 
-  // # ============================================================================ #
   // # Map objects
 
   const hex_primary = '#2F8FBC';
@@ -71,7 +69,7 @@
   let hovered, selected;
 
   // # ============================================================================ #
-  // # Get Sao Paolo data
+  // Import Data
 
   // All Salurbal L1 centroids
   let salurbal_centroids;
@@ -157,7 +155,6 @@
     }
   }
 
-  // # ============================================================================ #
   // # Scroller Setup
   const threshold = 0.65;
   let id = {}; // Object to hold visible section IDs of Scroller components
@@ -186,7 +183,7 @@
   }
 
   // # ============================================================================ #
-  // #### Scroller Action
+  // Scroller Action
   let custom = {
     mapid: 'map01',
     layers: {
@@ -307,29 +304,10 @@
 
 <!-- 
   # ============================================================================ #
-  #  ............... scrolly ...............
+  #  ............... markup ...............
 -->
-<!-- <UHCHeader filled={true} center={false} /> -->
 
-<!-- <Section> -->
-<!-- <h2>This is a dynamic chart section</h2>
-<h2>This is a dynamic chart section</h2>
-<h2>This is a dynamic chart section</h2>
-<h2>This is a dynamic chart section</h2>
-<h2>This is a dynamic chart section</h2>
-<h2>This is a dynamic chart section</h2> -->
-<!-- </Section> -->
 <UHCHeader filled={true} center={false} />
-
-<!-- <Header
-  bgcolor="#206095"
-  bgfixed={true}
-  theme="dark"
-  center={false}
-  short={true}
->
-
-</Header> -->
 
 <Filler theme="lightblue" short={true} wide={true} center={false}>
   <h1>What is a SALURBAL City?</h1>
@@ -337,7 +315,7 @@
     SALURBAL city, sub-city, and neighborhood definition and selection
   </p>
 
-  <p class="text-small">
+  <p class="text-medium">
     Designed by: <span style={'font-weight: 900'}>
       Usama Bilal, Katie Indvik, Steve Melly, Andrea Bolinaga, Kari Moore, Alex
       Quistberg, Ana V. Diez Roux</span
@@ -352,27 +330,30 @@
 
 <Section>
   <h3>Introduction</h3>
-  <p class="text-small">
+  <p class="text-medium">
     The SALURBAL team has developed a rigorous protocol for defining cities,
     sub-cities, and neighborhoods. This process allows us to study and compare
     urban environments and their health impacts across cities in 11 countries in
     Latin America (Argentina, Brazil, Chile, Colombia, Costa Rica, El Salvador,
     Guatemala, Mexico, Nicaragua, Panama, and Peru).
   </p>
-  <p class="text-small">
+  <p class="text-medium">
     We took several steps to identify and define SALURBAL cities. The approach
     described below has guided the definition of geographic areas to which all
     SALURBAL data is linked. You can read more about this process in “Building a
     Data Platform for Cross-Country Urban Health Studies.”
   </p>
 </Section>
+
+<Divider />
+
 <Section>
   <h3>Step 1. Identifying cities with a population of 100,000 or more.</h3>
-  <p class="text-small">
+  <p class="text-medium">
     The SALURBAL city universe was defined as all urban agglomerations with at
     least 100,000 residents as of 2010.
   </p>
-  <p class="text-small">
+  <p class="text-medium">
     We used the Atlas of Urban Expansion and country census data from
     citypopulation.de to obtain a list of all cities (as defined in these
     sources) with 100,000 residents or more in 2010. We combined both lists and
@@ -383,8 +364,45 @@
     these as “SALURBAL cities.”
   </p>
 </Section>
-<Divider />
 
+<!-- 
+  # ============================================================================ #
+  # Map 1  (371 Salurbal cities)
+-->
+
+<Media col="medium" caption="Map of all 371 SALURBAL cities">
+  <div class="chart-sml">
+    <!-- <BarChart
+        data={[...data.region.indicators].sort((a, b) => a.pop - b.pop)}
+        xKey="pop"
+        yKey="name"
+        snapTicks={false}
+        xFormatTick={(d) => d / 1e6}
+        xSuffix="m"
+        height={350}
+        padding={{ top: 0, bottom: 15, left: 140, right: 0 }}
+        area={false}
+        title="Population by state, 2020 - North East Region"
+      /> -->
+    Map here!
+  </div>
+</Media>
+
+<Section>
+  <h3>Step 2: Defining the geographic boundaries of each city.</h3>
+  <p class="text-medium">
+    We operationalized (or geographically defined) each SALURBAL city using
+    existing administrative units to which health and other data could be easily
+    linked. These administrative units included municipios, departamentos, or
+    similar units in each country.
+  </p>
+</Section>
+<div style="height: 3rem" />
+
+<!-- 
+  # ============================================================================ #
+  # Scrolly 1  (define city boundaries)
+-->
 <Scroller {threshold} bind:id={id['map']} splitscreen={true}>
   <div slot="background">
     <figure>
