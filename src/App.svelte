@@ -381,8 +381,8 @@
 
 <Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
-    <!-- <Map
-      id="staticmap1"
+    <Map
+      id="static-map-1"
       style="./data/style-osm-grey.json"
       location={{ bounds: bounds.southAmerica }}
       controls={false}
@@ -392,16 +392,20 @@
       bind:center
     >
       <MapSource
-        map_id="staticmap1"
-        id="static-map-1"
+        map_id="static-map-1"
+        id="static-map-1-src"
         type="geojson"
         data={geojson_salurbal_centroid}
         promoteId={'salurbal_centroids'}
         maxzoom={13}
       >
-        <MapLayer map_id="static-map-1" id="staticmap1" type="circle" />
+        <!-- <MapLayer
+          map_id="static-map-1"
+          id="static-map-1-circle"
+          type="circle"
+        /> -->
       </MapSource>
-    </Map> -->
+    </Map>
   </div>
 </Media>
 
