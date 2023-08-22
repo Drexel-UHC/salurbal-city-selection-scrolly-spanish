@@ -339,8 +339,8 @@
 
   <p class="text-small">
     Designed by: <span style={'font-weight: 900'}>
-      Usama Bilal, Katie Idvik, Steve Melly, Kari Moore, Alex Quistberg, Ana V.
-      Diez Roux</span
+      Usama Bilal, Katie Indvik, Steve Melly, Andrea Bolinaga, Kari Moore, Alex
+      Quistberg, Ana V. Diez Roux</span
     >
     <br />
     Engineered by:
@@ -351,15 +351,15 @@
 </Filler>
 
 <Section>
-  <h2>Introduction</h2>
-  <p>
+  <h3>Introduction</h3>
+  <p class="text-small">
     The SALURBAL team has developed a rigorous protocol for defining cities,
     sub-cities, and neighborhoods. This process allows us to study and compare
     urban environments and their health impacts across cities in 11 countries in
     Latin America (Argentina, Brazil, Chile, Colombia, Costa Rica, El Salvador,
     Guatemala, Mexico, Nicaragua, Panama, and Peru).
   </p>
-  <p>
+  <p class="text-small">
     We took several steps to identify and define SALURBAL cities. The approach
     described below has guided the definition of geographic areas to which all
     SALURBAL data is linked. You can read more about this process in “Building a
@@ -367,12 +367,12 @@
   </p>
 </Section>
 <Section>
-  <h2>Step 1. Identifying cities with a population of 100,000 or more.</h2>
-  <p>
+  <h3>Step 1. Identifying cities with a population of 100,000 or more.</h3>
+  <p class="text-small">
     The SALURBAL city universe was defined as all urban agglomerations with at
     least 100,000 residents as of 2010.
   </p>
-  <p>
+  <p class="text-small">
     We used the Atlas of Urban Expansion and country census data from
     citypopulation.de to obtain a list of all cities (as defined in these
     sources) with 100,000 residents or more in 2010. We combined both lists and
