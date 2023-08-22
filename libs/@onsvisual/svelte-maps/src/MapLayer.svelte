@@ -55,6 +55,17 @@
     map.removeLayer(id);
   }
 
+  // # ============================================================================ #
+  // # diagnose code here
+  $: {
+    if (custom[id]) {
+      console.log(`### id: ${id}  `);
+      console.log(`source`);
+      console.log(source);
+      console.log(`custom`);
+      console.log(custom);
+    }
+  }
   let options = {
     id: id,
     type: type,
@@ -75,22 +86,6 @@
   }
   if (minzoom) {
     options['minzoom'] = minzoom;
-  }
-
-  // # ============================================================================ #
-  // # diagnose code here
-  $: {
-    if (custom[id]) {
-      console.log(`### id: ${id}  `);
-      console.log(`custom`);
-      console.log(custom);
-      console.log(`data`);
-      console.log(data);
-      console.log(`source`);
-      console.log(source);
-      console.log(`sourceLayer`);
-      console.log(sourceLayer);
-    }
   }
 
   // Reactive state
