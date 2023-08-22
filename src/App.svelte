@@ -72,8 +72,17 @@
   // Import Data
 
   // All Salurbal L1 centroids
-  let salurbal_centroids;
-  getJson('./data/centroids.json').then((res) => (salurbal_centroids = res));
+  const src__salurbal_centroid = {
+    url: './data/salurbal_l1ad_centroid.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_salurbal_centroid;
+  getTopo(src__salurbal_centroid.url, src__salurbal_centroid.layer).then(
+    (res) => {
+      geojson_salurbal_centroid = res;
+    }
+  );
 
   // municipio centroid
   const src__municipio_centroid = {
