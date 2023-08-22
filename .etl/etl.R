@@ -1,29 +1,29 @@
 { # Setup -------------------------------------------------------------------
   
   ## Dependencies 
-    library(tidyverse)
-    library(geojsonio)  
-    library(geoarrow)
-    library(glue)
-    library(curl)  
-    library(leaflet)
-    library(sf)
-    library(rmapshaper)
-    library(leaflet)
-    library(stringi) 
-    library(geoarrow)
-    library(geojsonsf)
- 
+  library(tidyverse)
+  library(geojsonio)  
+  library(geoarrow)
+  library(glue)
+  library(curl)  
+  library(leaflet)
+  library(sf)
+  library(rmapshaper)
+  library(leaflet)
+  library(stringi) 
+  library(geoarrow)
+  library(geojsonsf)
+  
   ## Local objects
   salid1_tmp= 102248
   clean_path = '../../salurbal-fair-renovations/clean/seeds/spatial'
-
-  }
+  
+}
 
 
 { # Topojsons -------------------------------------------------------
   
-
+  
   { ## sf__metropolitan  ----------------------------------------------------------------
     dir_MAID2 =paste0('//files.drexel.edu/colleges/SOPH/Shared/UHC/Projects/Wellcome_Trust/Data Methods Core/Geodatabases/SALURBAL_1_4_21/BR_1_4_21/BR_SALURBAL_1_4_21.gdb')
     layers_MAID2 = sf::st_layers(dir_MAID2)
@@ -78,7 +78,7 @@
       geojsonio::topojson_write(
         file = "../public/data/sao_paolo_l2.json",
         object_name  = 'geog')
-    }
+  }
   
   { ## sf__l2_5 -----------------------------------------------------------
     sf__l2_5 =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L25_simp_5pct.parquet"))  %>% 
@@ -89,7 +89,7 @@
       geojsonio::topojson_write(
         file = "../public/data/sao_paolo_l25.json",
         object_name  = 'geog')
-    }
+  }
   
   { ## sf__l3 -----------------------------------------------------------
     sf__l3 =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L3_simp_5pct.parquet"))  %>% 
@@ -137,22 +137,30 @@
         file = "../public/data/sao_paolo_l1ad_centroid.json",
         object_name  = 'geog')
   }
- 
   
-}
- 
-{ # EDA ---------------------------------------------------------------------
+  { ## sf_l1ad_centroid  -------------------------------------------------------------
+    sf_sp_l1ad_centroid = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_centroids.parquet")) 
     
+    ## Export
+    sf_sp_l1ad_centroid %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/salurbal_l1ad_centroid.json",
+        object_name  = 'geog')
+  }
+}
+
+{ # EDA ---------------------------------------------------------------------
+  
   leaflet() %>% 
     addTiles() %>% 
     addCircles(data = sf_sp_municipio_centroid)
-    # addPolygons(data = sf__l1_tmp, fillOpacity = 0) %>%
-    # addPolygons(data = sf__metropolitan_tmp, color = 'red', fillOpacity = 0)  
+  # addPolygons(data = sf__l1_tmp, fillOpacity = 0) %>%
+  # addPolygons(data = sf__metropolitan_tmp, color = 'red', fillOpacity = 0)  
   
 }
 
 { # Scrolly Drafts ----------------------------------------------------------
-
+  
   ## Step 3 ------------------------------------------------------------------
   ##' Through visual inspection of satellite imagery, we identified all administrative units 
   ##' that included any portion of the built-up area of each SALURBAL city.  
@@ -160,7 +168,7 @@
   ##' Zoom into the center of the urban area and then move out to the fringe of 
   ##' the urban extent, following it a short distance to illustrate the process 
   ##' of detecting the visually apparent built-up area
- 
+  
   leaflet() %>% 
     addTiles() %>% 
     addPolygons(data = sf__l1_tmp, fillOpacity = 0, color = 'red') %>% 
