@@ -326,8 +326,9 @@
       <div class="col-medium">
         <p>
           <strong
-            >These is the <span>administrative units (municipios)</span> around São
-            Paulo, Brazil</strong
+            >These are the <span style={`color: ${hex_primary};`}
+              >administrative units (municipios)</span
+            > around São Paulo, Brazil</strong
           >
         </p>
       </div>
@@ -336,7 +337,8 @@
       <div class="col-medium">
         <p>
           <strong
-            >This is the urban extent or built-up area of São Paulo, Brazil</strong
+            >This is the <span style={`color: ${hex_error};`}>urban extent</span
+            > or built-up area of São Paulo, Brazil</strong
           >
         </p>
       </div>
