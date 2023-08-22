@@ -217,6 +217,7 @@
           style="./data/style-osm.json"
           location={{ bounds: bounds.southAmerica }}
           controls={false}
+          scales={true}
           bind:map
           bind:zoom
           bind:center
