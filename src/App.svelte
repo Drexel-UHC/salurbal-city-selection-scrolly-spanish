@@ -176,18 +176,17 @@
   // # ============================================================================ #
   // #### Scroller Action
   let custom = {
-    id: 'map01',
-    municipio_centroid: true,
-    municipio: false,
-    l1ux: false,
-    l2: false,
-    paint: {
+    mapid: 'map01',
+    layers: {
       municipio_centroid: {
         'circle-color': hex_secondary,
         'circle-radius': 7,
         'circle-stroke-color': hex_error,
         'circle-stroke-width': 5,
       },
+      municipio: false,
+      l1ux: false,
+      l2: false,
     },
   };
   let actions = {
@@ -195,30 +194,28 @@
       map01: () => {
         fitBounds(bounds.southAmerica);
         custom = {
-          id: 'map01',
-          municipio_centroid: true,
-          municipio: false,
-          l1ux: false,
-          l2: false,
-          paint: {
+          mapid: 'map01',
+          layers: {
             municipio_centroid: {
               'circle-color': hex_secondary,
               'circle-radius': 7,
               'circle-stroke-color': hex_error,
               'circle-stroke-width': 5,
             },
+            municipio: false,
+            l1ux: false,
+            l2: false,
           },
         };
       },
       map02: () => {
         fitBounds(bounds.l1ad);
         custom = {
-          id: 'map02',
-          municipio_centroid: false,
-          municipio: false,
-          l1ux: false,
-          l2: true,
-          paint: {
+          mapid: 'map02',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: false,
             l2: {
               'line-color': hex_primary,
               'line-width': 5,
@@ -229,15 +226,18 @@
       map03: () => {
         fitBounds(bounds.l1ad);
         custom = {
-          id: 'map03',
-          municipio_centroid: false,
-          municipio: false,
-          l1ux: true,
-          l2: false,
-          paint: {
+          mapid: 'map03',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
             l1ux: {
               'line-color': hex_error,
-              'line-width': 5,
+              'line-width': 8,
+            },
+            l2: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 0.75,
             },
           },
         };
@@ -283,6 +283,16 @@
           >
             <MapLayer id="municipio" {custom} type="line" />
           </MapSource>
+
+          <MapSource
+            id="l2"
+            type="geojson"
+            data={geojson_l2}
+            promoteId={src_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer id="l2" {custom} type="line" />
+          </MapSource>
           <MapSource
             id="l1ux"
             type="geojson"
@@ -291,23 +301,6 @@
             maxzoom={13}
           >
             <MapLayer id="l1ux" {custom} type="line" />
-          </MapSource>
-          <MapSource
-            id="l2"
-            type="geojson"
-            data={geojson_l2}
-            promoteId={src_l2.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              id="l2"
-              {custom}
-              type="line"
-              paint={{
-                'line-color': hex_primary,
-                'line-width': 5,
-              }}
-            />
           </MapSource>
         </Map>
         <!-- <div class="stickDev">

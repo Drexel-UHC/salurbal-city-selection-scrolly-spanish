@@ -54,42 +54,35 @@
   if (map.getLayer(id)) {
     map.removeLayer(id);
   }
+
   // # ============================================================================ #
   // # diagnose code here
-  $: {
-    if (custom[id]) {
-      console.log(` --  MapLayer: ${custom.id}  `);
-    }
-  }
 
   // Reactive state
   $: {
-    Object.entries(custom).map((arr) => {
-      const id_tmp = arr[0];
-      const want_to_add_id = custom[id_tmp];
+    const layers_to_display = Object.entries(custom.layers)
+      .filter(([key, value]) => value)
+      .map((x) => x[0]);
 
-      // remove layer if not specified in custom
-      if (!want_to_add_id && map.getLayer(id_tmp)) map.removeLayer(id_tmp);
+    // remove current layer if exists
+    if (map.getLayer(id)) {
+      map.removeLayer(id);
+    }
 
-      // add layer if specified in custom
-      if (want_to_add_id && id == id_tmp) {
-        const paint_tmp = custom.paint[id_tmp] ? custom.paint[id_tmp] : {};
-        custom.paint[id_tmp] && console.log(`${id_tmp} paint`);
-        custom.paint[id_tmp] && console.log(paint_tmp);
+    // add current layer if specified
+    if (layers_to_display.includes(id)) {
+      const paint_tmp = custom.layers[id] ? custom.layers[id] : {};
 
-        // define options
-        let options = {
-          id: id,
-          type: type,
-          source: source,
-          paint: paint_tmp,
-          layout: layout,
-        };
+      let options = {
+        id: id,
+        type: type,
+        source: source,
+        paint: paint_tmp,
+        layout: layout,
+      };
 
-        // add
-        map.addLayer(options, order);
-      }
-    });
+      map.addLayer(options, order);
+    }
   }
   // Updates "color" feature states for all geo codes
   // Assumes that each data point has the colours defined on the colorCode key
