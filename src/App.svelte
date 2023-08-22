@@ -43,6 +43,7 @@
   const hex_primary = '#2F8FBC';
   const hex_secondary = '#00BB9E';
   const hex_error = '#BC3B2F';
+  const hex_warning = '#BC812F';
 
   const bounds = {
     southAmerica: [
@@ -70,13 +71,13 @@
   let hovered, selected;
 
   // # ============================================================================ #
-  // # Get Data
+  // # Get Sao Paolo data
 
   // All Salurbal L1 centroids
   let salurbal_centroids;
   getJson('./data/centroids.json').then((res) => (salurbal_centroids = res));
 
-  // Sao Paulo municipio centroid
+  // municipio centroid
   const src__municipio_centroid = {
     url: './data/sao_paolo_municipio_centroid.json',
     layer: 'geog',
@@ -89,13 +90,13 @@
     }
   );
 
-  // Sao Paulo L1AD centroid
+  // L1AD centroid
   let sao_paolo_l1ad_centroid;
   getJson('./data/sao_paolo_l1ad_centroid.json').then((res) => {
     sao_paolo_l1ad_centroid = res;
   });
 
-  // Sao Paulo municipio boundaries
+  // Municipio boundaries
   const src_municipio = {
     url: './data/sao_paolo_municipio.json',
     layer: 'geog',
@@ -106,7 +107,7 @@
     geojson_municipio = res;
   });
 
-  // Sao Paulo L1UX boundaries
+  // L1UX boundaries
   const src_l1ux = {
     url: './data/sao_paolo_l1ux.json',
     layer: 'geog',
@@ -117,7 +118,18 @@
     geojson_l1ux = res;
   });
 
-  // Sao Paulo L2 boundaries
+  // L1AD boundaries
+  const src_l1ad = {
+    url: './data/sao_paolo_l1ad.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_l1ad;
+  getTopo(src_l1ad.url, src_l1ad.layer).then((res) => {
+    geojson_l1ad = res;
+  });
+
+  // L2 boundaries
   const src_l2 = {
     url: './data/sao_paolo_l2.json',
     layer: 'geog',
@@ -231,7 +243,7 @@
             municipio_centroid: false,
             municipio: false,
             l1ux: {
-              'line-color': hex_error,
+              'line-color': hex_warning,
               'line-width': 8,
             },
             l2_line: {
@@ -245,12 +257,12 @@
       map04: () => {
         fitBounds(bounds.l1ad);
         custom = {
-          mapid: 'map03',
+          mapid: 'map04',
           layers: {
             municipio_centroid: false,
             municipio: false,
             l1ux: {
-              'line-color': hex_error,
+              'line-color': hex_warning,
               'line-width': 5,
             },
             l2_line: {
@@ -259,8 +271,32 @@
               'line-opacity': 1,
             },
             l2_fill: {
+              'fill-color': hex_warning,
+              'fill-opacity': 0.5,
+            },
+          },
+        };
+      },
+      map05: () => {
+        fitBounds(bounds.l1ad);
+        custom = {
+          mapid: 'map05',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: false,
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
               'fill-color': hex_error,
               'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 5,
             },
           },
         };
@@ -326,6 +362,15 @@
           >
             <MapLayer id="l1ux" {custom} type="line" />
           </MapSource>
+          <MapSource
+            id="l1ad"
+            type="geojson"
+            data={geojson_l1ad}
+            promoteId={src_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer id="l1ad_line" {custom} type="line" />
+          </MapSource>
         </Map>
         <!-- <div class="stickDev">
           {id.map}
@@ -355,7 +400,8 @@
       <div class="col-medium">
         <p>
           <strong
-            >This is the <span style={`color: ${hex_error};`}>urban extent</span
+            >This is the <span style={`color: ${hex_warning};`}
+              >urban extent</span
             > or built-up area of São Paulo, Brazil</strong
           >
         </p>
@@ -366,12 +412,22 @@
         <p>
           <strong
             >Through visual inspection of satellite imagery, we identified <span
-              style={`color: ${hex_error};`}
+              style={`color: ${hex_warning};`}
             >
               all administrative units that included any portion of the built-up
               area</span
             > of each SALURBAL city.</strong
           >
+        </p>
+      </div>
+    </section>
+    <section data-id="map05">
+      <div class="col-medium">
+        <p>
+          <strong
+            >The combination of these administrative units is considered a
+            <span style={`color: ${hex_error};`}>SALURBAL city.</span>
+          </strong>
         </p>
       </div>
     </section>

@@ -58,7 +58,7 @@
   // # ============================================================================ #
   // # diagnose code here
 
-  // Reactive state
+  // Reactive statement
   $: {
     const layers_to_display = Object.entries(custom.layers)
       .filter(([key, value]) => value)
