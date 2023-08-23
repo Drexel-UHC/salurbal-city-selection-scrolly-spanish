@@ -308,6 +308,78 @@
           },
         };
       },
+      map06: () => {
+        fitBounds(bounds.l1ad);
+        custom = {
+          mapid: 'map05',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: false,
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+          },
+        };
+      },
+      map07: () => {
+        fitBounds(bounds.l1ad);
+        custom = {
+          mapid: 'map05',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: false,
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+          },
+        };
+      },
+      map08: () => {
+        fitBounds(bounds.l1ad);
+        custom = {
+          mapid: 'map05',
+          layers: {
+            municipio_centroid: false,
+            municipio: false,
+            l1ux: false,
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+          },
+        };
+      },
     },
   };
 </script>
@@ -579,6 +651,35 @@
             >The combination of these administrative units is considered a
             <span style={`color: ${hex_error};`}>SALURBAL city.</span>
           </strong>
+        </p>
+      </div>
+    </section>
+    <section data-id="map06">
+      <div class="col-medium">
+        <p>
+          In cases where the administrative units that compose a city are very
+          large, a SALURBAL city may include some areas that are not built-up or
+          urbanized. This is because any administrative unit that included even
+          a small portion of the built-up area was included in the geographic
+          definition of the city.
+        </p>
+      </div>
+    </section>
+    <section data-id="map07">
+      <div class="col-medium">
+        <p>
+          While some cities are composed of many of these units, nearly half of
+          SALURBAL cities include only one administrative unit.
+        </p>
+      </div>
+    </section>
+    <section data-id="map08">
+      <div class="col-medium">
+        <p>
+          It is important to note that SALURBAL cities may not coincide with
+          administrative or political definitions used to define cities within
+          each country. Our boundaries intentionally reflect urban
+          agglomerations that often extend beyond city cores.
         </p>
       </div>
     </section>
