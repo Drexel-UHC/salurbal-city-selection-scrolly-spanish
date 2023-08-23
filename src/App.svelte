@@ -203,6 +203,38 @@
     geojson_monterrey_l2 = res;
   });
 
+  // Case 2 (Rio Cuarto) L1AD boundaries
+  const src_rio_cuarto_l1ad = {
+    url: './data/rio_cuarto_l1ad.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_rio_cuarto_l1ad;
+  getTopo(src_rio_cuarto_l1ad.url, src_rio_cuarto_l1ad.layer).then((res) => {
+    geojson_rio_cuarto_l1ad = res;
+  });
+
+  // Case 2 (Rio Cuarto) L1UX boundaries
+  const src_rio_cuarto_l1ux = {
+    url: './data/rio_cuarto_l1ux.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_rio_cuarto_l1ux;
+  getTopo(src_rio_cuarto_l1ux.url, src_rio_cuarto_l1ux.layer).then((res) => {
+    geojson_rio_cuarto_l1ux = res;
+  });
+  // Case 2 (Rio Cuarto) l2 boundaries
+  const src_rio_cuarto_l2 = {
+    url: './data/rio_cuarto_l2.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_rio_cuarto_l2;
+  getTopo(src_rio_cuarto_l2.url, src_rio_cuarto_l2.layer).then((res) => {
+    geojson_rio_cuarto_l2 = res;
+  });
+
   // Functions for map component
   function fitBounds(bounds) {
     if (map) {
@@ -396,25 +428,31 @@
         };
       },
       map07: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(bounds.rio_cuarto);
         custom = {
-          mapid: 'map05',
+          mapid: 'map07',
           layers: {
             municipio_centroid: false,
             municipio: false,
             l1ux: false,
-            l2_line: {
+            l2_line: false,
+            l2_fill: false,
+            l1ad_line: false,
+            rio_cuarto_l2_line: {
               'line-color': hex_primary,
-              'line-width': 2,
-              'line-opacity': 1,
+              'line-width': 1.5,
             },
-            l2_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.5,
-            },
-            l1ad_line: {
+            rio_cuarto_l1ad_line: {
               'line-color': hex_error,
-              'line-width': 5,
+              'line-width': 6,
+            },
+            rio_cuarto_l1ad_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.25,
+            },
+            rio_cuarto_l1ux_line: {
+              'line-color': hex_warning,
+              'line-width': 2,
             },
           },
         };
@@ -423,24 +461,7 @@
         fitBounds(bounds.l1ad);
         custom = {
           mapid: 'map05',
-          layers: {
-            municipio_centroid: false,
-            municipio: false,
-            l1ux: false,
-            l2_line: {
-              'line-color': hex_primary,
-              'line-width': 2,
-              'line-opacity': 1,
-            },
-            l2_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.5,
-            },
-            l1ad_line: {
-              'line-color': hex_error,
-              'line-width': 5,
-            },
-          },
+          layers: {},
         };
       },
     },
@@ -718,6 +739,57 @@
               type="line"
             />
           </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="rio_cuarto_l1ad"
+            type="geojson"
+            data={geojson_rio_cuarto_l1ad}
+            promoteId={src_rio_cuarto_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="rio_cuarto_l1ad_line"
+              {custom}
+              type="line"
+            />
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="rio_cuarto_l1ad_fill"
+              {custom}
+              type="fill"
+            />
+          </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="rio_cuarto_l2"
+            type="geojson"
+            data={geojson_rio_cuarto_l2}
+            promoteId={src_rio_cuarto_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="rio_cuarto_l2_line"
+              {custom}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="rio_cuarto_l1ux"
+            type="geojson"
+            data={geojson_rio_cuarto_l1ux}
+            promoteId={src_rio_cuarto_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="rio_cuarto_l1ux_line"
+              {custom}
+              type="line"
+            />
+          </MapSource>
         </Map>
         <!-- <div class="stickDev">
           {id.map}
@@ -771,8 +843,11 @@
     <section data-id="map05">
       <div class="col-medium">
         <p>
-          <strong
-            >The combination of these administrative units is considered a
+          The combination of these <span style={`color: ${hex_primary};`}
+            ><strong>administrative units</strong></span
+          >
+          is considered a
+          <strong>
             <span style={`color: ${hex_error};`}>SALURBAL city.</span>
           </strong>
         </p>
@@ -804,7 +879,13 @@
       <div class="col-medium">
         <p>
           While some cities are composed of many of these units, nearly half of
-          SALURBAL cities include only one administrative unit.
+          <span style={`color: ${hex_error};`}
+            ><strong>SALURBAL cities</strong></span
+          >
+          include only one
+          <span style={`color: ${hex_primary};`}>
+            <strong>administrative unit</strong>
+          </span>.
         </p>
       </div>
     </section>

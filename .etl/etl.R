@@ -207,17 +207,18 @@
         object_name  = 'geog')
   }   
   
-  { ## sf__l1ux -----------------------------------------------------------
-    sf__rio_cuarto_l1ux = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1UX_simp_5pct.parquet"))  %>%
-      filter(l1_label == 'Rio Cuarto')
+
+  
+  { ## sf__l2  -----------------------------------------------------------
+    sf__rio_cuarto_l2 = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L2_simp_5pct.parquet")) %>%
+      filter(l2_label == 'Rio Cuarto')
     
     ## Export
-    sf__rio_cuarto_l1ux %>% 
+    sf__rio_cuarto_l2 %>% 
       geojsonio::topojson_write(
-        file = "../public/data/rio_cuarto_l1ux.json",
+        file = "../public/data/rio_cuarto_l2.json",
         object_name  = 'geog')
-  }
-  
+  } 
 }
 
 { ## SALURBAL centroids   -------------------------------------------------------------
@@ -236,7 +237,7 @@
   
   leaflet() %>% 
     addTiles() %>% 
-    addPolygons(data = sf__l3, fillOpacity = 0)
+    addPolygons(data = sf__rio_cuarto_l2, fillOpacity = 0)
 }
 
 { # Scrolly Drafts ----------------------------------------------------------
