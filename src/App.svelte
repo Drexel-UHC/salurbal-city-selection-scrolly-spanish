@@ -405,9 +405,9 @@
           id="static_map_1-circle"
           type="circle"
           paint={{
-            'circle-color': hex_error,
+            'circle-color': hex_warning,
             'circle-radius': 3,
-            'circle-stroke-color': hex_secondary,
+            'circle-stroke-color': 'black',
             'circle-stroke-width': 1,
           }}
         />
