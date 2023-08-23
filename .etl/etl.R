@@ -93,8 +93,10 @@
     }
     
     { ## sf__l3 -----------------------------------------------------------
-      sf__l3 =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L3_simp_5pct.parquet"))  %>% 
-        filter(salid1 == salid1_tmp)  
+      sf__l3_5pct =  geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L3_simp_5pct.parquet"))  %>% 
+        filter(salid1 == salid1_tmp) 
+      
+      sf__l3 = sf__l3_5pct %>% ms_simplify(keep = 0.05, keep_shapes = T)
       
       ## Export
       sf__l3 %>% 
@@ -147,7 +149,7 @@
 
 { ## Monterrey (un-urbanized area)   -------------------------------------------------------------
   
-  { ## sf__l1  -----------------------------------------------------------
+  { ## sf__monterrey_l1  -----------------------------------------------------------
     sf__monterrey_l1 = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_simp_5pct.parquet")) %>%
       filter(l1_label == 'Monterrey')
     
@@ -158,7 +160,7 @@
         object_name  = 'geog')
   }   
   
-  { ## sf__l1ux -----------------------------------------------------------
+  { ## sf__monterrey_l1ux -----------------------------------------------------------
     sf__monterrey_l1ux = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1UX_simp_5pct.parquet"))  %>%
       filter(l1_label == 'Monterrey')
     
@@ -166,6 +168,27 @@
     sf__monterrey_l1ux %>% 
       geojsonio::topojson_write(
         file = "../public/data/monterrey_l1ux.json",
+        object_name  = 'geog')
+  }
+  
+  { ## sf__monterrey_l2  -----------------------------------------------------------
+    sf__monterrey_l2 = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L2_simp_5pct.parquet")) %>%
+      filter(l1_label == 'Monterrey')
+    
+    ## Export
+    sf__monterrey_l2 %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/monterrey_l2.json",
+        object_name  = 'geog')
+  }   
+  
+  { ## sf__monterrey_unbuilt -----------------------------------------------------------
+    sf__monterrey_unbuilt = st_difference(sf__monterrey_l1, sf__monterrey_l1ux)
+    
+    ## Export
+    sf__monterrey_unbuilt %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/monterrey_unbuilt.json",
         object_name  = 'geog')
   }
   
@@ -213,9 +236,7 @@
   
   leaflet() %>% 
     addTiles() %>% 
-    addPolygons(data = sf__monterrey_l1ux, fillOpacity = 0) %>% 
-    addPolygons(data = sf__monterrey_l1, color = 'red', fillOpacity = 0)
-  
+    addPolygons(data = sf__l3, fillOpacity = 0)
 }
 
 { # Scrolly Drafts ----------------------------------------------------------
@@ -230,8 +251,7 @@
   
   leaflet() %>% 
     addTiles() %>% 
-    addPolygons(data = sf__l1_tmp, fillOpacity = 0, color = 'red') %>% 
-    addPolygons(data = sf__l2_tmp, fillOpacity = 0)
+    addPolygons(data = sf__monterrey_l2, fillOpacity = 0, color = 'green') 
   
   
 }

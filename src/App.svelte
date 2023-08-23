@@ -43,6 +43,7 @@
   const hex_secondary = '#00BB9E';
   const hex_error = '#BC3B2F';
   const hex_warning = '#BC812F';
+  const hex_teal = '#00BB9E';
 
   const bounds = {
     southAmerica: [
@@ -56,6 +57,14 @@
     l1ad: [
       [-47.084742, -24.008374],
       [-46.051954, -23.183419],
+    ],
+    monterrey: [
+      [-100.8619014, 25.2237859], // Southwest coordinates
+      [-99.6864261, 26.3951673], // Northeast coordinates
+    ],
+    rio_cuarto: [
+      [-65.1437809, -34.2456892], // Southwest coordinates
+      [-63.8864557, -32.3048849], // Northeast coordinates
     ],
   };
 
@@ -146,6 +155,52 @@
   let geojson_l2;
   getTopo(src_l2.url, src_l2.layer).then((res) => {
     geojson_l2 = res;
+  });
+
+  // Case 1 (monterrey) L1UX boundaries
+  const src_monterrey_l1ux = {
+    url: './data/monterrey_l1ux.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_monterrey_l1ux;
+  getTopo(src_monterrey_l1ux.url, src_monterrey_l1ux.layer).then((res) => {
+    geojson_monterrey_l1ux = res;
+  });
+
+  // Case 1 (Monterrey) L1AD boundaries
+  const src_monterrey_l1ad = {
+    url: './data/monterrey_l1ad.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_monterrey_l1ad;
+  getTopo(src_monterrey_l1ad.url, src_monterrey_l1ad.layer).then((res) => {
+    geojson_monterrey_l1ad = res;
+  });
+
+  // Case 1 (Monterrey) unbuilt boundaries
+  const src_monterrey_unbuilt = {
+    url: './data/monterrey_unbuilt.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_monterrey_unbuilt;
+  getTopo(src_monterrey_unbuilt.url, src_monterrey_unbuilt.layer).then(
+    (res) => {
+      geojson_monterrey_unbuilt = res;
+    }
+  );
+
+  // Case 1 (Monterrey) l2 boundaries
+  const src_monterrey_l2 = {
+    url: './data/monterrey_l2.json',
+    layer: 'geog',
+    code: 'salid1',
+  };
+  let geojson_monterrey_l2;
+  getTopo(src_monterrey_l2.url, src_monterrey_l2.layer).then((res) => {
+    geojson_monterrey_l2 = res;
   });
 
   // Functions for map component
@@ -309,25 +364,33 @@
         };
       },
       map06: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(bounds.monterrey);
         custom = {
-          mapid: 'map05',
+          mapid: 'map06',
           layers: {
             municipio_centroid: false,
             municipio: false,
             l1ux: false,
-            l2_line: {
-              'line-color': hex_primary,
-              'line-width': 2,
-              'line-opacity': 1,
-            },
-            l2_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.5,
-            },
-            l1ad_line: {
+            l2_line: false,
+            l2_fill: false,
+            l1ad_line: false,
+
+            monterrey_l1ad_line: {
               'line-color': hex_error,
-              'line-width': 5,
+              'line-width': 4,
+            },
+            monterrey_l1ux_line: {
+              'line-color': 'black',
+              'line-width': 1,
+              'line-opacity': 0.5,
+            },
+            monterrey_unbuilt_fill: {
+              'fill-color': hex_teal,
+              'fill-opacity': 0.2,
+            },
+            monterrey_l2_line: {
+              'line-color': hex_primary,
+              'line-width': 1.5,
             },
           },
         };
@@ -594,6 +657,67 @@
               type="line"
             />
           </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="monterrey_l2"
+            type="geojson"
+            data={geojson_monterrey_l2}
+            promoteId={src_monterrey_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="monterrey_l2_line"
+              {custom}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="monterrey_unbuilt"
+            type="geojson"
+            data={geojson_monterrey_unbuilt}
+            promoteId={src_monterrey_unbuilt.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="monterrey_unbuilt_fill"
+              {custom}
+              type="fill"
+            />
+          </MapSource>
+
+          <MapSource
+            map_id="scrolly_map_1"
+            id="monterrey_l1ux"
+            type="geojson"
+            data={geojson_monterrey_l1ux}
+            promoteId={src_monterrey_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="monterrey_l1ux_line"
+              {custom}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="monterrey_l1ad"
+            type="geojson"
+            data={geojson_monterrey_l1ad}
+            promoteId={src_monterrey_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="monterrey_l1ad_line"
+              {custom}
+              type="line"
+            />
+          </MapSource>
         </Map>
         <!-- <div class="stickDev">
           {id.map}
@@ -657,11 +781,22 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          In cases where the administrative units that compose a city are very
-          large, a SALURBAL city may include some areas that are not built-up or
-          urbanized. This is because any administrative unit that included even
-          a small portion of the built-up area was included in the geographic
-          definition of the city.
+          In cases where the <strong
+            ><span style={`color: ${hex_primary};`}
+              >administrative units
+            </span></strong
+          >
+          that compose a city are very large, a
+          <strong
+            ><span style={`color: ${hex_error};`}>SALURBAL city</span></strong
+          >
+          (e.g. Monterrey, Mexico) may include some areas that are
+          <strong
+            ><span style={`color: ${hex_teal};`}
+              >not built-up or urbanized.</span
+            ></strong
+          > This is because any administrative unit that included even a small portion
+          of the built-up area was included in the geographic definition of the city.
         </p>
       </div>
     </section>
