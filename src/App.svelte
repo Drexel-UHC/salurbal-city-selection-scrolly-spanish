@@ -4,8 +4,6 @@
 -->
 
 <script>
-  // # Imports
-
   // Scrolly stuff
   import { onMount } from 'svelte';
   import Scroller from './layout/Scroller.svelte';
@@ -37,13 +35,14 @@
   setContext('theme', theme);
   setColors(themes, theme);
 
-  // # Map objects
-
+  // # ============================================================================ #
+  // Map Objects
   const hex_primary = '#2F8FBC';
   const hex_secondary = '#00BB9E';
   const hex_error = '#BC3B2F';
   const hex_warning = '#BC812F';
   const hex_teal = '#00BB9E';
+  const hex_purple = '#8C198C';
 
   const bounds = {
     southAmerica: [
@@ -53,6 +52,10 @@
     municipio: [
       [-46.826191, -24.008374],
       [-46.365357, -23.357529],
+    ],
+    metro: [
+      [-47.2054645, -24.0642507],
+      [-45.6952955, -23.184244],
     ],
     l1ad: [
       [-47.084742, -24.008374],
@@ -122,6 +125,17 @@
   let geojson_municipio;
   getTopo(src_municipio.url, src_municipio.layer).then((res) => {
     geojson_municipio = res;
+  });
+
+  // Metropolitan boundaries
+  const src_metro = {
+    url: './data/sao_paolo_metro.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_metro;
+  getTopo(src_metro.url, src_metro.layer).then((res) => {
+    geojson_metro = res;
   });
 
   // L1UX boundaries
@@ -458,10 +472,23 @@
         };
       },
       map08: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(bounds.metro);
         custom = {
           mapid: 'map05',
-          layers: {},
+          layers: {
+            metro_line: {
+              'line-color': hex_purple,
+              'line-width': 3,
+            },
+            l1_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 6,
+            },
+          },
         };
       },
     },
@@ -674,6 +701,27 @@
             <MapLayer
               map_id="scrolly_map_1"
               id="l1ad_line"
+              {custom}
+              type="line"
+            />
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="l1_fill"
+              {custom}
+              type="fill"
+            />
+          </MapSource>
+          <MapSource
+            map_id="scrolly_map_1"
+            id="metro"
+            type="geojson"
+            data={geojson_metro}
+            promoteId={src_metro.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="scrolly_map_1"
+              id="metro_line"
               {custom}
               type="line"
             />
