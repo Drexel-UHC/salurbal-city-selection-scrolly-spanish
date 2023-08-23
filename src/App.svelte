@@ -493,6 +493,12 @@
       },
     },
   };
+
+  const style_l2 = `color: ${hex_primary}; font-weight: 900;`;
+  const style_ux = `color: ${hex_warning}; font-weight: 900;`;
+  const style_l1 = `color: ${hex_error}; font-weight: 900;`;
+  const style_unurban = `color: ${hex_teal}; font-weight: 900;`;
+  const style_metro = `color: ${hex_purple}; font-weight: 900;`;
 </script>
 
 <!-- 
@@ -849,16 +855,15 @@
   <div slot="foreground">
     <section data-id="map01">
       <div class="col-medium">
-        <p><strong>We’ll use São Paulo, Brazil as an example. </strong></p>
+        <p>We’ll use São Paulo, Brazil as an example.</p>
       </div>
     </section>
     <section data-id="map02">
       <div class="col-medium">
         <p>
           <strong
-            >These are the <span style={`color: ${hex_primary};`}
-              >administrative units (municipios)</span
-            > around São Paulo, Brazil</strong
+            >These are the <span style={style_l2}>administrative units</span>
+            (municipios) around São Paulo, Brazil</strong
           >
         </p>
       </div>
@@ -867,9 +872,8 @@
       <div class="col-medium">
         <p>
           <strong
-            >This is the <span style={`color: ${hex_warning};`}
-              >urban extent</span
-            > or built-up area of São Paulo, Brazil</strong
+            >This is the <span style={style_ux}>urban extent</span> or built-up area
+            of São Paulo, Brazil</strong
           >
         </p>
       </div>
@@ -879,7 +883,7 @@
         <p>
           <strong
             >Through visual inspection of satellite imagery, we identified <span
-              style={`color: ${hex_warning};`}
+              style={style_ux}
             >
               all administrative units that included any portion of the built-up
               area</span
@@ -891,13 +895,12 @@
     <section data-id="map05">
       <div class="col-medium">
         <p>
-          The combination of these <span style={`color: ${hex_primary};`}
-            ><strong>administrative units</strong></span
+          The combination of these <span style={style_l2}
+            >administrative units</span
           >
           is considered a
-          <strong>
-            <span style={`color: ${hex_error};`}>SALURBAL city.</span>
-          </strong>
+
+          <span style={style_l1}>SALURBAL city.</span>
         </p>
       </div>
     </section>
@@ -905,18 +908,13 @@
       <div class="col-medium">
         <p>
           In cases where the <strong
-            ><span style={`color: ${hex_primary};`}
-              >administrative units
-            </span></strong
+            ><span style={style_l2}>administrative units </span></strong
           >
           that compose a city are very large, a
-          <strong
-            ><span style={`color: ${hex_error};`}>SALURBAL city</span></strong
-          >
+          <span style={style_l1}>SALURBAL city</span>
           (e.g. Monterrey, Mexico) may include some areas that are
           <strong
-            ><span style={`color: ${hex_teal};`}
-              >not built-up or urbanized.</span
+            ><span style={style_unurban}>not built-up or urbanized.</span
             ></strong
           > This is because any administrative unit that included even a small portion
           of the built-up area was included in the geographic definition of the city.
@@ -927,23 +925,23 @@
       <div class="col-medium">
         <p>
           While some cities are composed of many of these units, nearly half of
-          <span style={`color: ${hex_error};`}
-            ><strong>SALURBAL cities</strong></span
-          >
+          <span style={style_l1}>SALURBAL cities</span>
           include only one
-          <span style={`color: ${hex_primary};`}>
-            <strong>administrative unit</strong>
-          </span>.
+          <span style={style_l2}> administrative unit </span>.
         </p>
       </div>
     </section>
     <section data-id="map08">
       <div class="col-medium">
         <p>
-          It is important to note that SALURBAL cities may not coincide with
-          administrative or political definitions used to define cities within
-          each country. Our boundaries intentionally reflect urban
-          agglomerations that often extend beyond city cores.
+          It is important to note that <span style={style_l1}
+            >SALURBAL cities</span
+          >
+          may not coincide with
+          <span style={style_metro}
+            >administrative or political definitions</span
+          > used to define cities within each country. Our boundaries intentionally
+          reflect urban agglomerations that often extend beyond city cores.
         </p>
       </div>
     </section>
