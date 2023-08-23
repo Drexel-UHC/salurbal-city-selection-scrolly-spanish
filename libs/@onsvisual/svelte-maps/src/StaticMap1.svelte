@@ -4,7 +4,7 @@
   // Mapbox source code is bundled due to versioning & ES6 import issues
   // https://cdn.skypack.dev/-/mapbox-gl@v1.13.2-asizChmwkQobquJNQjgb/dist=es2020,mode=imports,min/optimized/mapbox-gl.js
 
-  export let map;
+  export let map2;
   export let id;
   export let location = {
     lng: 15,
@@ -34,7 +34,7 @@
   let loaded = false;
 
   setContext(id, {
-    getMap: () => map,
+    getMap: () => map2,
   });
 
   $: {
@@ -64,7 +64,7 @@
     link.onload = () => {
       // console.log('making new mapbox');
       // console.log(container);
-      map = new mapbox.Map({
+      map2 = new mapbox.Map({
         container,
         style,
         minZoom: minzoom,
@@ -72,23 +72,23 @@
         interactive,
         ...options,
       });
-      map.scrollZoom.disable();
+      map2.scrollZoom.disable();
       if (controls) {
-        map.addControl(new mapbox.NavigationControl({ showCompass: false }));
+        map2.addControl(new mapbox.NavigationControl({ showCompass: false }));
       }
 
       if (scales) {
-        map.addControl(new mapbox.ScaleControl());
+        map2.addControl(new mapbox.ScaleControl());
       }
 
       if (locate) {
-        map.addControl(new mapbox.GeolocateControl());
+        map2.addControl(new mapbox.GeolocateControl());
       }
 
       // Get initial zoom level
-      map.on('load', () => {
-        zoom = map.getZoom();
-        center = map.getCenter();
+      map2.on('load', () => {
+        zoom = map2.getZoom();
+        center = map2.getCenter();
         loaded = true;
 
         // Prevent map from being tabbable
@@ -97,16 +97,16 @@
         }
       });
       // Update zoom level and center when the view changes
-      map.on('moveend', () => {
-        zoom = map.getZoom();
-        center = map.getCenter();
+      map2.on('moveend', () => {
+        zoom = map2.getZoom();
+        center = map2.getCenter();
       });
     };
 
     document.head.appendChild(link);
 
     return () => {
-      map.remove();
+      map2.remove();
       link.parentNode.removeChild(link);
     };
   });
@@ -118,7 +118,7 @@
       if (canvas[0]) {
         canvas[0].style.width = '100%';
         canvas[0].style.height = '100%';
-        map.resize();
+        map2.resize();
       }
     }
   }

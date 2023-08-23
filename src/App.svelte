@@ -11,6 +11,7 @@
   import Scroller from './layout/Scroller.svelte';
   import {
     Map,
+    StaticMap1,
     MapSource,
     MapLayer,
     MapTooltip,
@@ -45,8 +46,8 @@
 
   const bounds = {
     southAmerica: [
-      [-81.35, -56.54], // Southwest corner: min longitude, min latitude
-      [-32.39, 13.39], // Northeast corner: max longitude, max latitude
+      [-117.157278, -55.058347], // Southwest coordinates
+      [-66.273339, 34], // Northeast coordinates
     ],
     municipio: [
       [-46.826191, -24.008374],
@@ -197,7 +198,7 @@
     mapid: 'map01',
     layers: {
       municipio_centroid: {
-        'circle-color': hex_secondary,
+        'circle-color': hex_error,
         'circle-radius': 8,
         'circle-stroke-color': hex_error,
         'circle-stroke-width': 2,
@@ -215,7 +216,7 @@
           mapid: 'map01',
           layers: {
             municipio_centroid: {
-              'circle-color': hex_secondary,
+              'circle-color': hex_error,
               'circle-radius': 7,
               'circle-stroke-color': hex_error,
               'circle-stroke-width': 1,
@@ -381,8 +382,8 @@
 
 <Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
-    <Map
-      id="static-map-1"
+    <StaticMap1
+      id="static_map_1"
       style="./data/style-osm-grey.json"
       location={{ bounds: bounds.southAmerica }}
       controls={false}
@@ -392,20 +393,26 @@
       bind:center
     >
       <MapSource
-        map_id="static-map-1"
-        id="static-map-1-src"
+        map_id="static_map_1"
+        id="static_map_1-src"
         type="geojson"
         data={geojson_salurbal_centroid}
         promoteId={'salurbal_centroids'}
         maxzoom={13}
       >
-        <!-- <MapLayer
-          map_id="static-map-1"
-          id="static-map-1-circle"
+        <MapLayer
+          map_id="static_map_1"
+          id="static_map_1-circle"
           type="circle"
-        /> -->
+          paint={{
+            'circle-color': hex_error,
+            'circle-radius': 3,
+            'circle-stroke-color': hex_secondary,
+            'circle-stroke-width': 1,
+          }}
+        />
       </MapSource>
-    </Map>
+    </StaticMap1>
   </div>
 </Media>
 
@@ -429,7 +436,7 @@
     <figure>
       <div class="col-full height-full">
         <Map
-          id="scrolly-map-1"
+          id="scrolly_map_1"
           style="./data/style-esri-world-imagery.json"
           location={{ bounds: bounds.southAmerica }}
           controls={false}
@@ -439,7 +446,7 @@
           bind:center
         >
           <MapSource
-            map_id="scrolly-map-1"
+            map_id="scrolly_map_1"
             id="municipio_centroid"
             type="geojson"
             data={geojson_municipio_centroid}
@@ -447,14 +454,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly-map-1"
+              map_id="scrolly_map_1"
               id="municipio_centroid"
               {custom}
               type="circle"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly-map-1"
+            map_id="scrolly_map_1"
             id="municipio"
             type="geojson"
             data={geojson_municipio}
@@ -462,7 +469,7 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly-map-1"
+              map_id="scrolly_map_1"
               id="municipio"
               {custom}
               type="line"
@@ -470,7 +477,7 @@
           </MapSource>
 
           <MapSource
-            map_id="scrolly-map-1"
+            map_id="scrolly_map_1"
             id="l2"
             type="geojson"
             data={geojson_l2}
@@ -478,30 +485,30 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly-map-1"
+              map_id="scrolly_map_1"
               id="l2_line"
               {custom}
               type="line"
             />
             <MapLayer
-              map_id="scrolly-map-1"
+              map_id="scrolly_map_1"
               id="l2_fill"
               {custom}
               type="fill"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly-map-1"
+            map_id="scrolly_map_1"
             id="l1ux"
             type="geojson"
             data={geojson_l1ux}
             promoteId={src_l1ux.code}
             maxzoom={13}
           >
-            <MapLayer map_id="scrolly-map-1" id="l1ux" {custom} type="line" />
+            <MapLayer map_id="scrolly_map_1" id="l1ux" {custom} type="line" />
           </MapSource>
           <MapSource
-            map_id="scrolly-map-1"
+            map_id="scrolly_map_1"
             id="l1ad"
             type="geojson"
             data={geojson_l1ad}
@@ -509,7 +516,7 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly-map-1"
+              map_id="scrolly_map_1"
               id="l1ad_line"
               {custom}
               type="line"

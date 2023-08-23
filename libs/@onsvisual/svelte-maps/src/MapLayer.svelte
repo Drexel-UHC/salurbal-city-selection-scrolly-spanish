@@ -33,14 +33,13 @@
   const { source, layer, promoteId } = getContext('source');
   const { getMap } = getContext(map_id);
   const map = getMap();
-
-  // # ============================================================================ #
-  // # diagnose code here
-  console.log(id);
-  if (id == 'salurbal_centroid') {
-    console.log('--- SALURBLA_Centroids');
-  }
-
+  console.log(`*** Map Layer getContext from: ${map_id} for ${id}`);
+  console.log(`*** container id: ${map.getContainer().id}`);
+  // if (map_id != 'scrolly_map_1') {
+  //   console.log('-----------------');
+  //   console.log(map_id);
+  //   console.log(map.getContainer().id);
+  // }
   setContext('layer', {
     layer: id,
   });
@@ -62,31 +61,49 @@
   if (map.getLayer(id)) {
     map.removeLayer(id);
   }
-
+  // # ============================================================================ #
+  // # diagnose code here
+  if (map_id != 'scrolly_map_1') {
+    console.log('-----------------');
+    console.log(map_id);
+    console.log(map.getContainer().id);
+    let options = {
+      id: id,
+      type: type,
+      source: source,
+      paint: paint,
+      layout: layout,
+    };
+    map.addLayer(options, order);
+    console.log(`added layer ${id} to map ${map_id}`);
+    // console.log(map.getContainer());
+  }
   // Reactive statement
   $: {
-    const layers_to_display = Object.entries(custom.layers)
-      .filter(([key, value]) => value)
-      .map((x) => x[0]);
+    if (custom) {
+      const layers_to_display = Object.entries(custom.layers)
+        .filter(([key, value]) => value)
+        .map((x) => x[0]);
 
-    // remove current layer if exists
-    if (map.getLayer(id)) {
-      map.removeLayer(id);
-    }
+      // remove current layer if exists
+      if (map.getLayer(id)) {
+        map.removeLayer(id);
+      }
 
-    // add current layer if specified
-    if (layers_to_display.includes(id)) {
-      const paint_tmp = custom.layers[id] ? custom.layers[id] : {};
+      // add current layer if specified
+      if (layers_to_display.includes(id)) {
+        const paint_tmp = custom.layers[id] ? custom.layers[id] : {};
 
-      let options = {
-        id: id,
-        type: type,
-        source: source,
-        paint: paint_tmp,
-        layout: layout,
-      };
+        let options = {
+          id: id,
+          type: type,
+          source: source,
+          paint: paint_tmp,
+          layout: layout,
+        };
 
-      map.addLayer(options, order);
+        map.addLayer(options, order);
+      }
     }
   }
   // Updates "color" feature states for all geo codes

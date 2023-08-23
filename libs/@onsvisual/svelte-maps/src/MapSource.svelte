@@ -11,8 +11,9 @@
   export let promoteId = null;
   export let minzoom = null;
   export let maxzoom = null;
-  console.log(id);
-  console.log(map_id);
+  if (map_id == 'static-map-1') {
+    console.log(` --- ${map_id}:  ${id}`);
+  }
   let loaded = false;
 
   const { getMap } = getContext(map_id);
