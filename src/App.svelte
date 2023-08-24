@@ -346,7 +346,7 @@
         };
       },
       map03: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(map_scrolly_1, bounds.l1ad);
         custom = {
           mapid: 'map03',
           layers: {
@@ -365,7 +365,7 @@
         };
       },
       map04: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(map_scrolly_1, bounds.l1ad);
         custom = {
           mapid: 'map04',
           layers: {
@@ -388,7 +388,7 @@
         };
       },
       map05: () => {
-        fitBounds(bounds.l1ad);
+        fitBounds(map_scrolly_1, bounds.l1ad);
         custom = {
           mapid: 'map05',
           layers: {
@@ -412,7 +412,7 @@
         };
       },
       map06: () => {
-        fitBounds(bounds.monterrey);
+        fitBounds(map_scrolly_1, bounds.monterrey);
         custom = {
           mapid: 'map06',
           layers: {
@@ -444,7 +444,7 @@
         };
       },
       map07: () => {
-        fitBounds(bounds.rio_cuarto);
+        fitBounds(map_scrolly_1, bounds.rio_cuarto);
         custom = {
           mapid: 'map07',
           layers: {
@@ -474,7 +474,7 @@
         };
       },
       map08: () => {
-        fitBounds(bounds.metro);
+        fitBounds(map_scrolly_1, bounds.metro); 
         custom = {
           mapid: 'map05',
           layers: {
