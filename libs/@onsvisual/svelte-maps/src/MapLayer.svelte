@@ -57,7 +57,9 @@
   }
   // # ============================================================================ #
   // # diagnose code here
-  if (map_id != 'map_static_1') {
+
+  // Render non-scrolly map layers
+  if (map_id != 'map_scrolly_1') {
     console.log('-----------------');
     console.log(map_id);
     console.log(map.getContainer().id);
@@ -70,8 +72,8 @@
     };
     map.addLayer(options, order);
     console.log(`added layer ${id} to map ${map_id}`);
-    // console.log(map.getContainer());
   }
+
   // Reactive statement
   $: {
     if (custom) {
@@ -103,7 +105,6 @@
   // Updates "color" feature states for all geo codes
   // Assumes that each data point has the colours defined on the colorCode key
   function updateColors() {
-    console.log('&&&&&&&& updating colors...');
     data.forEach((d) => {
       map.setFeatureState(
         {
