@@ -253,8 +253,8 @@
 
   // Functions for map component
   function fitBounds(bounds) {
-    if (map) {
-      map.fitBounds(bounds, { animate: true, padding: 30 });
+    if (map_scrolly_1) {
+      map_scrolly_1.fitBounds(bounds, { animate: true, padding: 30 });
     }
   }
   function fitById(id) {
@@ -314,7 +314,16 @@
   let actions = {
     map_scrolly_1: {
       map01: () => {
-        fitBounds(bounds.southAmerica);
+        // fitBounds(bounds.southAmerica);
+
+        if (map_scrolly_1) {
+          console.log(`!!!!!!!!!!!!!!!! fitbounds here 1`);
+          console.log(map_scrolly_1);
+          map_scrolly_1.fitBounds(bounds.southAmerica, {
+            animate: true,
+            padding: 30,
+          });
+        }
         custom = {
           mapid: 'map01',
           layers: {
@@ -331,7 +340,15 @@
         };
       },
       map02: () => {
-        fitBounds(bounds.l1ad);
+        // fitBounds(bounds.l1ad);
+        if (map_scrolly_1) {
+          console.log(`!!!!!!!!!!!!!!!!! fitbounds here 2`);
+          console.log(map_scrolly_1);
+          map_scrolly_1.fitBounds(bounds.l1ad, {
+            animate: true,
+            padding: 30,
+          });
+        }
         custom = {
           mapid: 'map02',
           layers: {
@@ -622,7 +639,7 @@
   # ============================================================================ #
   # Scrolly 1  (define city boundaries)
 -->
-<Scroller {threshold} bind:id={id['map']} splitscreen={true}>
+<Scroller {threshold} bind:id={id['map_scrolly_1']} splitscreen={true}>
   <div slot="background">
     <figure>
       <div class="col-full height-full">
@@ -632,7 +649,7 @@
           location={{ bounds: bounds.southAmerica }}
           controls={false}
           scales={true}
-          bind:map_scrolly_1
+          bind:map={map_scrolly_1}
           bind:zoom
           bind:center
         >
