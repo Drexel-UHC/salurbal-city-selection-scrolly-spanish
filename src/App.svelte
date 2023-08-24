@@ -9,7 +9,6 @@
   import Scroller from './layout/Scroller.svelte';
   import {
     Map,
-    StaticMap1,
     MapSource,
     MapLayer,
     MapTooltip,
@@ -37,6 +36,12 @@
 
   // # ============================================================================ #
   // Map Objects
+
+  // Bindings
+  let map_static_1;
+  let map_scrolly_1;
+
+  // Colors
   const hex_primary = '#2F8FBC';
   const hex_secondary = '#00BB9E';
   const hex_error = '#BC3B2F';
@@ -70,9 +75,6 @@
       [-63.8864557, -32.3048849], // Northeast coordinates
     ],
   };
-
-  // Bindings
-  let map;
 
   // Data
 
@@ -310,7 +312,7 @@
     },
   };
   let actions = {
-    map: {
+    map_scrolly_1: {
       map01: () => {
         fitBounds(bounds.southAmerica);
         custom = {
@@ -571,13 +573,13 @@
 
 <Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
-    <StaticMap1
+    <Map
       id="static_map_1"
       style="./data/style-osm-grey.json"
       location={{ bounds: bounds.southAmerica }}
       controls={false}
       scales={true}
-      bind:map
+      bind:map_static_1
       bind:zoom
       bind:center
     >
@@ -601,7 +603,7 @@
           }}
         />
       </MapSource>
-    </StaticMap1>
+    </Map>
   </div>
 </Media>
 
@@ -625,17 +627,17 @@
     <figure>
       <div class="col-full height-full">
         <Map
-          id="scrolly_map_1"
+          id="map_scrolly_1"
           style="./data/style-esri-world-imagery.json"
           location={{ bounds: bounds.southAmerica }}
           controls={false}
           scales={true}
-          bind:map
+          bind:map_scrolly_1
           bind:zoom
           bind:center
         >
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="municipio_centroid"
             type="geojson"
             data={geojson_municipio_centroid}
@@ -643,14 +645,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="municipio_centroid"
               {custom}
               type="circle"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="municipio"
             type="geojson"
             data={geojson_municipio}
@@ -658,7 +660,7 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="municipio"
               {custom}
               type="line"
@@ -666,7 +668,7 @@
           </MapSource>
 
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="l2"
             type="geojson"
             data={geojson_l2}
@@ -674,30 +676,30 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="l2_line"
               {custom}
               type="line"
             />
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="l2_fill"
               {custom}
               type="fill"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="l1ux"
             type="geojson"
             data={geojson_l1ux}
             promoteId={src_l1ux.code}
             maxzoom={13}
           >
-            <MapLayer map_id="scrolly_map_1" id="l1ux" {custom} type="line" />
+            <MapLayer map_id="map_scrolly_1" id="l1ux" {custom} type="line" />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="l1ad"
             type="geojson"
             data={geojson_l1ad}
@@ -705,20 +707,20 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="l1ad_line"
               {custom}
               type="line"
             />
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="l1_fill"
               {custom}
               type="fill"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="metro"
             type="geojson"
             data={geojson_metro}
@@ -726,14 +728,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="metro_line"
               {custom}
               type="line"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="monterrey_l2"
             type="geojson"
             data={geojson_monterrey_l2}
@@ -741,14 +743,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="monterrey_l2_line"
               {custom}
               type="line"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="monterrey_unbuilt"
             type="geojson"
             data={geojson_monterrey_unbuilt}
@@ -756,7 +758,7 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="monterrey_unbuilt_fill"
               {custom}
               type="fill"
@@ -764,7 +766,7 @@
           </MapSource>
 
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="monterrey_l1ux"
             type="geojson"
             data={geojson_monterrey_l1ux}
@@ -772,14 +774,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="monterrey_l1ux_line"
               {custom}
               type="line"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="monterrey_l1ad"
             type="geojson"
             data={geojson_monterrey_l1ad}
@@ -787,14 +789,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="monterrey_l1ad_line"
               {custom}
               type="line"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="rio_cuarto_l1ad"
             type="geojson"
             data={geojson_rio_cuarto_l1ad}
@@ -802,20 +804,20 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="rio_cuarto_l1ad_line"
               {custom}
               type="line"
             />
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="rio_cuarto_l1ad_fill"
               {custom}
               type="fill"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="rio_cuarto_l2"
             type="geojson"
             data={geojson_rio_cuarto_l2}
@@ -823,14 +825,14 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="rio_cuarto_l2_line"
               {custom}
               type="line"
             />
           </MapSource>
           <MapSource
-            map_id="scrolly_map_1"
+            map_id="map_scrolly_1"
             id="rio_cuarto_l1ux"
             type="geojson"
             data={geojson_rio_cuarto_l1ux}
@@ -838,7 +840,7 @@
             maxzoom={13}
           >
             <MapLayer
-              map_id="scrolly_map_1"
+              map_id="map_scrolly_1"
               id="rio_cuarto_l1ux_line"
               {custom}
               type="line"
@@ -947,6 +949,34 @@
     </section>
   </div>
 </Scroller>
+
+<Section>
+  <h3>
+    Step 3. Creating a hierarchy of geographic units within each SALURBAL city
+  </h3>
+  <p class="text-medium">
+    In order to capture within-city differences and accommodate data available
+    for different geographic levels, we defined units at multiple geographic
+    “levels”.
+  </p>
+  <p class="text-medium">
+    Each SALURBAL city is referred to as a Level 1 unit (L1). Administrative
+    units that compose each city (as described in step 2) are referred to Level
+    2 units (L2). We also defined smaller geographic units, which are similar to
+    neighborhoods nested within each L2. These are referred to as Level 3 units
+    (L3s).
+  </p>
+  <p class="text-medium">
+    In countries where L3s were not always defined, SALURBAL created L3 proxies
+    by combining other available geographic units. When L3s were too small for
+    our research purposes, neighborhoods were proxied using slightly larger
+    units. We refer to these as Level 2.5 units (L2.5s).
+  </p>
+  <p class="text-medium">
+    Let’s go back to São Paulo to see how these different geographic levels
+    apply to a real city.
+  </p>
+</Section>
 
 <!-- 
   # ============================================================================ #

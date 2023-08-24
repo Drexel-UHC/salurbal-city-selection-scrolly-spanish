@@ -33,13 +33,7 @@
   const { source, layer, promoteId } = getContext('source');
   const { getMap } = getContext(map_id);
   const map = getMap();
-  console.log(`*** Map Layer getContext from: ${map_id} for ${id}`);
-  console.log(`*** container id: ${map.getContainer().id}`);
-  // if (map_id != 'scrolly_map_1') {
-  //   console.log('-----------------');
-  //   console.log(map_id);
-  //   console.log(map.getContainer().id);
-  // }
+
   setContext('layer', {
     layer: id,
   });
@@ -63,7 +57,7 @@
   }
   // # ============================================================================ #
   // # diagnose code here
-  if (map_id != 'scrolly_map_1') {
+  if (map_id != 'map_static_1') {
     console.log('-----------------');
     console.log(map_id);
     console.log(map.getContainer().id);
