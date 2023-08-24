@@ -863,34 +863,28 @@
     <section data-id="map02">
       <div class="col-medium">
         <p>
-          <strong
-            >These are the <span style={style_l2}>administrative units</span>
-            (municipios) around São Paulo, Brazil</strong
-          >
+          These are the <span style={style_l2}>administrative units</span>
+          (municipios) around São Paulo, Brazil.
         </p>
       </div>
     </section>
     <section data-id="map03">
       <div class="col-medium">
         <p>
-          <strong
-            >This is the <span style={style_ux}>urban extent</span> or built-up area
-            of São Paulo, Brazil</strong
-          >
+          This is the <span style={style_ux}>urban extent</span> or built-up area
+          of São Paulo, Brazil.
         </p>
       </div>
     </section>
     <section data-id="map04">
       <div class="col-medium">
         <p>
-          <strong
-            >Through visual inspection of satellite imagery, we identified <span
-              style={style_ux}
-            >
-              all administrative units that included any portion of the built-up
-              area</span
-            > of each SALURBAL city.</strong
+          Through visual inspection of satellite imagery, we identified <span
+            style={style_ux}
           >
+            all administrative units that included any portion of the built-up
+            area</span
+          > of each SALURBAL city.
         </p>
       </div>
     </section>
@@ -909,17 +903,13 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          In cases where the <strong
-            ><span style={style_l2}>administrative units </span></strong
-          >
+          In cases where the <span style={style_l2}>administrative units </span>
           that compose a city are very large, a
           <span style={style_l1}>SALURBAL city</span>
           (e.g. Monterrey, Mexico) may include some areas that are
-          <strong
-            ><span style={style_unurban}>not built-up or urbanized.</span
-            ></strong
-          > This is because any administrative unit that included even a small portion
-          of the built-up area was included in the geographic definition of the city.
+          <span style={style_unurban}>not built-up or urbanized.</span> This is because
+          any administrative unit that included even a small portion of the built-up
+          area was included in the geographic definition of the city.
         </p>
       </div>
     </section>
