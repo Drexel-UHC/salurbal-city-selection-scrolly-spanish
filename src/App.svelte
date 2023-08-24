@@ -252,21 +252,21 @@
   });
 
   // Functions for map component
-  function fitBounds(bounds) {
-    if (map_scrolly_1) {
-      map_scrolly_1.fitBounds(bounds, { animate: true, padding: 30 });
+  function fitBounds(map, bounds) {
+    if (map) {
+      map.fitBounds(bounds, { animate: true, padding: 30 });
     }
   }
-  function fitById(id) {
-    if (geojson && id) {
-      let feature = geojson.features.filter(
-        (d) => d.properties.AREANM == id
-      )[0];
-      let bbox_tmp = bbox(feature.geometry);
+  // function fitById(id) {
+  //   if (geojson && id) {
+  //     let feature = geojson.features.filter(
+  //       (d) => d.properties.AREANM == id
+  //     )[0];
+  //     let bbox_tmp = bbox(feature.geometry);
 
-      fitBounds(bbox_tmp);
-    }
-  }
+  //     fitBounds(bbox_tmp);
+  //   }
+  // }
 
   // # Scroller Setup
   const threshold = 0.65;
@@ -314,16 +314,7 @@
   let actions = {
     map_scrolly_1: {
       map01: () => {
-        // fitBounds(bounds.southAmerica);
-
-        if (map_scrolly_1) {
-          console.log(`!!!!!!!!!!!!!!!! fitbounds here 1`);
-          console.log(map_scrolly_1);
-          map_scrolly_1.fitBounds(bounds.southAmerica, {
-            animate: true,
-            padding: 30,
-          });
-        }
+        fitBounds(map_scrolly_1, bounds.southAmerica);
         custom = {
           mapid: 'map01',
           layers: {
@@ -340,15 +331,7 @@
         };
       },
       map02: () => {
-        // fitBounds(bounds.l1ad);
-        if (map_scrolly_1) {
-          console.log(`!!!!!!!!!!!!!!!!! fitbounds here 2`);
-          console.log(map_scrolly_1);
-          map_scrolly_1.fitBounds(bounds.l1ad, {
-            animate: true,
-            padding: 30,
-          });
-        }
+        fitBounds(map_scrolly_1, bounds.l1ad);
         custom = {
           mapid: 'map02',
           layers: {
