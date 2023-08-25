@@ -1,6 +1,7 @@
 <script>
   import { themes } from '../config.js';
   import { getContext } from 'svelte';
+  import Icon from '@iconify/svelte';
 
   export let theme = getContext('theme');
   export let filled = false;
@@ -23,12 +24,37 @@
       </div>
     </a>
   </div>
+
+  <div class="container_container">
+    <div class="container">
+      <!-- <a href="https://github.com/Drexel-UHC">
+        <div class="social-icon"><Icon icon="mdi:github" /></div>
+      </a> -->
+      <a href="https://www.facebook.com/DrexelUHC/">
+        <div class="social-icon"><Icon icon="il:facebook" /></div>
+      </a>
+      <a href="https://twitter.com/drexeluhc">
+        <div class="social-icon"><Icon icon="mdi:twitter" /></div>
+      </a>
+      <a href="https://www.instagram.com/drexeluhc">
+        <div class="social-icon"><Icon icon="mdi:instagram" /></div>
+      </a>
+      <a href="https://www.youtube.com/@urbanhealthcollaborative8928">
+        <div class="social-icon"><Icon icon="mdi:youtube" /></div>
+      </a>
+      <a
+        href="https://www.linkedin.com/company/drexel-urban-health-collaborative/"
+      >
+        <div class="social-icon"><Icon icon="mdi:linkedin" /></div>
+      </a>
+    </div>
+  </div>
 </nav>
 
 <style>
   #svg-container {
     width: 200px; /* Set the desired width of the container */
-    height: 80px; /* Set the desired height of the container */
+    height: 50px; /* Set the desired height of the container */
   }
 
   #my-svg {
@@ -41,12 +67,29 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     position: relative;
-    height: 100px;
-    margin-bottom: -80px;
+    height: 80px;
+    margin-bottom: -40px;
     border-bottom: 1px solid #777;
     z-index: 1;
   }
   a img:hover {
     cursor: pointer;
+  }
+  .container_container {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+  }
+  .social-icon {
+    font-size: 1.5rem;
+    padding: 0.5rem;
   }
 </style>
