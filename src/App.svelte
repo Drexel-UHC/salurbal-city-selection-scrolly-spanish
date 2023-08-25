@@ -40,6 +40,7 @@
   // Bindings
   let map_static_1;
   let map_scrolly_1;
+  let map_scrolly_2;
 
   // Colors
   const hex_primary = '#2F8FBC';
@@ -310,7 +311,17 @@
       },
     },
   };
-
+  let custom_2 = {
+    mapid: 'map01',
+    layers: {
+      municipio_centroid: {
+        'circle-color': hex_error,
+        'circle-radius': 7,
+        'circle-stroke-color': hex_error,
+        'circle-stroke-width': 1,
+      },
+    },
+  };
   // actions to update steps
   let actions = {
     map_scrolly_1: {
@@ -450,6 +461,162 @@
       },
       map08: () => {
         fitBounds(map_scrolly_1, bounds.metro);
+        custom_1 = {
+          mapid: 'map05',
+          layers: {
+            metro_line: {
+              'line-color': hex_purple,
+              'line-width': 3,
+            },
+            l1_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 6,
+            },
+          },
+        };
+      },
+    },
+    map_scrolly_2: {
+      map01: () => {
+        fitBounds(map_scrolly_2, bounds.southAmerica);
+        custom_1 = {
+          mapid: 'map01',
+          layers: {
+            municipio_centroid: {
+              'circle-color': hex_error,
+              'circle-radius': 7,
+              'circle-stroke-color': hex_error,
+              'circle-stroke-width': 1,
+            },
+          },
+        };
+      },
+      map02: () => {
+        fitBounds(map_scrolly_2, bounds.l1ad);
+        custom_1 = {
+          mapid: 'map02',
+          layers: {
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 5,
+            },
+          },
+        };
+      },
+      map03: () => {
+        fitBounds(map_scrolly_2, bounds.l1ad);
+        custom_1 = {
+          mapid: 'map03',
+          layers: {
+            l1ux: {
+              'line-color': hex_warning,
+              'line-width': 8,
+            },
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 0.75,
+            },
+          },
+        };
+      },
+      map04: () => {
+        fitBounds(map_scrolly_2, bounds.l1ad);
+        custom_1 = {
+          mapid: 'map04',
+          layers: {
+            l1ux: {
+              'line-color': hex_warning,
+              'line-width': 5,
+            },
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_warning,
+              'fill-opacity': 0.5,
+            },
+          },
+        };
+      },
+      map05: () => {
+        fitBounds(map_scrolly_2, bounds.l1ad);
+        custom_1 = {
+          mapid: 'map05',
+          layers: {
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.5,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 5,
+            },
+          },
+        };
+      },
+      map06: () => {
+        fitBounds(map_scrolly_2, bounds.monterrey);
+        custom_1 = {
+          mapid: 'map06',
+          layers: {
+            monterrey_l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 4,
+            },
+            monterrey_l1ux_line: {
+              'line-color': 'black',
+              'line-width': 1,
+              'line-opacity': 0.5,
+            },
+            monterrey_unbuilt_fill: {
+              'fill-color': hex_teal,
+              'fill-opacity': 0.2,
+            },
+            monterrey_l2_line: {
+              'line-color': hex_primary,
+              'line-width': 1.5,
+            },
+          },
+        };
+      },
+      map07: () => {
+        fitBounds(map_scrolly_2, bounds.rio_cuarto);
+        custom_1 = {
+          mapid: 'map07',
+          layers: {
+            rio_cuarto_l2_line: {
+              'line-color': hex_primary,
+              'line-width': 1.5,
+            },
+            rio_cuarto_l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 6,
+            },
+            rio_cuarto_l1ad_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.25,
+            },
+            rio_cuarto_l1ux_line: {
+              'line-color': hex_warning,
+              'line-width': 2,
+            },
+          },
+        };
+      },
+      map08: () => {
+        fitBounds(map_scrolly_2, bounds.metro);
         custom_1 = {
           mapid: 'map05',
           layers: {
@@ -950,8 +1117,334 @@
 
 <!-- 
   # ============================================================================ #
+  # Scrolly 2  (geographic units)
+-->
+
+<Scroller {threshold} bind:id={id['map_scrolly_2']} splitscreen={true}>
+  <div slot="background">
+    <figure>
+      <div class="col-full height-full">
+        <Map
+          id="map_scrolly_2"
+          style="./data/style-esri-world-imagery.json"
+          location={{ bounds: bounds.southAmerica }}
+          controls={false}
+          scales={true}
+          bind:map={map_scrolly_2}
+          bind:zoom
+          bind:center
+        >
+          <MapSource
+            map_id="map_scrolly_2"
+            id="municipio_centroid"
+            type="geojson"
+            data={geojson_municipio_centroid}
+            promoteId={'municipio_centroid'}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="municipio_centroid"
+              custom={custom_2}
+              type="circle"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="municipio"
+            type="geojson"
+            data={geojson_municipio}
+            promoteId={src_municipio.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="municipio"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+
+          <MapSource
+            map_id="map_scrolly_2"
+            id="l2"
+            type="geojson"
+            data={geojson_l2}
+            promoteId={src_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l2_line"
+              custom={custom_2}
+              type="line"
+            />
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l2_fill"
+              custom={custom_2}
+              type="fill"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="l1ux"
+            type="geojson"
+            data={geojson_l1ux}
+            promoteId={src_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l1ux"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="l1ad"
+            type="geojson"
+            data={geojson_l1ad}
+            promoteId={src_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l1ad_line"
+              custom={custom_2}
+              type="line"
+            />
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l1_fill"
+              custom={custom_2}
+              type="fill"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="metro"
+            type="geojson"
+            data={geojson_metro}
+            promoteId={src_metro.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="metro_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="monterrey_l2"
+            type="geojson"
+            data={geojson_monterrey_l2}
+            promoteId={src_monterrey_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="monterrey_l2_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="monterrey_unbuilt"
+            type="geojson"
+            data={geojson_monterrey_unbuilt}
+            promoteId={src_monterrey_unbuilt.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="monterrey_unbuilt_fill"
+              custom={custom_2}
+              type="fill"
+            />
+          </MapSource>
+
+          <MapSource
+            map_id="map_scrolly_2"
+            id="monterrey_l1ux"
+            type="geojson"
+            data={geojson_monterrey_l1ux}
+            promoteId={src_monterrey_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="monterrey_l1ux_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="monterrey_l1ad"
+            type="geojson"
+            data={geojson_monterrey_l1ad}
+            promoteId={src_monterrey_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="monterrey_l1ad_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="rio_cuarto_l1ad"
+            type="geojson"
+            data={geojson_rio_cuarto_l1ad}
+            promoteId={src_rio_cuarto_l1ad.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="rio_cuarto_l1ad_line"
+              custom={custom_2}
+              type="line"
+            />
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="rio_cuarto_l1ad_fill"
+              custom={custom_2}
+              type="fill"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="rio_cuarto_l2"
+            type="geojson"
+            data={geojson_rio_cuarto_l2}
+            promoteId={src_rio_cuarto_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="rio_cuarto_l2_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="rio_cuarto_l1ux"
+            type="geojson"
+            data={geojson_rio_cuarto_l1ux}
+            promoteId={src_rio_cuarto_l1ux.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="rio_cuarto_l1ux_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+        </Map>
+      </div>
+    </figure>
+  </div>
+
+  <div slot="foreground">
+    <section data-id="map01">
+      <div class="col-medium">
+        <p>We’ll use São Paulo, Brazil as an example.</p>
+      </div>
+    </section>
+    <section data-id="map02">
+      <div class="col-medium">
+        <p>
+          These are the <span style={style_l2}>administrative units</span>
+          (municipios) around São Paulo, Brazil.
+        </p>
+      </div>
+    </section>
+    <section data-id="map03">
+      <div class="col-medium">
+        <p>
+          This is the <span style={style_ux}>urban extent</span> or built-up area
+          of São Paulo, Brazil.
+        </p>
+      </div>
+    </section>
+    <section data-id="map04">
+      <div class="col-medium">
+        <p>
+          Through visual inspection of satellite imagery, we identified <span
+            style={style_ux}
+          >
+            all administrative units that included any portion of the built-up
+            area</span
+          > of each SALURBAL city.
+        </p>
+      </div>
+    </section>
+    <section data-id="map05">
+      <div class="col-medium">
+        <p>
+          The combination of these <span style={style_l2}
+            >administrative units</span
+          >
+          is considered a
+
+          <span style={style_l1}>SALURBAL city.</span>
+        </p>
+      </div>
+    </section>
+    <section data-id="map06">
+      <div class="col-medium">
+        <p>
+          In cases where the <span style={style_l2}>administrative units </span>
+          that compose a city are very large, a
+          <span style={style_l1}>SALURBAL city</span>
+          (e.g. Monterrey, Mexico) may include some areas that are
+          <span style={style_unurban}>not built-up or urbanized.</span> This is because
+          any administrative unit that included even a small portion of the built-up
+          area was included in the geographic definition of the city.
+        </p>
+      </div>
+    </section>
+    <section data-id="map07">
+      <div class="col-medium">
+        <p>
+          While some cities are composed of many of these units, nearly half of
+          <span style={style_l1}>SALURBAL cities</span>
+          include only one
+          <span style={style_l2}> administrative unit </span>.
+        </p>
+      </div>
+    </section>
+    <section data-id="map08">
+      <div class="col-medium">
+        <p>
+          It is important to note that <span style={style_l1}
+            >SALURBAL cities</span
+          >
+          may not coincide with
+          <span style={style_metro}
+            >administrative or political definitions</span
+          > used to define cities within each country. Our boundaries intentionally
+          reflect urban agglomerations that often extend beyond city cores.
+        </p>
+      </div>
+    </section>
+  </div>
+</Scroller>
+
+<!-- 
+  # ============================================================================ #
   #  ............... style ...............
 -->
+
 <style>
   /* Styles specific to elements within the demo */
   :global(svelte-scroller-foreground) {
