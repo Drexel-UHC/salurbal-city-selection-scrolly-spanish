@@ -1397,11 +1397,8 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          So for Sao Paolo, the SALURBAL hierarchy of geographic consists of <span
-            style={style_l25}
-          >
-            L2.5 neighborhood units</span
-          >
+          The SALURBAL hierarchy of geographic for for Sao Paolo, Brazil
+          consists of <span style={style_l25}> L2.5 neighborhood units</span>
           within <span style={style_l2}> L2 sub-city units</span> within a
           single <span style={style_l1}> L1 city unit</span>.
         </p>
@@ -1409,6 +1406,37 @@
     </section>
   </div>
 </Scroller>
+<div style="height: 3rem" />
+<Section>
+  <p class="text-medium">
+    For more information on the specific units used in each SALURBAL country,
+    see our article in the <a
+      href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
+      target="_blank">Journal of Urban Health</a
+    >. For more details and access to these boundaries please see our
+    <a href="https://data.lacurbanhealth.org/" target="_blank"
+      >spatial data repository</a
+    >
+    on the
+    <a href="https://data.lacurbanhealth.org/" target="_blank"
+      >SALURBAL data portal</a
+    >.
+  </p>
+</Section>
+
+<Divider />
+
+<Section>
+  <h3>Understanding inter- and intra-city differences</h3>
+  <p class="text-medium">
+    This process was repeated for all 371 cities included in the SALURBAL
+    project. The result is an unprecedented data resource that allows us to
+    document and compare differences in health and wellbeing both between and
+    within cities across Latin America.
+  </p>
+</Section>
+
+<UHCFooter />
 
 <!-- 
   # ============================================================================ #
