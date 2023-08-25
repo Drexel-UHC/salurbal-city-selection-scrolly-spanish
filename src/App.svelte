@@ -693,7 +693,7 @@
 </div> -->
 <UHCHeader filled={true} center={false} />
 
-<!-- <Filler theme="lightblue" short={true} wide={true} center={false}>
+<Filler theme="lightblue" short={true} wide={true} center={false}>
   <h1>What is a SALURBAL City?</h1>
   <p class="text-big" style="margin-top: 5px">
     SALURBAL city, sub-city, and neighborhood definition and selection
@@ -713,7 +713,7 @@
 </Filler>
 
 <Section>
-  <h3>Introduction</h3>
+  <h2>Introduction</h2>
   <p class="text-medium">
     The SALURBAL team has developed a rigorous protocol for defining cities,
     sub-cities, and neighborhoods. This process allows us to study and compare
@@ -738,23 +738,26 @@
     least 100,000 residents as of 2010.
   </p>
   <p class="text-medium">
-    We used the Atlas of Urban Expansion and country census data from
-    citypopulation.de to obtain a list of all cities (as defined in these
-    sources) with 100,000 residents or more in 2010. We combined both lists and
-    eliminated overlaps. Cities that were very close together and were therefore
-    part of the same urban agglomeration were combined. The name of the largest
-    city or a hyphenated name was assigned to that unit. SALURBAL team members
-    in each country helped create a final list of 371 cities. We will refer to
-    these as “SALURBAL cities.”
+    We used the <a href="http://atlasofurbanexpansion.org/" target="_blank"
+      >Atlas of Urban Expansion</a
+    >
+    and country census data from
+    <a href="https://citypopulation.de/" target="_blank">citypopulation.de</a> to
+    obtain a list of all cities (as defined in these sources) with 100,000 residents
+    or more in 2010. We combined both lists and eliminated overlaps. Cities that
+    were very close together and were therefore part of the same urban agglomeration
+    were combined. The name of the largest city or a hyphenated name was assigned
+    to that unit. SALURBAL team members in each country helped create a final list
+    of 371 cities. We will refer to these as “SALURBAL cities.”
   </p>
-</Section> -->
+</Section>
 
 <!-- 
   # ============================================================================ #
   # Map 1  (371 Salurbal cities)
 -->
 
-<!-- <Media col="medium" caption="Map of all 371 SALURBAL cities">
+<Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
     <Map
       id="static_map_1"
@@ -795,17 +798,20 @@
   <p class="text-medium">
     We operationalized (or geographically defined) each SALURBAL city using
     existing administrative units to which health and other data could be easily
-    linked. These administrative units included municipios, departamentos, or
-    similar units in each country.
+    linked. These administrative units included <em>municipios</em>,
+    <em>departamentos</em>, or similar units in each country.
   </p>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <Arrow color="black" animation={true} />
+  </div>
 </Section>
-<div style="height: 3rem" /> -->
+<div style="height: 3rem" />
 
 <!-- 
   # ============================================================================ #
   # Scrolly 1  (define city boundaries)
 -->
-<!-- <Scroller {threshold} bind:id={id['map_scrolly_1']} splitscreen={true}>
+<Scroller {threshold} bind:id={id['map_scrolly_1']} splitscreen={true}>
   <div slot="background">
     <figure>
       <div class="col-full height-full">
@@ -1049,7 +1055,7 @@
       <div class="col-medium">
         <p>
           These are the <span style={style_l2}>administrative units</span>
-          (municipios) around São Paulo, Brazil.
+          (<em>municipios) around São Paulo, Brazil. </em>
         </p>
       </div>
     </section>
@@ -1123,7 +1129,7 @@
       </div>
     </section>
   </div>
-</Scroller> -->
+</Scroller>
 
 <Section>
   <h3>
@@ -1151,6 +1157,11 @@
     Let’s go back to São Paulo to see how these different geographic levels
     apply to a real city.
   </p>
+  <div
+    style="display: flex; justify-content: center; align-items: center; margin-top: 1rem;"
+  >
+    <Arrow color="black" animation={true} />
+  </div>
 </Section>
 
 <!-- 
@@ -1344,9 +1355,12 @@
       <div class="col-medium">
         <strong>Level 1: “Cities”</strong>
         <p>
-          The SALURBAL <span style={style_l1}>Level 1</span> for São Paulo encompasses
-          all administrative units or municipios that have any overlap with the visually
-          apparent built-up urban area in and around the core city of São Paulo.
+          The SALURBAL <span style={style_l1}>Level 1</span> for São Paulo
+          encompasses all administrative units or
+          <em
+            >municipios that have any overlap with the visually apparent
+            built-up urban area in and around the core city of São Paulo.
+          </em>
         </p>
       </div>
     </section>
@@ -1356,9 +1370,12 @@
         <p>
           Within the São Paulo SALURBAL city <span style={style_l1}
             >(São Paolo L1)</span
-          >, we defined sub-city units as each of the municipios that compose
-          the São Paulo urban agglomeration. These are
-          <span style={style_l2}>L2s</span>.
+          >, we defined sub-city units as each of the
+          <em
+            >municipios that compose the São Paulo urban agglomeration. These
+            are
+            <span style={style_l2}>L2s</span>.
+          </em>
         </p>
       </div>
     </section>
@@ -1369,18 +1386,14 @@
           <span style={style_l3}>Level 3 units or neighborhoods</span> are the smallest
           administrative units for which census data is available in each country.
         </p>
-        <p>
-          As shown here, each L3 unit in Brazil cities corresponds to a setor
-          censitario.
-        </p>
       </div>
     </section>
     <section data-id="map04">
       <div class="col-medium">
         <strong>Level 3: "Neighborhoods"</strong>
         <p>
-          As shown here, each <span style={style_l3}>L3 units</span> in Brazil cities
-          corresponds to a setor censitario.
+          As shown here, each <span style={style_l3}>L3 units</span> in Brazil
+          cities corresponds to a <em>setor censitario</em>.
         </p>
       </div>
     </section>
@@ -1427,7 +1440,7 @@
 <Divider />
 
 <Section>
-  <h3>Understanding inter- and intra-city differences</h3>
+  <h2>Understanding inter- and intra-city differences</h2>
   <p class="text-medium">
     This process was repeated for all 371 cities included in the SALURBAL
     project. The result is an unprecedented data resource that allows us to

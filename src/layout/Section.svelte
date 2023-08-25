@@ -1,12 +1,16 @@
 <script>
-	import { themes } from '../config.js';
-	import { getContext } from 'svelte';
+  import { themes } from '../config.js';
+  import { getContext } from 'svelte';
 
-	export let theme = getContext('theme');
+  export let theme = getContext('theme');
 </script>
 
-<section style="color: {themes[theme]['text']}; background-color: {themes[theme]['background']}">
-	<div class="col-medium">
-		<slot></slot>
-	</div>
+<section
+  style="color: {themes[theme]['text']}; background-color: {themes[theme][
+    'background'
+  ]}"
+>
+  <div class="col-wide">
+    <slot />
+  </div>
 </section>
