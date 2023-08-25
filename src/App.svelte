@@ -48,7 +48,9 @@
   const hex_error = '#BC3B2F';
   const hex_warning = '#BC812F';
   const hex_teal = '#00BB9E';
+  const hex_background = '#d8e6ed';
   const hex_purple = '#8C198C';
+  const hex_green = '#305145';
 
   const bounds = {
     southAmerica: [
@@ -66,6 +68,10 @@
     l1ad: [
       [-47.084742, -24.008374],
       [-46.051954, -23.183419],
+    ],
+    ex_l2: [
+      [-46.584936, -23.650164],
+      [-46.544989, -23.600327],
     ],
     monterrey: [
       [-100.8619014, 25.2237859], // Southwest coordinates
@@ -593,112 +599,74 @@
         };
       },
       map04: () => {
-        fitBounds(map_scrolly_2, bounds.l1ad);
+        fitBounds(map_scrolly_2, bounds.ex_l2);
         custom_2 = {
           mapid: 'map04',
           layers: {
-            l1ux: {
-              'line-color': hex_warning,
-              'line-width': 5,
-            },
-            l2_line: {
-              'line-color': hex_primary,
+            ex_l3: {
+              'line-color': hex_teal,
               'line-width': 2,
-              'line-opacity': 1,
             },
-            l2_fill: {
-              'fill-color': hex_warning,
-              'fill-opacity': 0.5,
+            ex_l2: {
+              'line-color': hex_primary,
+              'line-width': 8,
+            },
+          },
+        };
+      },
+      map04: () => {
+        fitBounds(map_scrolly_2, bounds.ex_l2);
+        custom_2 = {
+          mapid: 'map04',
+          layers: {
+            ex_l3: {
+              'line-color': hex_teal,
+              'line-width': 2,
+            },
+            ex_l2: {
+              'line-color': hex_primary,
+              'line-width': 8,
             },
           },
         };
       },
       map05: () => {
-        fitBounds(map_scrolly_2, bounds.l1ad);
+        fitBounds(map_scrolly_2, bounds.ex_l2);
         custom_2 = {
-          mapid: 'map05',
+          mapid: 'map04',
           layers: {
-            l2_line: {
-              'line-color': hex_primary,
+            ex_l3: {
+              'line-color': hex_teal,
               'line-width': 2,
-              'line-opacity': 1,
             },
-            l2_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.5,
+            ex_l25: {
+              'line-color': hex_purple,
+              'line-width': 4,
             },
-            l1ad_line: {
-              'line-color': hex_error,
-              'line-width': 5,
+            ex_l2: {
+              'line-color': hex_primary,
+              'line-width': 8,
             },
           },
         };
       },
       map06: () => {
-        fitBounds(map_scrolly_2, bounds.monterrey);
+        fitBounds(map_scrolly_2, bounds.l1ad);
         custom_2 = {
-          mapid: 'map06',
+          mapid: 'map04',
           layers: {
-            monterrey_l1ad_line: {
-              'line-color': hex_error,
-              'line-width': 4,
-            },
-            monterrey_l1ux_line: {
-              'line-color': 'black',
-              'line-width': 1,
-              'line-opacity': 0.5,
-            },
-            monterrey_unbuilt_fill: {
-              'fill-color': hex_teal,
-              'fill-opacity': 0.2,
-            },
-            monterrey_l2_line: {
-              'line-color': hex_primary,
-              'line-width': 1.5,
-            },
-          },
-        };
-      },
-      map07: () => {
-        fitBounds(map_scrolly_2, bounds.rio_cuarto);
-        custom_2 = {
-          mapid: 'map07',
-          layers: {
-            rio_cuarto_l2_line: {
-              'line-color': hex_primary,
-              'line-width': 1.5,
-            },
-            rio_cuarto_l1ad_line: {
-              'line-color': hex_error,
-              'line-width': 6,
-            },
-            rio_cuarto_l1ad_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.25,
-            },
-            rio_cuarto_l1ux_line: {
-              'line-color': hex_warning,
-              'line-width': 2,
-            },
-          },
-        };
-      },
-      map08: () => {
-        fitBounds(map_scrolly_2, bounds.metro);
-        custom_2 = {
-          mapid: 'map05',
-          layers: {
-            metro_line: {
-              'line-color': hex_purple,
-              'line-width': 3,
-            },
-            l1_fill: {
-              'fill-color': hex_error,
-              'fill-opacity': 0.5,
-            },
             l1ad_line: {
               'line-color': hex_error,
               'line-width': 6,
+              'line-opacity': 1,
+            },
+            l2_line: {
+              'line-color': hex_primary,
+              'line-width': 4,
+            },
+            l25_line: {
+              'line-color': hex_purple,
+              'line-width': 2,
             },
           },
         };
@@ -708,6 +676,7 @@
 
   const style_l3 = `color: ${hex_teal}; font-weight: 900;`;
   const style_l2 = `color: ${hex_primary}; font-weight: 900;`;
+  const style_l25 = `color: ${hex_purple}; font-weight: 900;`;
   const style_ux = `color: ${hex_warning}; font-weight: 900;`;
   const style_l1 = `color: ${hex_error}; font-weight: 900;`;
   const style_unurban = `color: ${hex_teal}; font-weight: 900;`;
@@ -1250,6 +1219,21 @@
           </MapSource>
           <MapSource
             map_id="map_scrolly_2"
+            id="l25"
+            type="geojson"
+            data={geojson_l25}
+            promoteId={src_l25.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l25_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
             id="l2"
             type="geojson"
             data={geojson_l2}
@@ -1305,6 +1289,51 @@
               type="fill"
             />
           </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="ex_l3"
+            type="geojson"
+            data={geojson_ex_l3}
+            promoteId={src_ex_l3.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="ex_l3"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="ex_l25"
+            type="geojson"
+            data={geojson_ex_l25}
+            promoteId={src_ex_l25.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="ex_l25"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
+          <MapSource
+            map_id="map_scrolly_2"
+            id="ex_l2"
+            type="geojson"
+            data={geojson_ex_l2}
+            promoteId={src_ex_l2.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="ex_l2"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
         </Map>
       </div>
     </figure>
@@ -1350,8 +1379,31 @@
       <div class="col-medium">
         <strong>Level 3: "Neighborhoods"</strong>
         <p>
-          These units were too small for some purposes, so we also defined L2.5
-          units (XXXX) to study different neighborhoods.
+          As shown here, each <span style={style_l3}>L3 units</span> in Brazil cities
+          corresponds to a setor censitario.
+        </p>
+      </div>
+    </section>
+    <section data-id="map05">
+      <div class="col-medium">
+        <p>
+          These <span style={style_l3}> L3 units</span> were too small for some
+          purposes, so we also defined
+          <span style={style_l25}> L2.5 units</span>
+          to study different neighborhoods.
+        </p>
+      </div>
+    </section>
+    <section data-id="map06">
+      <div class="col-medium">
+        <p>
+          So for Sao Paolo, the SALURBAL hierarchy of geographic consists of <span
+            style={style_l25}
+          >
+            L2.5 neighborhood units</span
+          >
+          within <span style={style_l2}> L2 sub-city units</span> within a
+          single <span style={style_l1}> L1 city unit</span>.
         </p>
       </div>
     </section>

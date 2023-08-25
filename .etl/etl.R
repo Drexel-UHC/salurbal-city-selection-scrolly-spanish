@@ -121,8 +121,8 @@
     { ## sf__ex_l2  -------------------------------------------------------------
       ## L2: 10224830 'sao-caetano-do-sul'
       ex_l2 = 10224830
-      sf__ex_l2 = sf__l2 %>% 
-        filter(salid2 == ex_l2)
+      sf__ex_l2 = geoarrow::read_geoparquet_sf("../../salurbal-fair-renovations/code/spatial/raw/stg__L2.parquet")  %>% 
+        filter(SALID2 == ex_l2)
       
       ## Export
       sf__ex_l2 %>% 
