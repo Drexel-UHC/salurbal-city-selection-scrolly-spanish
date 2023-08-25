@@ -174,6 +174,28 @@
     geojson_l2 = res;
   });
 
+  // L25 boundaries
+  const src_l25 = {
+    url: './data/sao_paolo_l25.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_l25;
+  getTopo(src_l25.url, src_l25.layer).then((res) => {
+    geojson_l25 = res;
+  });
+
+  // L3 boundaries
+  const src_l3 = {
+    url: './data/sao_paolo_l3.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_l3;
+  getTopo(src_l3.url, src_l3.layer).then((res) => {
+    geojson_l3 = res;
+  });
+
   // Case 1 (monterrey) L1UX boundaries
   const src_monterrey_l1ux = {
     url: './data/monterrey_l1ux.json',
