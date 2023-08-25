@@ -207,7 +207,7 @@
     geojson_ex_l2 = res;
   });
 
- // ex_l25 boundaries
+  // ex_l25 boundaries
   const src_ex_l25 = {
     url: './data/sao_paolo_ex_l25.json',
     layer: 'geog',
@@ -1303,133 +1303,6 @@
               id="l1_fill"
               custom={custom_2}
               type="fill"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="metro"
-            type="geojson"
-            data={geojson_metro}
-            promoteId={src_metro.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="metro_line"
-              custom={custom_2}
-              type="line"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="monterrey_l2"
-            type="geojson"
-            data={geojson_monterrey_l2}
-            promoteId={src_monterrey_l2.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="monterrey_l2_line"
-              custom={custom_2}
-              type="line"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="monterrey_unbuilt"
-            type="geojson"
-            data={geojson_monterrey_unbuilt}
-            promoteId={src_monterrey_unbuilt.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="monterrey_unbuilt_fill"
-              custom={custom_2}
-              type="fill"
-            />
-          </MapSource>
-
-          <MapSource
-            map_id="map_scrolly_2"
-            id="monterrey_l1ux"
-            type="geojson"
-            data={geojson_monterrey_l1ux}
-            promoteId={src_monterrey_l1ux.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="monterrey_l1ux_line"
-              custom={custom_2}
-              type="line"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="monterrey_l1ad"
-            type="geojson"
-            data={geojson_monterrey_l1ad}
-            promoteId={src_monterrey_l1ad.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="monterrey_l1ad_line"
-              custom={custom_2}
-              type="line"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="rio_cuarto_l1ad"
-            type="geojson"
-            data={geojson_rio_cuarto_l1ad}
-            promoteId={src_rio_cuarto_l1ad.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="rio_cuarto_l1ad_line"
-              custom={custom_2}
-              type="line"
-            />
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="rio_cuarto_l1ad_fill"
-              custom={custom_2}
-              type="fill"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="rio_cuarto_l2"
-            type="geojson"
-            data={geojson_rio_cuarto_l2}
-            promoteId={src_rio_cuarto_l2.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="rio_cuarto_l2_line"
-              custom={custom_2}
-              type="line"
-            />
-          </MapSource>
-          <MapSource
-            map_id="map_scrolly_2"
-            id="rio_cuarto_l1ux"
-            type="geojson"
-            data={geojson_rio_cuarto_l1ux}
-            promoteId={src_rio_cuarto_l1ux.code}
-            maxzoom={13}
-          >
-            <MapLayer
-              map_id="map_scrolly_2"
-              id="rio_cuarto_l1ux_line"
-              custom={custom_2}
-              type="line"
             />
           </MapSource>
         </Map>
