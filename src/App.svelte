@@ -196,6 +196,41 @@
     geojson_l3 = res;
   });
 
+  // Example L2 boundaries (L2: 10224830 'sao-caetano-do-sul')
+  const src_ex_l2 = {
+    url: './data/sao_paolo_ex_l2.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+  let geojson_ex_l2;
+  getTopo(src_ex_l2.url, src_ex_l2.layer).then((res) => {
+    geojson_ex_l2 = res;
+  });
+
+ // ex_l25 boundaries
+  const src_ex_l25 = {
+    url: './data/sao_paolo_ex_l25.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+
+  let geojson_ex_l25;
+  getTopo(src_ex_l25.url, src_ex_l25.layer).then((res) => {
+    geojson_ex_l25 = res;
+  });
+
+  // ex_l3 boundaries
+  const src_ex_l3 = {
+    url: './data/sao_paolo_ex_l3.json',
+    layer: 'geog',
+    code: 'salid2',
+  };
+
+  let geojson_ex_l3;
+  getTopo(src_ex_l3.url, src_ex_l3.layer).then((res) => {
+    geojson_ex_l3 = res;
+  });
+
   // Case 1 (monterrey) L1UX boundaries
   const src_monterrey_l1ux = {
     url: './data/monterrey_l1ux.json',
@@ -1435,6 +1470,15 @@
         <p>
           As shown here, each L3 unit in Brazil cities corresponds to a setor
           censitario.
+        </p>
+      </div>
+    </section>
+    <section data-id="map04">
+      <div class="col-medium">
+        <strong>Level 3: "Neighborhoods"</strong>
+        <p>
+          These units were too small for some purposes, so we also defined L2.5
+          units (XXXX) to study different neighborhoods.
         </p>
       </div>
     </section>
