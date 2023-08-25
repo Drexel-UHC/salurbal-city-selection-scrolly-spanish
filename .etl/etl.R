@@ -141,7 +141,15 @@
           object_name  = 'geog')
     }
     
-    
+    { ## sf_sp_l2_centroid  -------------------------------------------------------------
+      sf_sp_l2_centroid = st_centroid(sf__l2_tmp)
+      
+      ## Export
+      sf_sp_l2_centroid %>% 
+        geojsonio::topojson_write(
+          file = "../public/data/sao_paolo_l2_centroid.json",
+          object_name  = 'geog')
+    }
   }
   
 }
@@ -196,7 +204,7 @@
 
 { ## Rio Cuarto (single L2)   -------------------------------------------------------------
   
-  { ## sf__l1  -----------------------------------------------------------
+  { ## sf__rio_cuarto_l1  -----------------------------------------------------------
     sf__rio_cuarto_l1 = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_simp_5pct.parquet")) %>%
       filter(l1_label == 'Rio Cuarto')
     
@@ -207,9 +215,18 @@
         object_name  = 'geog')
   }   
   
-
+  { ## sf__rio_cuarto_l1ux -----------------------------------------------------------
+    sf__rio_cuarto_l1ux = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1UX_simp_5pct.parquet"))  %>%
+      filter(l1_label == 'Rio Cuarto')
+    
+    ## Export
+    sf__rio_cuarto_l1ux %>% 
+      geojsonio::topojson_write(
+        file = "../public/data/rio_cuarto_l1ux.json",
+        object_name  = 'geog')
+  }
   
-  { ## sf__l2  -----------------------------------------------------------
+  { ## sf__rio_cuarto_l2  -----------------------------------------------------------
     sf__rio_cuarto_l2 = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L2_simp_5pct.parquet")) %>%
       filter(l2_label == 'Rio Cuarto')
     
@@ -240,6 +257,8 @@
     addPolygons(data = sf__rio_cuarto_l2, fillOpacity = 0)
 }
 
+
+
 { # Scrolly Drafts ----------------------------------------------------------
   
   ## Step 3 ------------------------------------------------------------------
@@ -253,6 +272,17 @@
   leaflet() %>% 
     addTiles() %>% 
     addPolygons(data = sf__monterrey_l2, fillOpacity = 0, color = 'green') 
+  
+
+# Scrolly 2 - L2s ---------------------------------------------------------
+
+  
+  sfa = sf_sp_l2_centroid  
+    
+    leaflet() %>% 
+    addTiles()  %>% 
+    addPolygons(data = sf__l2, fillOpacity = 0) %>% 
+    addCircleMarkers(data = sf_sp_l2_centroid)
   
   
 }
