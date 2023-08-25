@@ -646,7 +646,7 @@
 </div> -->
 <UHCHeader filled={true} center={false} />
 
-<Filler theme="lightblue" short={true} wide={true} center={false}>
+<!-- <Filler theme="lightblue" short={true} wide={true} center={false}>
   <h1>What is a SALURBAL City?</h1>
   <p class="text-big" style="margin-top: 5px">
     SALURBAL city, sub-city, and neighborhood definition and selection
@@ -700,14 +700,14 @@
     in each country helped create a final list of 371 cities. We will refer to
     these as “SALURBAL cities.”
   </p>
-</Section>
+</Section> -->
 
 <!-- 
   # ============================================================================ #
   # Map 1  (371 Salurbal cities)
 -->
 
-<Media col="medium" caption="Map of all 371 SALURBAL cities">
+<!-- <Media col="medium" caption="Map of all 371 SALURBAL cities">
   <div class="chart-sml">
     <Map
       id="static_map_1"
@@ -752,13 +752,13 @@
     similar units in each country.
   </p>
 </Section>
-<div style="height: 3rem" />
+<div style="height: 3rem" /> -->
 
 <!-- 
   # ============================================================================ #
   # Scrolly 1  (define city boundaries)
 -->
-<Scroller {threshold} bind:id={id['map_scrolly_1']} splitscreen={true}>
+<!-- <Scroller {threshold} bind:id={id['map_scrolly_1']} splitscreen={true}>
   <div slot="background">
     <figure>
       <div class="col-full height-full">
@@ -1076,7 +1076,7 @@
       </div>
     </section>
   </div>
-</Scroller>
+</Scroller> -->
 
 <Section>
   <h3>
