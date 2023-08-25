@@ -494,6 +494,16 @@
             l2_line: {
               'line-color': hex_primary,
               'line-width': 5,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.15,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 7,
+              'line-opacity': 1,
             },
           },
         };
@@ -1358,9 +1368,13 @@
     </section>
     <section data-id="map02">
       <div class="col-medium">
+        <strong>Level 2: "Sub-cities"</strong>
         <p>
-          These are the <span style={style_l2}>administrative units</span>
-          (municipios) around São Paulo, Brazil.
+          Within the São Paulo SALURBAL city <span style={style_l1}
+            >(São Paolo L1)</span
+          >, we defined sub-city units as each of the municipios that compose
+          the São Paulo urban agglomeration. These are
+          <span style={style_l2}>L2s</span>.
         </p>
       </div>
     </section>
