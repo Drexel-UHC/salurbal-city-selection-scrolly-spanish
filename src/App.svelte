@@ -257,16 +257,16 @@
       map.fitBounds(bounds, { animate: true, padding: 30 });
     }
   }
-  // function fitById(id) {
-  //   if (geojson && id) {
-  //     let feature = geojson.features.filter(
-  //       (d) => d.properties.AREANM == id
-  //     )[0];
-  //     let bbox_tmp = bbox(feature.geometry);
+  function fitById(id) {
+    if (geojson && id) {
+      let feature = geojson.features.filter(
+        (d) => d.properties.AREANM == id
+      )[0];
+      let bbox_tmp = bbox(feature.geometry);
 
-  //     fitBounds(bbox_tmp);
-  //   }
-  // }
+      fitBounds(bbox_tmp);
+    }
+  }
 
   // # Scroller Setup
   const threshold = 0.65;
@@ -297,20 +297,7 @@
 
   // # ============================================================================ #
   // Scroller Action
-  let custom = {
-    mapid: 'map01',
-    layers: {
-      municipio_centroid: {
-        'circle-color': hex_error,
-        'circle-radius': 8,
-        'circle-stroke-color': hex_error,
-        'circle-stroke-width': 2,
-      },
-      municipio: false,
-      l1ux: false,
-      l2_line: false,
-    },
-  };
+  let custom;
   let actions = {
     map_scrolly_1: {
       map01: () => {
@@ -474,7 +461,7 @@
         };
       },
       map08: () => {
-        fitBounds(map_scrolly_1, bounds.metro); 
+        fitBounds(map_scrolly_1, bounds.metro);
         custom = {
           mapid: 'map05',
           layers: {
@@ -507,7 +494,10 @@
   # ============================================================================ #
   #  ............... markup ...............
 -->
-
+<div class="stickDev">
+  {id.map_scrolly_1}
+  {id.map_scrolly_2}
+</div>
 <UHCHeader filled={true} center={false} />
 
 <Filler theme="lightblue" short={true} wide={true} center={false}>
@@ -847,9 +837,6 @@
             />
           </MapSource>
         </Map>
-        <!-- <div class="stickDev">
-          {id.map}
-        </div> -->
       </div>
     </figure>
   </div>
@@ -985,10 +972,13 @@
   }
   .stickDev {
     position: fixed;
-    bottom: 0;
-    right: 0;
+    bottom: 10%;
+    left: 10%;
+    /* transform: translate(-50%, -50%); */
     background-color: white;
+    color: red;
     padding: 10px;
+    z-index: 9999;
   }
   .chart {
     margin-top: 45px;
