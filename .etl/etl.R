@@ -21,8 +21,8 @@
 }
 
 { # Sao Paolo ---------------------------------------------------------------
- 
-   { ## Topojsons -------------------------------------------------------
+  
+  { ## Topojsons -------------------------------------------------------
     
     
     { ## sf__metropolitan  ----------------------------------------------------------------
@@ -116,7 +116,45 @@
           object_name  = 'geog')
     }
     
+ 
     
+    { ## sf__ex_l2  -------------------------------------------------------------
+      ## L2: 10224830 'sao-caetano-do-sul'
+      ex_l2 = 10224830
+      sf__ex_l2 = sf__l2 %>% 
+        filter(salid2 == ex_l2)
+      
+      ## Export
+      sf__ex_l2 %>% 
+        geojsonio::topojson_write(
+          file = "../public/data/sao_paolo_ex_l2.json",
+          object_name  = 'geog')
+    }
+    
+    { ## sf__ex_l25  -------------------------------------------------------------
+      sf__ex_l25 =  geoarrow::read_geoparquet_sf("../../salurbal-fair-renovations/code/spatial/raw/stg__L2_5.parquet") %>% 
+        mutate(salid2 = str_sub(salid25, 1, 8)) %>% 
+        filter(salid2 == ex_l2)
+      
+      
+      ## Export
+      sf__ex_l25 %>% 
+        geojsonio::topojson_write(
+          file = "../public/data/sao_paolo_ex_l25.json",
+          object_name  = 'geog')
+    }
+    
+    { ## sf__ex_l3  -------------------------------------------------------------
+      sf__ex_l3 =  geoarrow::read_geoparquet_sf("../../salurbal-fair-renovations/code/spatial/raw/stg__L3.parquet")%>% 
+        mutate(salid2 = str_sub(salid3, 1, 8)) %>% 
+        filter(salid2 == ex_l2)
+      
+      ## Export
+      sf__ex_l3 %>% 
+        geojsonio::topojson_write(
+          file = "../public/data/sao_paolo_ex_l3.json",
+          object_name  = 'geog')
+    }
   }
   
   { ## Centroids ---------------------------------------------------------------
@@ -142,7 +180,7 @@
     }
     
     { ## sf_sp_l2_centroid  -------------------------------------------------------------
-      sf_sp_l2_centroid = st_centroid(sf__l2_tmp)
+      sf_sp_l2_centroid = st_centroid(sf__ex_l2)
       
       ## Export
       sf_sp_l2_centroid %>% 
@@ -273,17 +311,31 @@
     addTiles() %>% 
     addPolygons(data = sf__monterrey_l2, fillOpacity = 0, color = 'green') 
   
-
-# Scrolly 2 - L2s ---------------------------------------------------------
-
+  
+  ## Scrolly 2 - L2s ---------------------------------------------------------
+  
   
   sfa = sf_sp_l2_centroid  
-    
-    leaflet() %>% 
+  
+  leaflet() %>% 
     addTiles()  %>% 
     addPolygons(data = sf__l2, fillOpacity = 0) %>% 
-    addCircleMarkers(data = sf_sp_l2_centroid)
+    addMarkers(data = sf_sp_l2_centroid,
+               popup = ~as.character(l2_name), 
+               label = ~as.character(l2_name))
   
+  ## Scrolly 2 - L25/L3 ---------------------------------------------------------
   
-}
-
+  ## L2: 10224830 'sao-caetano-do-sul'
+  ex_l2 = sf__l2 %>% 
+    filter(l2_name == 'sao-caetano-do-sul') %>% 
+    pull(salid2)
+  
+ 
+  
+  leaflet() %>% 
+    addTiles()  %>% 
+    addPolygons(data = sf__ex_l3, fillOpacity = 0, color = 'red') %>% 
+    addPolygons(data = sf__ex_l25, fillOpacity = 0, color = 'green') %>%
+    addPolygons(data = sf__ex_l2, fillOpacity = 0, color = 'blue')
+  
