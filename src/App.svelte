@@ -297,12 +297,26 @@
 
   // # ============================================================================ #
   // Scroller Action
-  let custom;
+
+  // initial step
+  let custom_1 = {
+    mapid: 'map01',
+    layers: {
+      municipio_centroid: {
+        'circle-color': hex_error,
+        'circle-radius': 7,
+        'circle-stroke-color': hex_error,
+        'circle-stroke-width': 1,
+      },
+    },
+  };
+
+  // actions to update steps
   let actions = {
     map_scrolly_1: {
       map01: () => {
         fitBounds(map_scrolly_1, bounds.southAmerica);
-        custom = {
+        custom_1 = {
           mapid: 'map01',
           layers: {
             municipio_centroid: {
@@ -311,20 +325,14 @@
               'circle-stroke-color': hex_error,
               'circle-stroke-width': 1,
             },
-            municipio: false,
-            l1ux: false,
-            l2_line: false,
           },
         };
       },
       map02: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
-        custom = {
+        custom_1 = {
           mapid: 'map02',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
-            l1ux: false,
             l2_line: {
               'line-color': hex_primary,
               'line-width': 5,
@@ -334,11 +342,9 @@
       },
       map03: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
-        custom = {
+        custom_1 = {
           mapid: 'map03',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
             l1ux: {
               'line-color': hex_warning,
               'line-width': 8,
@@ -353,11 +359,9 @@
       },
       map04: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
-        custom = {
+        custom_1 = {
           mapid: 'map04',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
             l1ux: {
               'line-color': hex_warning,
               'line-width': 5,
@@ -376,12 +380,9 @@
       },
       map05: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
-        custom = {
+        custom_1 = {
           mapid: 'map05',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
-            l1ux: false,
             l2_line: {
               'line-color': hex_primary,
               'line-width': 2,
@@ -400,16 +401,9 @@
       },
       map06: () => {
         fitBounds(map_scrolly_1, bounds.monterrey);
-        custom = {
+        custom_1 = {
           mapid: 'map06',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
-            l1ux: false,
-            l2_line: false,
-            l2_fill: false,
-            l1ad_line: false,
-
             monterrey_l1ad_line: {
               'line-color': hex_error,
               'line-width': 4,
@@ -432,15 +426,9 @@
       },
       map07: () => {
         fitBounds(map_scrolly_1, bounds.rio_cuarto);
-        custom = {
+        custom_1 = {
           mapid: 'map07',
           layers: {
-            municipio_centroid: false,
-            municipio: false,
-            l1ux: false,
-            l2_line: false,
-            l2_fill: false,
-            l1ad_line: false,
             rio_cuarto_l2_line: {
               'line-color': hex_primary,
               'line-width': 1.5,
@@ -462,7 +450,7 @@
       },
       map08: () => {
         fitBounds(map_scrolly_1, bounds.metro);
-        custom = {
+        custom_1 = {
           mapid: 'map05',
           layers: {
             metro_line: {
@@ -637,7 +625,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="municipio_centroid"
-              {custom}
+              custom={custom_1}
               type="circle"
             />
           </MapSource>
@@ -652,7 +640,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="municipio"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -668,13 +656,13 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="l2_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
             <MapLayer
               map_id="map_scrolly_1"
               id="l2_fill"
-              {custom}
+              custom={custom_1}
               type="fill"
             />
           </MapSource>
@@ -686,7 +674,12 @@
             promoteId={src_l1ux.code}
             maxzoom={13}
           >
-            <MapLayer map_id="map_scrolly_1" id="l1ux" {custom} type="line" />
+            <MapLayer
+              map_id="map_scrolly_1"
+              id="l1ux"
+              custom={custom_1}
+              type="line"
+            />
           </MapSource>
           <MapSource
             map_id="map_scrolly_1"
@@ -699,13 +692,13 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="l1ad_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
             <MapLayer
               map_id="map_scrolly_1"
               id="l1_fill"
-              {custom}
+              custom={custom_1}
               type="fill"
             />
           </MapSource>
@@ -720,7 +713,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="metro_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -735,7 +728,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="monterrey_l2_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -750,7 +743,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="monterrey_unbuilt_fill"
-              {custom}
+              custom={custom_1}
               type="fill"
             />
           </MapSource>
@@ -766,7 +759,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="monterrey_l1ux_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -781,7 +774,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="monterrey_l1ad_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -796,13 +789,13 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="rio_cuarto_l1ad_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
             <MapLayer
               map_id="map_scrolly_1"
               id="rio_cuarto_l1ad_fill"
-              {custom}
+              custom={custom_1}
               type="fill"
             />
           </MapSource>
@@ -817,7 +810,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="rio_cuarto_l2_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
@@ -832,7 +825,7 @@
             <MapLayer
               map_id="map_scrolly_1"
               id="rio_cuarto_l1ux_line"
-              {custom}
+              custom={custom_1}
               type="line"
             />
           </MapSource>
