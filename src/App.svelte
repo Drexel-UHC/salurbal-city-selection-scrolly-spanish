@@ -535,14 +535,24 @@
         custom_2 = {
           mapid: 'map03',
           layers: {
-            l1ux: {
-              'line-color': hex_warning,
-              'line-width': 8,
-            },
             l2_line: {
               'line-color': hex_primary,
-              'line-width': 2,
-              'line-opacity': 0.75,
+              'line-width': 5,
+              'line-opacity': 1,
+            },
+            l2_fill: {
+              'fill-color': hex_error,
+              'fill-opacity': 0.1,
+            },
+            l1ad_line: {
+              'line-color': hex_error,
+              'line-width': 7,
+              'line-opacity': 1,
+            },
+            l3_line: {
+              'line-color': hex_secondary,
+              'line-width': 0.2,
+              'line-opacity': 1,
             },
           },
         };
@@ -661,6 +671,7 @@
     },
   };
 
+  const style_l3 = `color: ${hex_teal}; font-weight: 900;`;
   const style_l2 = `color: ${hex_primary}; font-weight: 900;`;
   const style_ux = `color: ${hex_warning}; font-weight: 900;`;
   const style_l1 = `color: ${hex_error}; font-weight: 900;`;
@@ -1187,7 +1198,21 @@
               type="line"
             />
           </MapSource>
-
+          <MapSource
+            map_id="map_scrolly_2"
+            id="l3"
+            type="geojson"
+            data={geojson_l3}
+            promoteId={src_l3.code}
+            maxzoom={13}
+          >
+            <MapLayer
+              map_id="map_scrolly_2"
+              id="l3_line"
+              custom={custom_2}
+              type="line"
+            />
+          </MapSource>
           <MapSource
             map_id="map_scrolly_2"
             id="l2"
@@ -1402,70 +1427,14 @@
     </section>
     <section data-id="map03">
       <div class="col-medium">
+        <strong>Level 3: "Neighborhoods"</strong>
         <p>
-          This is the <span style={style_ux}>urban extent</span> or built-up area
-          of São Paulo, Brazil.
+          <span style={style_l3}>Level 3 units or neighborhoods</span> are the smallest
+          administrative units for which census data is available in each country.
         </p>
-      </div>
-    </section>
-    <section data-id="map04">
-      <div class="col-medium">
         <p>
-          Through visual inspection of satellite imagery, we identified <span
-            style={style_ux}
-          >
-            all administrative units that included any portion of the built-up
-            area</span
-          > of each SALURBAL city.
-        </p>
-      </div>
-    </section>
-    <section data-id="map05">
-      <div class="col-medium">
-        <p>
-          The combination of these <span style={style_l2}
-            >administrative units</span
-          >
-          is considered a
-
-          <span style={style_l1}>SALURBAL city.</span>
-        </p>
-      </div>
-    </section>
-    <section data-id="map06">
-      <div class="col-medium">
-        <p>
-          In cases where the <span style={style_l2}>administrative units </span>
-          that compose a city are very large, a
-          <span style={style_l1}>SALURBAL city</span>
-          (e.g. Monterrey, Mexico) may include some areas that are
-          <span style={style_unurban}>not built-up or urbanized.</span> This is because
-          any administrative unit that included even a small portion of the built-up
-          area was included in the geographic definition of the city.
-        </p>
-      </div>
-    </section>
-    <section data-id="map07">
-      <div class="col-medium">
-        <p>
-          While some cities are composed of many of these units, nearly half of
-          <span style={style_l1}>SALURBAL cities</span>
-          include only one
-          <span style={style_l2}> administrative unit </span>.
-        </p>
-      </div>
-    </section>
-    <section data-id="map08">
-      <div class="col-medium">
-        <p>
-          It is important to note that <span style={style_l1}
-            >SALURBAL cities</span
-          >
-          may not coincide with
-          <span style={style_metro}
-            >administrative or political definitions</span
-          > used to define cities within each country. Our boundaries intentionally
-          reflect urban agglomerations that often extend beyond city cores.
+          As shown here, each L3 unit in Brazil cities corresponds to a setor
+          censitario.
         </p>
       </div>
     </section>
