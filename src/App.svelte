@@ -300,7 +300,7 @@
   // Scroller Action
 
   // initial step
-  let custom_1 = {
+  const custom_1_map01 = {
     mapid: 'map01',
     layers: {
       municipio_centroid: {
@@ -311,33 +311,34 @@
       },
     },
   };
-  let custom_2 = {
+  const custom_2_map01 = {
     mapid: 'map01',
     layers: {
-      municipio_centroid: {
-        'circle-color': hex_error,
-        'circle-radius': 7,
-        'circle-stroke-color': hex_error,
-        'circle-stroke-width': 1,
+      l2_line: {
+        'line-color': hex_primary,
+        'line-width': 2,
+        'line-opacity': 1,
+      },
+      l2_fill: {
+        'fill-color': hex_error,
+        'fill-opacity': 0.5,
+      },
+      l1ad_line: {
+        'line-color': hex_error,
+        'line-width': 5,
       },
     },
   };
+
+  let custom_1 = custom_1_map01;
+  let custom_2 = custom_2_map01;
+
   // actions to update steps
   let actions = {
     map_scrolly_1: {
       map01: () => {
         fitBounds(map_scrolly_1, bounds.southAmerica);
-        custom_1 = {
-          mapid: 'map01',
-          layers: {
-            municipio_centroid: {
-              'circle-color': hex_error,
-              'circle-radius': 7,
-              'circle-stroke-color': hex_error,
-              'circle-stroke-width': 1,
-            },
-          },
-        };
+        custom_1 = custom_1_map01;
       },
       map02: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
@@ -482,22 +483,12 @@
     },
     map_scrolly_2: {
       map01: () => {
-        fitBounds(map_scrolly_2, bounds.southAmerica);
-        custom_1 = {
-          mapid: 'map01',
-          layers: {
-            municipio_centroid: {
-              'circle-color': hex_error,
-              'circle-radius': 7,
-              'circle-stroke-color': hex_error,
-              'circle-stroke-width': 1,
-            },
-          },
-        };
+        fitBounds(map_scrolly_2, bounds.l1ad);
+        custom_2 = custom_2_map01;
       },
       map02: () => {
         fitBounds(map_scrolly_2, bounds.l1ad);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map02',
           layers: {
             l2_line: {
@@ -509,7 +500,7 @@
       },
       map03: () => {
         fitBounds(map_scrolly_2, bounds.l1ad);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map03',
           layers: {
             l1ux: {
@@ -526,7 +517,7 @@
       },
       map04: () => {
         fitBounds(map_scrolly_2, bounds.l1ad);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map04',
           layers: {
             l1ux: {
@@ -547,7 +538,7 @@
       },
       map05: () => {
         fitBounds(map_scrolly_2, bounds.l1ad);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map05',
           layers: {
             l2_line: {
@@ -568,7 +559,7 @@
       },
       map06: () => {
         fitBounds(map_scrolly_2, bounds.monterrey);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map06',
           layers: {
             monterrey_l1ad_line: {
@@ -593,7 +584,7 @@
       },
       map07: () => {
         fitBounds(map_scrolly_2, bounds.rio_cuarto);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map07',
           layers: {
             rio_cuarto_l2_line: {
@@ -617,7 +608,7 @@
       },
       map08: () => {
         fitBounds(map_scrolly_2, bounds.metro);
-        custom_1 = {
+        custom_2 = {
           mapid: 'map05',
           layers: {
             metro_line: {
@@ -649,10 +640,10 @@
   # ============================================================================ #
   #  ............... markup ...............
 -->
-<div class="stickDev">
+<!-- <div class="stickDev">
   {id.map_scrolly_1}
   {id.map_scrolly_2}
-</div>
+</div> -->
 <UHCHeader filled={true} center={false} />
 
 <Filler theme="lightblue" short={true} wide={true} center={false}>
@@ -1119,7 +1110,7 @@
   # ============================================================================ #
   # Scrolly 2  (geographic units)
 -->
-
+<div style="height: 3rem" />
 <Scroller {threshold} bind:id={id['map_scrolly_2']} splitscreen={true}>
   <div slot="background">
     <figure>
@@ -1127,7 +1118,7 @@
         <Map
           id="map_scrolly_2"
           style="./data/style-esri-world-imagery.json"
-          location={{ bounds: bounds.southAmerica }}
+          location={{ bounds: bounds.l1ad }}
           controls={false}
           scales={true}
           bind:map={map_scrolly_2}
@@ -1357,7 +1348,12 @@
   <div slot="foreground">
     <section data-id="map01">
       <div class="col-medium">
-        <p>We’ll use São Paulo, Brazil as an example.</p>
+        <strong>Level 1: “Cities”</strong>
+        <p>
+          The SALURBAL <span style={style_l1}>Level 1</span> for São Paulo encompasses
+          all administrative units or municipios that have any overlap with the visually
+          apparent built-up urban area in and around the core city of São Paulo.
+        </p>
       </div>
     </section>
     <section data-id="map02">
