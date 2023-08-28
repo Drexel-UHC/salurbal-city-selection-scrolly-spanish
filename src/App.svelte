@@ -694,21 +694,19 @@
 <UHCHeader filled={true} center={false} />
 
 <Filler theme="lightblue" short={true} wide={true} center={false}>
-  <h1>What is a SALURBAL City?</h1>
+  <h1>What is a SALURBAL city?</h1>
   <p class="text-big" style="margin-top: 5px">
     SALURBAL city, sub-city, and neighborhood definition and selection
   </p>
 
   <p class="text-medium">
     Designed by: <span style={'font-weight: 900'}>
-      Usama Bilal, Katie Indvik, Steve Melly, Andrea Bolinaga, Kari Moore, Alex
+      Usama Bilal, Katy Indvik, Steve Melly, Andrea Bolinaga, Kari Moore, Alex
       Quistberg, Ana V. Diez Roux</span
     >
     <br />
     Engineered by:
     <span style={'font-weight: 900'}> Anuj Tanwar, Ran Li</span>
-    <br />
-    August 22, 2023
   </p>
 </Filler>
 
@@ -718,80 +716,94 @@
     The SALURBAL team has developed a rigorous protocol for defining cities,
     sub-cities, and neighborhoods. This process allows us to study and compare
     urban environments and their health impacts across cities in 11 countries in
-    Latin America (Argentina, Brazil, Chile, Colombia, Costa Rica, El Salvador,
-    Guatemala, Mexico, Nicaragua, Panama, and Peru).
+    Latin America: Argentina, Brazil, Chile, Colombia, Costa Rica, El Salvador,
+    Guatemala, Mexico, Nicaragua, Panama, and Peru.
   </p>
   <p class="text-medium">
     We took several steps to identify and define SALURBAL cities. The approach
     described below has guided the definition of geographic areas to which all
-    SALURBAL data is linked. You can read more about this process in “Building a
-    Data Platform for Cross-Country Urban Health Studies.”
+    SALURBAL data is linked. You can read more about this process in <a
+      href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
+      target="_blank"
+      >“Building a Data Platform for Cross-Country Urban Health Studies.”</a
+    >
   </p>
 </Section>
 
 <Divider />
 
+<!-- 
+  # ============================================================================ #
+  #   DEVVV
+-->
+
 <Section>
   <h3>Step 1. Identifying cities with a population of 100,000 or more.</h3>
-  <p class="text-medium">
-    The SALURBAL city universe was defined as all urban agglomerations with at
-    least 100,000 residents as of 2010.
-  </p>
-  <p class="text-medium">
-    We used the <a href="http://atlasofurbanexpansion.org/" target="_blank"
-      >Atlas of Urban Expansion</a
-    >
-    and country census data from
-    <a href="https://citypopulation.de/" target="_blank">citypopulation.de</a> to
-    obtain a list of all cities (as defined in these sources) with 100,000 residents
-    or more in 2010. We combined both lists and eliminated overlaps. Cities that
-    were very close together and were therefore part of the same urban agglomeration
-    were combined. The name of the largest city or a hyphenated name was assigned
-    to that unit. SALURBAL team members in each country helped create a final list
-    of 371 cities. We will refer to these as “SALURBAL cities.”
-  </p>
+  <div class="two-col-container">
+    <div class="left-col">
+      <p class="text-medium">
+        The SALURBAL city universe was defined as all urban agglomerations with
+        at least 100,000 residents as of 2010.
+      </p>
+      <p class="text-medium">
+        We used the <a href="http://atlasofurbanexpansion.org/" target="_blank"
+          >Atlas of Urban Expansion</a
+        >
+        and country census data from
+        <a href="https://citypopulation.de/" target="_blank"
+          >citypopulation.de</a
+        > to obtain a list of all cities (as defined in these sources) with 100,000
+        residents or more in 2010. We combined both lists and eliminated overlaps.
+        Cities that were very close together and were therefore part of the same
+        urban agglomeration were combined. The name of the largest city or a hyphenated
+        name was assigned to that unit. SALURBAL team members in each country helped
+        create a final list of 371 cities. We will refer to these as “SALURBAL cities.”
+      </p>
+    </div>
+    <div class="right-col">
+      <Media col="medium" caption="Map of all 371 SALURBAL cities">
+        <div class="chart-sml">
+          <Map
+            id="static_map_1"
+            style="./data/style-osm-grey.json"
+            location={{ bounds: bounds.southAmerica }}
+            controls={false}
+            scales={false}
+            bind:map_static_1
+            bind:zoom
+            bind:center
+          >
+            <MapSource
+              map_id="static_map_1"
+              id="static_map_1-src"
+              type="geojson"
+              data={geojson_salurbal_centroid}
+              promoteId={'salurbal_centroids'}
+              maxzoom={13}
+            >
+              <MapLayer
+                map_id="static_map_1"
+                id="static_map_1-circle"
+                type="circle"
+                paint={{
+                  'circle-color': hex_warning,
+                  'circle-radius': 3,
+                  'circle-stroke-color': 'black',
+                  'circle-stroke-width': 1,
+                }}
+              />
+            </MapSource>
+          </Map>
+        </div>
+      </Media>
+    </div>
+  </div>
 </Section>
 
 <!-- 
   # ============================================================================ #
   # Map 1  (371 Salurbal cities)
 -->
-
-<Media col="medium" caption="Map of all 371 SALURBAL cities">
-  <div class="chart-sml">
-    <Map
-      id="static_map_1"
-      style="./data/style-osm-grey.json"
-      location={{ bounds: bounds.southAmerica }}
-      controls={false}
-      scales={true}
-      bind:map_static_1
-      bind:zoom
-      bind:center
-    >
-      <MapSource
-        map_id="static_map_1"
-        id="static_map_1-src"
-        type="geojson"
-        data={geojson_salurbal_centroid}
-        promoteId={'salurbal_centroids'}
-        maxzoom={13}
-      >
-        <MapLayer
-          map_id="static_map_1"
-          id="static_map_1-circle"
-          type="circle"
-          paint={{
-            'circle-color': hex_warning,
-            'circle-radius': 3,
-            'circle-stroke-color': 'black',
-            'circle-stroke-width': 1,
-          }}
-        />
-      </MapSource>
-    </Map>
-  </div>
-</Media>
 
 <Section>
   <h3>Step 2: Defining the geographic boundaries of each city.</h3>
@@ -1499,5 +1511,31 @@
     justify-content: center;
     text-align: center;
     color: #aaa;
+  }
+
+  .two-col-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .left-col {
+    flex: 2; /* Takes up 1 part of the available space */
+  }
+
+  .right-col {
+    flex: 1; /* Takes up 1 part of the available space */
+  }
+
+  /* Responsive layout for small screens */
+  @media (max-width: 768px) {
+    .two-col-container {
+      flex-direction: column;
+    }
+
+    .left-col,
+    .right-col {
+      flex: 1;
+      width: 100%;
+    }
   }
 </style>
