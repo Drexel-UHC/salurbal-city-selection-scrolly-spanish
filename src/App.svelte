@@ -785,7 +785,7 @@
               id="static_map_1-src"
               type="geojson"
               data={geojson_salurbal_centroid}
-              promoteId={'salurbal_centroids'}
+              promoteId={'l1_label'}
               maxzoom={13}
             >
               <MapLayer
@@ -798,7 +798,11 @@
                   'circle-stroke-color': 'black',
                   'circle-stroke-width': 1,
                 }}
-              />
+                hover={true}
+                bind:hovered
+              >
+                <MapTooltip  map_id="static_map_1" content={`Code: ${hovered}`} />
+              </MapLayer>
             </MapSource>
           </Map>
         </div>
