@@ -1147,11 +1147,10 @@
             >SALURBAL cities</span
           >
           may not coincide with
-          <span style={style_metro}
-            >administrative or political definitions</span
-          > used to define cities within each country. Our boundaries intentionally
-          reflect urban agglomerations that often extend beyond city cores. This
-          is the case for São Paulo, Brazil.
+          <span style={style_metro}>political boundaries or definitions</span> that
+          may be more familiar to public officials and local residents. Our boundaries
+          intentionally reflect urban agglomerations that often extend beyond city
+          cores. This is the case for São Paulo, Brazil.
         </p>
       </div>
     </section>
@@ -1424,10 +1423,11 @@
     <section data-id="map05">
       <div class="col-medium">
         <p>
-          These <span style={style_l3}> L3 units</span> were too small for some
-          purposes, so we also defined
-          <span style={style_l25}> L2.5 units</span>
-          to study different neighborhoods.
+          These <span style={style_l3}> L3 units</span> were too small to
+          support meaningful neighborhood-level analysis. To address this issue,
+          we identified the larger geographic units used by Brazil's census
+          agency. We labeled these units
+          <span style={style_l25}> L2.5's</span>.
         </p>
       </div>
     </section>
