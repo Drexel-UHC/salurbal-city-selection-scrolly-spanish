@@ -421,23 +421,23 @@
           },
         };
       },
-      map03: () => {
-        fitBounds(map_scrolly_1, bounds.l1ad);
-        custom_1 = {
-          mapid: 'map03',
-          layers: {
-            l1ux: {
-              'line-color': hex_warning,
-              'line-width': 8,
-            },
-            l2_line: {
-              'line-color': hex_primary,
-              'line-width': 2,
-              'line-opacity': 0.75,
-            },
-          },
-        };
-      },
+      // map03: () => {
+      //   fitBounds(map_scrolly_1, bounds.l1ad);
+      //   custom_1 = {
+      //     mapid: 'map03',
+      //     layers: {
+      //       l1ux: {
+      //         'line-color': hex_warning,
+      //         'line-width': 8,
+      //       },
+      //       l2_line: {
+      //         'line-color': hex_primary,
+      //         'line-width': 2,
+      //         'line-opacity': 0.75,
+      //       },
+      //     },
+      //   };
+      // },
       map04: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
         custom_1 = {
@@ -791,9 +791,9 @@
                 type="circle"
                 paint={{
                   'circle-color': hex_warning,
-                  'circle-radius': 3,
+                  'circle-radius': 2.5,
                   'circle-stroke-color': 'black',
-                  'circle-stroke-width': 1,
+                  'circle-stroke-width': 0.1,
                 }}
                 hover={true}
                 bind:hovered
@@ -1077,14 +1077,14 @@
         </p>
       </div>
     </section>
-    <section data-id="map03">
+    <!-- <section data-id="map03">
       <div class="col-medium">
         <p>
           This is the <span style={style_ux}>urban extent</span>, or built-up
           area, of São Paulo.
         </p>
       </div>
-    </section>
+    </section> -->
     <section data-id="map04">
       <div class="col-medium">
         <p>
@@ -1132,7 +1132,7 @@
           While some cities are composed of many of these units, nearly half of
           <span style={style_l1}>SALURBAL cities</span>
           include only one
-          <span style={style_l2}> administrative unit </span>.
+          <span style={style_l2}> administrative unit</span>.
         </p>
         <p>
           The example shown here is Rio Cuarto, Argentina with a population of
