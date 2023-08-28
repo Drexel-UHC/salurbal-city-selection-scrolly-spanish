@@ -278,7 +278,8 @@
 
 { ## SALURBAL centroids   -------------------------------------------------------------
   
-  sf_sp_l1ad_centroid = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_centroids.parquet")) 
+  sf_sp_l1ad_centroid = geoarrow::read_geoparquet_sf(glue("{clean_path}/sf__L1_centroids.parquet")) %>% 
+    mutate(l1_label = glue("{l1_label}, {iso2}"))
   
   ## Export
   sf_sp_l1ad_centroid %>% 

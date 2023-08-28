@@ -800,7 +800,7 @@
               >
                 <MapTooltip
                   map_id="static_map_1"
-                  content={`Code: ${hovered}`}
+                  content={`${hovered}`}
                 />
               </MapLayer>
             </MapSource>
@@ -1548,6 +1548,8 @@
 
   .right-col {
     flex: 2; /* Takes up 1 part of the available space */
+    /* border: 1px solid black; */
+    margin-top: 0.5rem;
   }
 
   /* Responsive layout for small screens */
