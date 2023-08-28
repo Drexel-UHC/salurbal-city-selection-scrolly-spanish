@@ -798,10 +798,7 @@
                 hover={true}
                 bind:hovered
               >
-                <MapTooltip
-                  map_id="static_map_1"
-                  content={`${hovered}`}
-                />
+                <MapTooltip map_id="static_map_1" content={`${hovered}`} />
               </MapLayer>
             </MapSource>
           </Map>
@@ -1083,8 +1080,8 @@
     <section data-id="map03">
       <div class="col-medium">
         <p>
-          This is the <span style={style_ux}>urban extent</span> or built-up area,
-          of São Paulo.
+          This is the <span style={style_ux}>urban extent</span>, or built-up
+          area, of São Paulo.
         </p>
       </div>
     </section>
@@ -1153,7 +1150,8 @@
           <span style={style_metro}
             >administrative or political definitions</span
           > used to define cities within each country. Our boundaries intentionally
-          reflect urban agglomerations that often extend beyond city cores.
+          reflect urban agglomerations that often extend beyond city cores. This
+          is the case for São Paulo, Brazil.
         </p>
       </div>
     </section>
@@ -1437,8 +1435,8 @@
       <div class="col-medium">
         <p>
           The SALURBAL hierarchy of geographic units for for Sao Paulo, Brazil
-          consists of <span style={style_l25}>
-            621 L2.5 neighborhood units</span
+          consists of 621 <span style={style_l25}>
+            L2.5 neighborhood units</span
           >, within 31 <span style={style_l2}> L2 sub-city units</span>, within
           a single <span style={style_l1}> L1 city unit</span>.
         </p>
