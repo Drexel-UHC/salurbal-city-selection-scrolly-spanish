@@ -57,6 +57,10 @@
       [-117.157278, -55.058347], // Southwest coordinates
       [-66.273339, 34], // Northeast coordinates
     ],
+    southAmericaShifted: [
+      [-97.157278, -55.058347], // Southwest coordinates (shifted)
+      [-46.273339, 34], // Northeast coordinates (shifted)
+    ],
     municipio: [
       [-46.826191, -24.008374],
       [-46.365357, -23.357529],
@@ -760,17 +764,20 @@
         create a final list of 371 cities. We will refer to these as “SALURBAL cities.”
       </p>
     </div>
+    <!-- 
+  # ============================================================================ #
+  # Map 1  (371 Salurbal cities)
+-->
     <div class="right-col">
       <Media col="medium" caption="Map of all 371 SALURBAL cities">
         <div class="chart-sml">
           <Map
             id="static_map_1"
             style="./data/style-osm-grey.json"
-            location={{ bounds: bounds.southAmerica }}
-            controls={false}
+            location={{ bounds: bounds.southAmericaShifted }}
+            controls={true}
             scales={false}
             bind:map_static_1
-            bind:zoom
             bind:center
           >
             <MapSource
@@ -799,11 +806,6 @@
     </div>
   </div>
 </Section>
-
-<!-- 
-  # ============================================================================ #
-  # Map 1  (371 Salurbal cities)
--->
 
 <Section>
   <h3>Step 2: Defining the geographic boundaries of each city.</h3>
@@ -1494,7 +1496,7 @@
   }
   .chart-sml {
     font-size: 0.85em;
-    height: 300px;
+    height: 350px;
   }
   /* The properties below make the media DIVs grey, for visual purposes in demo */
   .media {
@@ -1519,11 +1521,16 @@
   }
 
   .left-col {
-    flex: 2; /* Takes up 1 part of the available space */
+    flex: 3; /* Takes up 1 part of the available space */
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .right-col {
-    flex: 1; /* Takes up 1 part of the available space */
+    flex: 2; /* Takes up 1 part of the available space */
   }
 
   /* Responsive layout for small screens */
