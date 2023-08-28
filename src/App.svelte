@@ -377,7 +377,7 @@
         'circle-stroke-color': hex_error,
         'circle-stroke-width': 1,
       },
-      sp_popup: true
+      sp_popup: true,
     },
   };
   const custom_2_map01 = {
@@ -1076,15 +1076,15 @@
       <div class="col-medium">
         <p>
           These are the <span style={style_l2}>administrative units</span>
-          (<em>municipios</em>) around São Paulo, Brazil.
+          (<em>municipios</em>) in São Paulo, Brazil.
         </p>
       </div>
     </section>
     <section data-id="map03">
       <div class="col-medium">
         <p>
-          This is the <span style={style_ux}>urban extent</span> or built-up area
-          of São Paulo, Brazil.
+          This is the <span style={style_ux}>urban extent</span> or built-up area,
+          of São Paulo.
         </p>
       </div>
     </section>
@@ -1118,10 +1118,14 @@
           In cases where the <span style={style_l2}>administrative units </span>
           that compose a city are very large, a
           <span style={style_l1}>SALURBAL city</span>
-          (e.g. Monterrey, Mexico) may include some areas that are
+          may include some areas that are
           <span style={style_unurban}>not built-up or urbanized.</span> This is because
           any administrative unit that included even a small portion of the built-up
           area was included in the geographic definition of the city.
+        </p>
+        <p>
+          The example shown here is Monterrey, Mexico with a population of
+          around 5 million residents.
         </p>
       </div>
     </section>
@@ -1132,6 +1136,10 @@
           <span style={style_l1}>SALURBAL cities</span>
           include only one
           <span style={style_l2}> administrative unit </span>.
+        </p>
+        <p>
+          The example shown here is Rio Cuarto, Argentina with a population of
+          around 270,000 residents.
         </p>
       </div>
     </section>
@@ -1388,7 +1396,7 @@
         <strong>Level 2: "Sub-cities"</strong>
         <p>
           Within the São Paulo SALURBAL city <span style={style_l1}
-            >(São Paolo L1)</span
+            >(São Paulo L1)</span
           >, we defined sub-city units as each of the
           <em>municipios </em> that compose the São Paulo urban agglomeration.
           These are
@@ -1409,8 +1417,9 @@
       <div class="col-medium">
         <strong>Level 3: "Neighborhoods"</strong>
         <p>
-          As shown here, each <span style={style_l3}>L3 units</span> in Brazil
-          cities corresponds to a <em>setor censitario</em>.
+          As shown here, each <span style={style_l3}>L3 unit</span> in a
+          Brazilian city like São Paulo corresponds to a
+          <em>setor censitario</em>.
         </p>
       </div>
     </section>
@@ -1427,32 +1436,16 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          The SALURBAL hierarchy of geographic for for Sao Paolo, Brazil
-          consists of <span style={style_l25}> L2.5 neighborhood units</span>
-          within <span style={style_l2}> L2 sub-city units</span> within a
-          single <span style={style_l1}> L1 city unit</span>.
+          The SALURBAL hierarchy of geographic units for for Sao Paulo, Brazil
+          consists of <span style={style_l25}>
+            621 L2.5 neighborhood units</span
+          >, within 31 <span style={style_l2}> L2 sub-city units</span>, within
+          a single <span style={style_l1}> L1 city unit</span>.
         </p>
       </div>
     </section>
   </div>
 </Scroller>
-<div style="height: 3rem" />
-<Section>
-  <p class="text-medium">
-    For more information on the specific units used in each SALURBAL country,
-    see our article in the <a
-      href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
-      target="_blank">Journal of Urban Health</a
-    >. For more details and access to these boundaries please see our
-    <a href="https://data.lacurbanhealth.org/" target="_blank"
-      >spatial data repository</a
-    >
-    on the
-    <a href="https://data.lacurbanhealth.org/" target="_blank"
-      >SALURBAL data portal</a
-    >.
-  </p>
-</Section>
 
 <Divider />
 
@@ -1463,6 +1456,23 @@
     project. The result is an unprecedented data resource that allows us to
     document and compare differences in health and wellbeing both between and
     within cities across Latin America.
+  </p>
+  <p class="text-medium">
+    For more information on the specific units used in each SALURBAL country,
+    see our article in the <a
+      href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
+      target="_blank">Journal of Urban Health</a
+    >.
+  </p>
+  <p class="text-medium">
+    For more details and access to these boundaries please see our
+    <a href="https://data.lacurbanhealth.org/" target="_blank"
+      >spatial data repository</a
+    >
+    on the
+    <a href="https://data.lacurbanhealth.org/" target="_blank"
+      >SALURBAL data portal</a
+    >.
   </p>
 </Section>
 
