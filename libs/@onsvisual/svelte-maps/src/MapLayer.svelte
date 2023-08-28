@@ -60,9 +60,9 @@
 
   // Render non-scrolly map layers
   if (map_id != 'map_scrolly_1') {
-    console.log('-----------------');
-    console.log(map_id);
-    console.log(map.getContainer().id);
+    // console.log('-----------------');
+    // console.log(map_id);
+    // console.log(map.getContainer().id);
     let options = {
       id: id,
       type: type,
@@ -71,7 +71,7 @@
       layout: layout,
     };
     map.addLayer(options, order);
-    console.log(`added layer ${id} to map ${map_id}`);
+    // console.log(`added layer ${id} to map ${map_id}`);
   }
 
   // Reactive statement

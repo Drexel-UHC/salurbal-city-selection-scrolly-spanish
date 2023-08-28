@@ -12,6 +12,7 @@
     MapSource,
     MapLayer,
     MapTooltip,
+    MapPopup,
   } from '../libs/@onsvisual/svelte-maps';
   import { getData, getColor, getTopo, getJson } from './utils.js';
   import bbox from '@turf/bbox';
@@ -801,7 +802,10 @@
                 hover={true}
                 bind:hovered
               >
-                <MapTooltip  map_id="static_map_1" content={`Code: ${hovered}`} />
+                <MapTooltip
+                  map_id="static_map_1"
+                  content={`Code: ${hovered}`}
+                />
               </MapLayer>
             </MapSource>
           </Map>
@@ -814,7 +818,7 @@
 <Section>
   <h3>Step 2: Defining the geographic boundaries of each city.</h3>
   <p class="text-medium">
-    We operationalized (or geographically defined) each SALURBAL city using
+    We operationalized - or geographically defined - each SALURBAL city using
     existing administrative units to which health and other data could be easily
     linked. These administrative units included <em>municipios</em>,
     <em>departamentos</em>, or similar units in each country.
@@ -839,6 +843,8 @@
           location={{ bounds: bounds.southAmerica }}
           controls={false}
           scales={true}
+          hover={true}
+          bind:hovered
           bind:map={map_scrolly_1}
           bind:zoom
           bind:center
@@ -857,6 +863,7 @@
               custom={custom_1}
               type="circle"
             />
+            <MapPopup map_id="map_scrolly_1" />
           </MapSource>
           <MapSource
             map_id="map_scrolly_1"
