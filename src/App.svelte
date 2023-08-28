@@ -421,23 +421,6 @@
           },
         };
       },
-      // map03: () => {
-      //   fitBounds(map_scrolly_1, bounds.l1ad);
-      //   custom_1 = {
-      //     mapid: 'map03',
-      //     layers: {
-      //       l1ux: {
-      //         'line-color': hex_warning,
-      //         'line-width': 8,
-      //       },
-      //       l2_line: {
-      //         'line-color': hex_primary,
-      //         'line-width': 2,
-      //         'line-opacity': 0.75,
-      //       },
-      //     },
-      //   };
-      // },
       map04: () => {
         fitBounds(map_scrolly_1, bounds.l1ad);
         custom_1 = {
@@ -1073,7 +1056,7 @@
       <div class="col-medium">
         <p>
           These are the <span style={style_l2}>administrative units</span>
-          (<em>municipios</em>) in São Paulo, Brazil.
+          (<em>muncipalidade</em>) in São Paulo, Brazil.
         </p>
       </div>
     </section>
@@ -1383,8 +1366,8 @@
         <p>
           The SALURBAL <span style={style_l1}>Level 1</span> for São Paulo
           encompasses all administrative units or
-          <em>municipios</em> that have any overlap with the visually apparent built-up
-          urban area in and around the core city of São Paulo.
+          <em>muncipalidade</em> that have any overlap with the visually apparent
+          built-up urban area in and around the core city of São Paulo.
         </p>
       </div>
     </section>
@@ -1395,7 +1378,7 @@
           Within the São Paulo SALURBAL city <span style={style_l1}
             >(São Paulo L1)</span
           >, we defined sub-city units as each of the
-          <em>municipios </em> that compose the São Paulo urban agglomeration.
+          <em>muncipalidade</em> that compose the São Paulo urban agglomeration.
           These are
           <span style={style_l2}>L2s</span>.
         </p>
@@ -1425,8 +1408,7 @@
         <p>
           These <span style={style_l3}> L3 units</span> were too small to
           support meaningful neighborhood-level analysis. To address this issue,
-          we identified the larger geographic units used by Brazil's census
-          agency. We labeled these units
+          we used larger Brazil census geographic units and labeled them
           <span style={style_l25}> L2.5's</span>.
         </p>
       </div>
