@@ -377,6 +377,7 @@
         'circle-stroke-color': hex_error,
         'circle-stroke-width': 1,
       },
+      sp_popup: true
     },
   };
   const custom_2_map01 = {
@@ -737,11 +738,6 @@
 
 <Divider />
 
-<!-- 
-  # ============================================================================ #
-  #   DEVVV
--->
-
 <Section>
   <h3>Step 1. Identifying cities with a population of 100,000 or more.</h3>
   <div class="two-col-container">
@@ -863,7 +859,7 @@
               custom={custom_1}
               type="circle"
             />
-            <MapPopup map_id="map_scrolly_1" />
+            <MapPopup map_id="map_scrolly_1" custom={custom_1} />
           </MapSource>
           <MapSource
             map_id="map_scrolly_1"
