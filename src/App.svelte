@@ -519,11 +519,11 @@
           layers: {
             municipio_line: {
               'line-color': hex_primary,
-              'line-width': 2,
+              'line-width': 3,
             },
             metro_line: {
               'line-color': hex_purple,
-              'line-width': 3,
+              'line-width': 4,
             },
             l1_fill: {
               'fill-color': hex_error,
