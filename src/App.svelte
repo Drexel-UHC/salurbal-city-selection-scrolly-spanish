@@ -843,7 +843,18 @@
           bind:center
         >
           {#if id.map_scrolly_1 == 'map08'}
-            <div class="sticky-legend">legend</div>
+            <div class="sticky-legend">
+              <div class="boundary-metro-legend" />
+              <div class="boundary-legend-text">
+                Locally defined Metropolitan Region of São Paulo
+              </div>
+              <div class="boundary-sp-muni-legend" />
+              <div class="boundary-legend-text">Municiplidade of São Paulo</div>
+              <div class="boundary-l1-legend" />
+              <div class="boundary-legend-text">
+                SALURBAL defined City of São Paulo
+              </div>
+            </div>
           {/if}
           <MapSource
             map_id="map_scrolly_1"
@@ -1519,13 +1530,40 @@
   }
   .sticky-legend {
     position: fixed;
-    bottom: 10%;
-    right: 10%;
+    bottom: 2%;
+    right: 1%;
     /* transform: translate(-50%, -50%); */
+    border-radius: 5px;
     background-color: white;
-    color: red;
     padding: 10px;
     z-index: 9999;
+    /*Grid Stuff */
+    display: grid;
+    align-items: center;
+    grid-template-columns: min-content 1fr;
+  }
+  .boundary-legend-text {
+    /* max-width: 10rem; */
+    padding-left: 0.5rem;
+    font-size: 1.25em;
+  }
+
+  .boundary-metro-legend {
+    width: 2rem;
+    height: 5px;
+    background-color: #8c198c;
+  }
+  .boundary-sp-muni-legend {
+    width: 2rem;
+    height: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: #2f8fbc;
+  }
+  .boundary-l1-legend {
+    width: 2rem;
+    height: 5px;
+    background-color: #bc3b2f;
   }
   .stickDev {
     position: fixed;
