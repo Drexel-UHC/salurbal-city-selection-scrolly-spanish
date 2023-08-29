@@ -842,6 +842,9 @@
           bind:zoom
           bind:center
         >
+          {#if id.map_scrolly_1 == 'map08'}
+            <div class="sticky-legend">legend</div>
+          {/if}
           <MapSource
             map_id="map_scrolly_1"
             id="municipio_centroid"
@@ -1513,6 +1516,16 @@
   }
   select {
     max-width: 350px;
+  }
+  .sticky-legend {
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    /* transform: translate(-50%, -50%); */
+    background-color: white;
+    color: red;
+    padding: 10px;
+    z-index: 9999;
   }
   .stickDev {
     position: fixed;
