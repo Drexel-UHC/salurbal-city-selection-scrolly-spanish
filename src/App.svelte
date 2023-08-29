@@ -1463,7 +1463,7 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          The SALURBAL hierarchy of geographic units for for Sao Paulo, Brazil
+          The SALURBAL hierarchy of geographic units for Sao Paulo, Brazil
           consists of 621 <span style={style_l25}>
             L2.5 neighborhood units</span
           >, within 31 <span style={style_l2}> L2 sub-city units</span>, within
