@@ -515,15 +515,19 @@
       map08: () => {
         fitBounds(map_scrolly_1, bounds.metro);
         custom_1 = {
-          mapid: 'map05',
+          mapid: 'map08',
           layers: {
+            municipio_line: {
+              'line-color': hex_primary,
+              'line-width': 2,
+            },
             metro_line: {
               'line-color': hex_purple,
               'line-width': 3,
             },
             l1_fill: {
               'fill-color': hex_error,
-              'fill-opacity': 0.5,
+              'fill-opacity': 0.3,
             },
             l1ad_line: {
               'line-color': hex_error,
@@ -709,9 +713,10 @@
     Guatemala, Mexico, Nicaragua, Panama, and Peru.
   </p>
   <p class="text-medium">
-    We took several steps to identify and define SALURBAL cities. The approach
-    described below has guided the definition of geographic areas to which all
-    SALURBAL data is linked. You can read more about this process in <a
+    We undertook a systematic approach to identify and define SALURBAL cities.
+    The approach described below has guided the definition of geographic areas
+    to which all SALURBAL data is linked. You can read more about this process
+    in <a
       href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
       target="_blank"
       >“Building a Data Platform for Cross-Country Urban Health Studies.”</a
@@ -737,11 +742,7 @@
         <a href="https://citypopulation.de/" target="_blank"
           >citypopulation.de</a
         > to obtain a list of all cities (as defined in these sources) with 100,000
-        residents or more in 2010. We combined both lists and eliminated overlaps.
-        Cities that were very close together and were therefore part of the same
-        urban agglomeration were combined. The name of the largest city or a hyphenated
-        name was assigned to that unit. SALURBAL team members in each country helped
-        create a final list of 371 cities. We will refer to these as “SALURBAL cities.”
+        residents or more in 2010. We combined both lists and eliminated duplicates.
       </p>
     </div>
     <!-- 
@@ -749,7 +750,7 @@
   # Map 1  (371 Salurbal cities)
 -->
     <div class="right-col">
-      <Media col="medium" caption="Map of all 371 SALURBAL cities">
+      <Media col="medium" caption="Interactive map of all 371 SALURBAL cities">
         <div class="chart-sml">
           <Map
             id="static_map_1"
@@ -792,7 +793,23 @@
 </Section>
 
 <Section>
-  <h3>Step 2: Defining the geographic boundaries of each city.</h3>
+  <h3>Step 2: Combining neighboring cities</h3>
+  <p class="text-medium">
+    Cities that were initially considered separate cities were combined into one
+    city if they were part of the same agglomeration, that is, if their built-up
+    areas were connected. We used the name of the city with the larger
+    population to label these units. In a few cases where the populations were
+    nearly equal, we assigned a hyphenated name (e.g., Valparaiso-Viña del Mar,
+    Chile). This process resulted in 371 cities, which we refer to as “SALURBAL
+    cities.”
+  </p>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <Arrow color="black" animation={true} />
+  </div>
+</Section>
+
+<Section>
+  <h3>Step 3: Defining the geographic boundaries of each city.</h3>
   <p class="text-medium">
     We operationalized - or geographically defined - each SALURBAL city using
     existing administrative units to which health and other data could be easily
@@ -851,7 +868,7 @@
           >
             <MapLayer
               map_id="map_scrolly_1"
-              id="municipio"
+              id="municipio_line"
               custom={custom_1}
               type="line"
             />
@@ -1105,7 +1122,8 @@
         </p>
         <p>
           The example shown here is Monterrey, Mexico with a population of
-          around 5 million residents.
+          around 5 million residents. Some of the municipios included as part of
+          Monterrey have only a small portion of the city’s urbanized area.
         </p>
       </div>
     </section>
@@ -1119,21 +1137,37 @@
         </p>
         <p>
           The example shown here is Rio Cuarto, Argentina with a population of
-          around 270,000 residents.
+          around 270,000 residents. The <span style={style_ux}>city</span> of
+          Rio Cuarto is made up of a single
+          <span style={style_l2}>departamento</span>.
         </p>
       </div>
     </section>
     <section data-id="map08">
-      <div class="col-medium">
+      <div class="col-medium text-small">
         <p>
           It is important to note that <span style={style_l1}
             >SALURBAL cities</span
           >
           may not coincide with
-          <span style={style_metro}>political boundaries or definitions</span> that
-          may be more familiar to public officials and local residents. Our boundaries
-          intentionally reflect urban agglomerations that often extend beyond city
-          cores. This is the case for São Paulo, Brazil.
+          <span style={style_metro}>political boundaries or definitions</span>
+          that may be more familiar to public officials and local residents. Our
+          boundaries intentionally reflect urban agglomerations that often extend
+          beyond city cores.
+        </p>
+
+        <p>
+          This is the case for São Paulo, Brazil, where
+          <span style={style_l1}
+            >our definition based on the built-up extent</span
+          >
+          varies slightly compared to the
+          <span style={style_metro}
+            >locally defined Metropolitan Region of São Paulo</span
+          >, and extends beyond the
+          <span style={style_l2}>municipalidade of São Paulo</span>. All
+          SALURBAL city definitions were reviewed by SALURBAL team members in
+          each country, before creating a final list of 371 cities.
         </p>
       </div>
     </section>
@@ -1142,7 +1176,7 @@
 
 <Section>
   <h3>
-    Step 3. Creating a hierarchy of geographic units within each SALURBAL city
+    Step 4. Creating a hierarchy of geographic units within each SALURBAL city
   </h3>
   <p class="text-medium">
     In order to capture within-city differences and accommodate data available
@@ -1151,16 +1185,16 @@
   </p>
   <p class="text-medium">
     Each SALURBAL city is referred to as a Level 1 unit (L1). Administrative
-    units that compose each city (as described in step 2) are referred to Level
+    units that compose each city (as described in step 3) are referred to Level
     2 units (L2). We also defined smaller geographic units, which are similar to
     neighborhoods nested within each L2. These are referred to as Level 3 units
     (L3s).
   </p>
   <p class="text-medium">
-    In countries where L3s were not always defined, SALURBAL created L3 proxies
-    by combining other available geographic units. When L3s were too small for
-    our research purposes, neighborhoods were proxied using slightly larger
-    units. We refer to these as Level 2.5 units (L2.5s).
+    In countries where L3s were not defined for the entire territory, SALURBAL
+    created L3 proxies by combining other available geographic units. When L3s
+    were too small for our research purposes, neighborhoods were proxied using
+    slightly larger units. We refer to these as Level 2.5 units (L2.5s).
   </p>
   <p class="text-medium">
     Let’s go back to São Paulo to see how these different geographic levels
@@ -1366,7 +1400,7 @@
         <p>
           The SALURBAL <span style={style_l1}>Level 1</span> for São Paulo
           encompasses all administrative units or
-          <em>muncipalidade</em> that have any overlap with the visually apparent
+          <em>muncipalidades</em> that have any overlap with the visually apparent
           built-up urban area in and around the core city of São Paulo.
         </p>
       </div>
@@ -1406,9 +1440,11 @@
     <section data-id="map05">
       <div class="col-medium">
         <p>
-          These <span style={style_l3}> L3 units</span> were too small to
-          support meaningful neighborhood-level analysis. To address this issue,
-          we used larger Brazil census geographic units and labeled them
+          These <span style={style_l3}> L3 units</span> were sometimes too small
+          to support meaningful neighborhood-level analysis. To address this
+          issue, we used larger Brazil census geographic units (<em
+            >Áreas de Ponderação</em
+          >) and labeled them
           <span style={style_l25}> L2.5's</span>.
         </p>
       </div>
@@ -1435,7 +1471,11 @@
     This process was repeated for all 371 cities included in the SALURBAL
     project. The result is an unprecedented data resource that allows us to
     document and compare differences in health and wellbeing both between and
-    within cities across Latin America.
+    within cities across Latin America. You can find examples of analyses using
+    this data structure in our <a
+      href="https://drexel.edu/lac/data-evidence/publications/"
+      target="_blank">publications list</a
+    >.
   </p>
   <p class="text-medium">
     For more information on the specific units used in each SALURBAL country,
@@ -1527,7 +1567,7 @@
   }
 
   .right-col {
-    flex: 2; /* Takes up 1 part of the available space */
+    flex: 3; /* Takes up 1 part of the available space */
     /* border: 1px solid black; */
     margin-top: 0.5rem;
   }
