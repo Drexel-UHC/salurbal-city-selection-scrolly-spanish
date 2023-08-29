@@ -803,9 +803,6 @@
     Chile). This process resulted in 371 cities, which we refer to as “SALURBAL
     cities.”
   </p>
-  <div style="display: flex; justify-content: center; align-items: center;">
-    <Arrow color="black" animation={true} />
-  </div>
 </Section>
 
 <Section>
@@ -852,7 +849,7 @@
               <div class="boundary-legend-text">Municiplidade of São Paulo</div>
               <div class="boundary-l1-legend" />
               <div class="boundary-legend-text">
-                SALURBAL defined City of São Paulo
+                SALURBAL defined city of São Paulo
               </div>
             </div>
           {/if}
@@ -1136,8 +1133,8 @@
         </p>
         <p>
           The example shown here is Monterrey, Mexico with a population of
-          around 5 million residents. Some of the municipios included as part of
-          Monterrey have only a small portion of the city’s urbanized area.
+          around 5 million residents. Some of the <em>municipios</em> included as
+          part of Monterrey have only a small portion of the city’s urbanized area.
         </p>
       </div>
     </section>
@@ -1153,12 +1150,12 @@
           The example shown here is Rio Cuarto, Argentina with a population of
           around 270,000 residents. The <span style={style_ux}>city</span> of
           Rio Cuarto is made up of a single
-          <span style={style_l2}>departamento</span>.
+          <span style={style_l2}><em>departamento</em></span>.
         </p>
       </div>
     </section>
     <section data-id="map08">
-      <div class="col-medium text-small">
+      <div class="col-medium text-medium">
         <p>
           It is important to note that <span style={style_l1}
             >SALURBAL cities</span
