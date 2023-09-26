@@ -37,6 +37,7 @@
     "topojson-client": "^3.1.0"
   },
   "dependencies": {
+    "@usesuperflow/client": "^1.0.4",
     "iconify-icon": "^1.0.8",
     "sirv-cli": "^1.0.0"
   }
