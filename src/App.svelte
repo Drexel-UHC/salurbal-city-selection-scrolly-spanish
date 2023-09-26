@@ -1423,8 +1423,8 @@
           Within the São Paulo SALURBAL city <span style={style_l1}
             >(São Paulo L1)</span
           >, we defined sub-city units as each of the
-          <em>muncipalidade</em> that compose the São Paulo urban agglomeration.
-          These are
+          <em>muncipalidades</em> that compose the São Paulo urban
+          agglomeration. These are the
           <span style={style_l2}>L2s</span>.
         </p>
       </div>
