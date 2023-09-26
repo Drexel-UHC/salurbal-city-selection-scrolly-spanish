@@ -32,10 +32,10 @@
   import Toggle from './ui/Toggle.svelte';
   import Arrow from './ui/Arrow.svelte';
 
-  import { initSuperflow } from '@usesuperflow/client';
-  initSuperflow('t3p1NHY1MaAX795EXt7m', {
-    projectId: '501229561750262',
-  });
+  // import { initSuperflow } from '@usesuperflow/client';
+  // initSuperflow('t3p1NHY1MaAX795EXt7m', {
+  //   projectId: '501229561750262',
+  // });
 
   let theme = 'light';
   setContext('theme', theme);
