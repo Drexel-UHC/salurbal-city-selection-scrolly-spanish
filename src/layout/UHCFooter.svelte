@@ -28,7 +28,7 @@
               <a
                 href="https://drexel.edu/uhc/about/contact/"
                 class="link"
-                style="color: {themes[theme]['text']}">Contact us</a
+                style="color: {themes[theme]['text']}">Contáctanos</a
               >
             </li>
 
@@ -36,14 +36,14 @@
               <a
                 href="https://drexel.edu/privacy"
                 class="link"
-                style="color: {themes[theme]['text']}">Privacy and legal</a
+                style="color: {themes[theme]['text']}">Privacidad y legalidad</a
               >
             </li>
           </ul>
         </div>
       </div>
       <div class="item" id="follow-uhc">
-        Follow UHC:
+        Sigue a UHC:
         <div class="container">
           <a href="https://github.com/Drexel-UHC">
             <div class="social-icon"><Icon icon="mdi:github" /></div>
@@ -70,21 +70,21 @@
     </div>
     <hr style="border-top-color: {themes[theme]['muted']}" />
     <div class="license">
-      This template was forked and modified from the <a
+      Esta plantilla fue bifurcada y modificada de la <a
         href="https://github.com/ONSvisual/svelte-scrolly"
         class="link"
         target="_blank"
         rel="noopener"
         style="color: {themes[theme]['text']}"
-        >UK Office of National Statistics</a
-      >. All content is available under the
+        >Oficina de Estadísticas Nacionales del Reino Unido</a
+      >. Todo el contenido está disponible bajo la
       <a
         href="https://opensource.org/licenses/MIT"
         class="link"
         target="_blank"
         rel="noopener"
-        style="color: {themes[theme]['text']}">MIT License</a
-      >, except where otherwise stated
+        style="color: {themes[theme]['text']}">Licencia MIT</a
+      >, excepto donde se indique lo contrario.
     </div>
   </div>
 </footer>
