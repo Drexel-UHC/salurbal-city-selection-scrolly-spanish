@@ -719,9 +719,9 @@
     Salvador, Guatemala, México, Nicaragua, Panamá y Perú.
   </p>
   <p class="text-medium">
-    Hemos empleado un enfoque sistemático (with the accent) para identificar y
-    definir las ciudades SALURBAL. El enfoque descrito a continuación ha guiado
-    la definición de áreas geográficas a las que se vinculan todos los datos de
+    Hemos empleado un enfoque sistemático para identificar y definir las
+    ciudades SALURBAL. El enfoque descrito a continuación ha guiado la
+    definición de áreas geográficas a las que se vinculan todos los datos de
     SALURBAL. Puede leer más sobre este proceso en <a
       href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
       target="_blank"
@@ -1143,10 +1143,9 @@
         </p>
         <p>
           El ejemplo mostrado aquí es Monterrey, México con una población de
-          alrededor de 5 millones de residentes. Algunos de los <em
-            >municipios</em
-          > incluidos como parte de Monterrey solo tienen una pequeña parte del área
-          urbanizada de la ciudad.
+          alrededor de 5 millones de residentes. Algunos de los municipios
+          incluidos como parte de Monterrey solo tienen una pequeña parte del
+          área urbanizada de la ciudad.
         </p>
       </div>
     </section>
@@ -1157,7 +1156,7 @@
           unidades, casi la mitad de las <span style={style_l1}
             >ciudades SALURBAL</span
           >
-          incluye solo una
+          incluyen solo una
           <span style={style_l2}>unidad administrativa</span>.
         </p>
         <p>
@@ -1178,17 +1177,17 @@
           >
           pueden no coincidir con
           <span style={style_metro}>límites o definiciones políticas</span>
-          que pueden ser más familiares para los funcionarios públicos y residentes
-          de estas ciudades. Nuestros límites reflejan intencionadamente aglomeraciones
-          urbanas que a menudo se extienden más allá de los núcleos de las ciudades.
+          que pueden ser más familiares para los residentes de estas ciudades. Nuestros
+          límites reflejan intencionadamente aglomeraciones urbanas que a menudo
+          se extienden más allá de los núcleos de las ciudades.
         </p>
 
         <p>
           Este es el caso de São Paulo, Brasil, donde
           <span style={style_l1}
-            >nuestra definición basada en la extensión construida</span
+            >nuestra definición basada en la extensión urbanizada</span
           >
-          varía ligeramente en comparación con la
+          varía ligéramente en comparación con la
           <span style={style_metro}
             >Región Metropolitana de São Paulo definida localmente</span
           >
@@ -1221,10 +1220,10 @@
     se refieren como unidades de Nivel 3 (L3s).
   </p>
   <p class="text-medium">
-    En países donde no se definieron L3s para todo el territorio, SALURBAL creó
+    En paíse donde no se definieron L3s para todo el territorio, SALURBAL creó
     L3 propios combinando otras unidades geográficas disponibles. Cuando los L3s
     eran demasiado pequeños para nuestros propósitos de investigación, los
-    barrios se representaron usando unidades ligeramente más grandes. Nos
+    barrios se representaron usando unidades ligéramente más grandes. Nos
     referimos a esto como unidades de Nivel 2.5 (L2.5s).
   </p>
   <p class="text-medium">
@@ -1431,7 +1430,7 @@
         <p>
           El <span style={style_l1}>Nivel 1</span> de SALURBAL para São Paulo
           abarca todas las unidades administrativas o
-          <em>muncipalidades</em> que se superponen con el área urbana construida
+          <em>muncipalidades</em> que se superponen con el área urbana urbanizada
           alrededor de la ciudad principal de São Paulo.
         </p>
       </div>
@@ -1471,11 +1470,11 @@
     <section data-id="map05">
       <div class="col-medium">
         <p>
-          Estas <span style={style_l3}>unidades L3</span> a veces eran demasiado
+          Estas <span style={style_l3}>unidades L3</span> a veces son demasiado
           pequeñas para realizar análisis a nivel de barrio. Para abordar este
           problema, utilizamos unidades geográficas del censo de Brasil más
           grandes (<em>Áreas de Ponderação</em>) y las etiquetamos como
-          <span style={style_l25}>L2.5's</span>.
+          <span style={style_l25}>L2.5s</span>.
         </p>
       </div>
     </section>
