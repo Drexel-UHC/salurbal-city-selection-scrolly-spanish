@@ -695,7 +695,7 @@
 <Filler theme="lightblue" short={true} wide={true} center={false}>
   <h1>¿Qué es una ciudad SALURBAL?</h1>
   <p class="text-big" style="margin-top: 5px">
-    Definición y selección de ciudad, sub-ciudad y barrio SALURBAL
+    Definición y selección de ciudades, sub-ciudades, y barrios en SALURBAL
   </p>
 
   <p class="text-medium">
@@ -712,17 +712,17 @@
 <Section>
   <h2>Introducción</h2>
   <p class="text-medium">
-    El equipo de SALURBAL ha desarrollado un protocolo riguroso para definir
-    ciudades, sub-ciudades y barrios. Este proceso nos permite estudiar y
+    El equipo de SALURBAL ha desarrollado un riguroso protocolo para definir
+    ciudades, sub-ciudades y barrios. Este proceso nos ha permitido estudiar y
     comparar entornos urbanos y sus impactos en la salud en ciudades de 11
     países de América Latina: Argentina, Brasil, Chile, Colombia, Costa Rica, El
     Salvador, Guatemala, México, Nicaragua, Panamá y Perú.
   </p>
   <p class="text-medium">
-    Emprendimos un enfoque sistemático para identificar y definir las ciudades
-    SALURBAL. El enfoque descrito a continuación ha guiado la definición de
-    áreas geográficas a las que se vinculan todos los datos de SALURBAL. Puede
-    leer más sobre este proceso en <a
+    Hemos empleado un enfoque sistemático (with the accent) para identificar y
+    definir las ciudades SALURBAL. El enfoque descrito a continuación ha guiado
+    la definición de áreas geográficas a las que se vinculan todos los datos de
+    SALURBAL. Puede leer más sobre este proceso en <a
       href="https://link.springer.com/article/10.1007/s11524-018-00326-0"
       target="_blank"
       >“Building a Data Platform for Cross-Country Urban Health Studies.”</a
@@ -760,7 +760,10 @@
   # Map 1  (371 Salurbal cities)
 -->
     <div class="right-col">
-      <Media col="medium" caption="Interactive map of all 371 SALURBAL cities">
+      <Media
+        col="medium"
+        caption="Mapa interactivo de las 371 ciudadeds SALURBAL"
+      >
         <div class="chart-sml">
           <Map
             id="static_map_1"
@@ -804,13 +807,13 @@
 </Section>
 
 <Section>
-  <h3>Paso 2: Combinación de ciudades vecinas</h3>
+  <h3>Paso 2: Agregación de ciudades adyacentes.</h3>
   <p class="text-medium">
     Las ciudades que inicialmente se consideraron ciudades separadas se
     combinaron en una sola ciudad si formaban parte de la misma aglomeración, es
     decir, si sus áreas construidas estaban conectadas. Utilizamos el nombre de
     la ciudad con la mayor población para etiquetar estas unidades. En algunos
-    casos donde las poblaciones eran casi iguales, asignamos un nombre con guion
+    casos donde las poblaciones eran casi iguales, asignamos un nombre cón guion
     (por ejemplo, Valparaíso-Viña del Mar, Chile). Este proceso resultó en 371
     ciudades, a las que nos referimos como “ciudades SALURBAL”.
   </p>
@@ -820,9 +823,9 @@
   <h3>Paso 3: Definición de los límites geográficos de cada ciudad.</h3>
   <p class="text-medium">
     Operacionalizamos - o definimos geográficamente - cada ciudad SALURBAL
-    utilizando unidades administrativas existentes a las que se pudiera vincular
-    fácilmente datos de salud y otros datos. Estas unidades administrativas
-    incluyeron <em>municipios</em>,
+    utilizando unidades administrativas existentes a las que se pudieran
+    vincular fácilmente datos de salud y otros datos. Estas unidades
+    administrativas incluyeron <em>municipios</em>,
     <em>departamentos</em> o unidades similares en cada país.
   </p>
   <div style="display: flex; justify-content: center; align-items: center;">
@@ -1097,7 +1100,7 @@
       <div class="col-medium">
         <p>
           Estas son las <span style={style_l2}>unidades administrativas</span>
-          (<em>municipalidad</em>) en São Paulo, Brasil.
+          (<em>municipalidades</em>) en São Paulo, Brasil.
         </p>
       </div>
     </section>
@@ -1131,11 +1134,12 @@
           >
           que componen una ciudad son muy grandes, una
           <span style={style_l1}>ciudad SALURBAL</span>
-          puede incluir algunas áreas que no están
-          <span style={style_unurban}>urbanizadas o construidas.</span> Esto se debe
-          a que cualquier unidad administrativa que incluyera incluso una pequeña
-          parte del área construida se incluyó en la definición geográfica de la
-          ciudad.
+          puede incluir algunas
+          <span style={style_unurban}>
+            áreas que no están urbanizadas o contstruidas.</span
+          > Esto se debe a que cualquier unidad administrativa que incluyera incluso
+          una pequeña parte del área construida se incluyó en la definición geográfica
+          de la ciudad.
         </p>
         <p>
           El ejemplo mostrado aquí es Monterrey, México con una población de
@@ -1153,15 +1157,15 @@
           unidades, casi la mitad de las <span style={style_l1}
             >ciudades SALURBAL</span
           >
-          incluyen solo una
+          incluye solo una
           <span style={style_l2}>unidad administrativa</span>.
         </p>
         <p>
-          El ejemplo mostrado aquí es Rio Cuarto, Argentina con una población de
+          El ejemplo mostrado aquí es Río Cuarto, Argentina con una población de
           alrededor de 270,000 residentes. La <span style={style_ux}
             >ciudad</span
           >
-          de Rio Cuarto está compuesta por un solo
+          de Río Cuarto está compuesta por un solo
           <span style={style_l2}><em>departamento</em></span>.
         </p>
       </div>
@@ -1174,9 +1178,9 @@
           >
           pueden no coincidir con
           <span style={style_metro}>límites o definiciones políticas</span>
-          que pueden ser más familiares para los funcionarios públicos y los residentes
-          locales. Nuestros límites reflejan intencionadamente aglomeraciones urbanas
-          que a menudo se extienden más allá de los núcleos de las ciudades.
+          que pueden ser más familiares para los funcionarios públicos y residentes
+          de estas ciudades. Nuestros límites reflejan intencionadamente aglomeraciones
+          urbanas que a menudo se extienden más allá de los núcleos de las ciudades.
         </p>
 
         <p>
@@ -1202,7 +1206,7 @@
 <Section>
   <h3>
     Paso 4. Creación de una jerarquía de unidades geográficas dentro de cada
-    ciudad SALURBAL
+    ciudad SALURBAL.
   </h3>
   <p class="text-medium">
     Con el objetivo de capturar diferencias dentro de la ciudad y adaptarse a
@@ -1213,15 +1217,15 @@
     Cada ciudad SALURBAL se refiere como una unidad de Nivel 1 (L1). Las
     unidades administrativas que componen cada ciudad (como se describió en el
     paso 3) se refieren a unidades de Nivel 2 (L2). También definimos unidades
-    geográficas más pequeñas, similares a barrios anidados dentro de cada L2.
-    Estas se refieren como unidades de Nivel 3 (L3s).
+    geográficas más pequeñas, similare a barrio, anidado dentro de cada L2. Esta
+    se refieren como unidades de Nivel 3 (L3s).
   </p>
   <p class="text-medium">
     En países donde no se definieron L3s para todo el territorio, SALURBAL creó
-    proxies L3 combinando otras unidades geográficas disponibles. Cuando los L3s
+    L3 propios combinando otras unidades geográficas disponibles. Cuando los L3s
     eran demasiado pequeños para nuestros propósitos de investigación, los
     barrios se representaron usando unidades ligeramente más grandes. Nos
-    referimos a estos como unidades de Nivel 2.5 (L2.5s).
+    referimos a esto como unidades de Nivel 2.5 (L2.5s).
   </p>
   <p class="text-medium">
     Volvamos a São Paulo para ver cómo se aplican estos diferentes niveles
@@ -1427,9 +1431,8 @@
         <p>
           El <span style={style_l1}>Nivel 1</span> de SALURBAL para São Paulo
           abarca todas las unidades administrativas o
-          <em>muncipalidades</em> que tienen cualquier superposición con el área
-          urbana construida visualmente aparente en y alrededor de la ciudad principal
-          de São Paulo.
+          <em>muncipalidades</em> que se superponen con el área urbana construida
+          alrededor de la ciudad principal de São Paulo.
         </p>
       </div>
     </section>
@@ -1469,10 +1472,9 @@
       <div class="col-medium">
         <p>
           Estas <span style={style_l3}>unidades L3</span> a veces eran demasiado
-          pequeñas para apoyar un análisis significativo a nivel de barrio. Para
-          abordar este problema, utilizamos unidades geográficas del censo de
-          Brasil más grandes (<em>Áreas de Ponderação</em>) y las etiquetamos
-          como
+          pequeñas para realizar análisis a nivel de barrio. Para abordar este
+          problema, utilizamos unidades geográficas del censo de Brasil más
+          grandes (<em>Áreas de Ponderação</em>) y las etiquetamos como
           <span style={style_l25}>L2.5's</span>.
         </p>
       </div>
@@ -1480,7 +1482,7 @@
     <section data-id="map06">
       <div class="col-medium">
         <p>
-          La jerarquía de unidades geográficas de SALURBAL para Sao Paulo,
+          La jerarquía de unidades geográficas de SALURBAL para São Paulo,
           Brasil consta de 621 <span style={style_l25}>
             unidades de barrio L2.5</span
           >, dentro de 31 <span style={style_l2}> unidades sub-ciudad L2</span>,
