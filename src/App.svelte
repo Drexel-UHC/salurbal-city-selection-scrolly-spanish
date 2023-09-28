@@ -768,6 +768,7 @@
             location={{ bounds: bounds.southAmericaShifted }}
             controls={true}
             scales={false}
+            dragPan={true}
             bind:map_static_1
             bind:center
           >
