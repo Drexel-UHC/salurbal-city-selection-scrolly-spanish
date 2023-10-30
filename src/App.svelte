@@ -706,6 +706,9 @@
     <br />
     Desarrollado por:
     <span style={'font-weight: 900'}> Anuj Tanwar, Ran Li</span>
+    <br />
+    Traducción al castellano apoyada por:
+    <span style={'font-weight: 900'}> Usama Bilal y Katy Indvik</span>
   </p>
 </Filler>
 
